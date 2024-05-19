@@ -1,0 +1,160 @@
+._hero {
+  width: 100%;
+  height: 100vh;
+}
+._hero_bg {
+  filter: blur(10px);
+}
+
+._hero_bg img {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.__hero {
+  width: 80%;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0 1rem;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+._hero_left {
+  color: #dbdbdbe4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+._title {
+  align-self: start;
+  font-weight: 300;
+  font-size: 2.4rem;
+  padding-bottom: 1.4rem;
+}
+
+._text {
+  letter-spacing: 0.4px;
+  font-size: 18px;
+  font-weight: 200;
+  font-style: italic;
+}
+
+._hero_left a {
+  text-decoration: none;
+  padding: 0.7rem 2rem;
+  align-self: start;
+  margin-top: 1rem;
+  border: 1px solid #000000;
+  border-radius: 2rem;
+  background-color: #e59101;
+  color: #000000;
+  box-shadow: 0px 0px 7px rgb(0, 0, 0);
+}
+
+._hero_right {
+  animation: textAnimation 10s linear infinite;
+}
+
+._hero_right img {
+  width: 20rem;
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  } /* Başlangıç pozisyonu */
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  } /* Bitiş pozisyonu */
+}
+
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Metni dikey ve yatay olarak merkezlemek için */
+  font-size: 24px;
+}
+
+.circle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Dikey olarak ortalamak için */
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.text_rot {
+  color: #eee;
+  padding: 0.3rem;
+  font-size: 1.7rem;
+  text-shadow: 0px 0px 10px #000000;
+}
+
+.rotating-svg {
+  animation: rotate 40s linear infinite;
+  -webkit-animation: rotate 40s linear infinite;
+  /* -webkit-animation: rotate 15s linear infinite; */
+  transform-origin: 50% 50%; /* Rotasyonun merkezini SVG'nin merkezi olarak ayarlamak için */
+  -webkit-transform-origin: 50% 50%;
+}
+
+.rotating-img {
+  animation: rotate 30s linear infinite;
+  -webkit-animation: rotate 30s linear infinite;
+  transform-origin: 50% 50%; /* Rotasyonun merkezini SVG'nin merkezi olarak ayarlamak için */
+  -webkit-transform-origin: 50% 50%;
+}
+
+/* Media Query Şablonu */
+
+@media only screen and (max-width: 768px) {
+  /* Tablet ve mobil cihazlar için */
+  .__hero {
+    height: 85%;
+    top: -40%;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
+    /* gap: none; */
+  }
+  /* ._hero_right img {
+    width: 16rem;
+  } */
+  ._title {
+    align-self: center;
+    text-shadow: 0px 0px 10px #000000;
+  }
+  ._text {
+    font-weight: 300;
+    text-align: center;
+    text-shadow: 0px 0px 8px #000000;
+  }
+
+  ._hero_left a {
+    align-self: center;
+  }
+}
+@media only screen and (max-width: 480px) {
+  /* Küçük ekranlar (mobil cihazlar) için */
+  /* Stiller buraya */
+}

@@ -1,0 +1,29 @@
+.container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.circle {
+  position: absolute;
+  top: calc(50% - 50px); /* Y diğerleriyle aynı merkezde */
+  left: calc(50% - 50px); /* X diğerleriyle aynı merkezde */
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid rgb(173, 18, 18);
+}
+
+.button {
+  position: absolute;
+  top: calc(50% + 50px); /* 50px aşağıda */
+  left: calc(50% - 50px); /* Diğerleriyle aynı merkezde */
+  width: 100px;
+  height: 40px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
