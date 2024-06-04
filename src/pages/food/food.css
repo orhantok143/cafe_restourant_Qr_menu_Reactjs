@@ -1,0 +1,110 @@
+._card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 20rem;
+  width: 15rem;
+  padding: 0.8rem;
+  border-radius: 0.8rem 0.8rem 2rem 2rem;
+  /* background: #0000008d;
+  backdrop-filter: blur(10px); */
+  background: rgba(
+    255,
+    255,
+    255,
+    0.081
+  ); /* Set semi-transparent white background */
+  backdrop-filter: blur(30px); /* Apply blur effect */
+  box-shadow: 0px 0px 1.4px rgb(255, 255, 255);
+  position: relative;
+}
+
+._card img {
+  width: 80%;
+  height: fit-content;
+  margin-bottom: 1rem;
+}
+
+._card .card_text {
+  color: rgb(230, 230, 230);
+}
+.card_text ._text_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  /* padding-bottom: 0.3rem; */
+  /* border-bottom: 1.7px dashed rgb(51, 51, 51); */
+}
+._text_header .price {
+  text-wrap: nowrap;
+  background: #e1ce01;
+  color: black;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.7rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 15px rgb(0, 0, 0);
+}
+
+.card_text .desc {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.675);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 0.85rem;
+}
+.card_text h4 {
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+._card ._icons {
+  width: 80%;
+  font-size: 1.7rem;
+  position: absolute;
+  top: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(221, 221, 221);
+  /* background: #ffffff; */
+}
+
+.__icon {
+  width: 100%;
+  /* background: #932d2d; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(0%);
+}
+
+.__icon ._like {
+  font-size: 1.8rem;
+  color: whitesmoke;
+}
+
+@media only screen and (max-width: 768px) {
+  /* Tablet ve mobil cihazlar için */
+  ._card {
+    margin-top: 0.7rem;
+    width: 11rem;
+    height: 15rem;
+  }
+  /* .card_text .desc {
+    display: none;
+  } */
+  .card_text {
+    width: 100%;
+    /* margin-top: 1rem; */
+  }
+}
+@media only screen and (max-width: 480px) {
+  /* Küçük ekranlar (mobil cihazlar) için */
+}

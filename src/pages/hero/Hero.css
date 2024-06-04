@@ -1,14 +1,26 @@
 ._hero {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  overflow-x: hidden;
+  margin: auto;
 }
 ._hero_bg {
   filter: blur(10px);
+  -webkit-filter: blur(10px);
 }
+
+/* .glassmorphim {
+  width: 100%;
+  height: 100%;
+  background: #ee0f0f00;
+  z-index: 1000;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+} */
 
 ._hero_bg img {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   top: 0;
   left: 50%;
@@ -24,28 +36,32 @@
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translate(-50%, 50%);
+  transform: translate(-50%);
 }
 
 ._hero_left {
-  color: #dbdbdbe4;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 }
 ._title {
+  color: #eee;
   align-self: start;
   font-weight: 300;
   font-size: 2.4rem;
   padding-bottom: 1.4rem;
+  text-shadow: 0px 0px 10px #000000;
 }
 
 ._text {
-  letter-spacing: 0.4px;
-  font-size: 18px;
+  color: #ffffffd5;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  font-size: 16px;
   font-weight: 200;
   font-style: italic;
+  text-shadow: 0px 0px 10px #000000;
 }
 
 ._hero_left a {
@@ -53,11 +69,12 @@
   padding: 0.7rem 2rem;
   align-self: start;
   margin-top: 1rem;
+  outline: none;
   border: 1px solid #000000;
   border-radius: 2rem;
-  background-color: #e59101;
-  color: #000000;
-  box-shadow: 0px 0px 7px rgb(0, 0, 0);
+  background-color: #c59e00;
+  color: #000000c9;
+  box-shadow: 0px 0px 10px rgb(255, 255, 255);
 }
 
 ._hero_right {
@@ -85,6 +102,7 @@
     -50%,
     -50%
   ); /* Metni dikey ve yatay olarak merkezlemek için */
+
   font-size: 24px;
 }
 
@@ -130,8 +148,8 @@
 @media only screen and (max-width: 768px) {
   /* Tablet ve mobil cihazlar için */
   .__hero {
-    height: 85%;
-    top: -40%;
+    height: 80%;
+    top: 0;
     flex-direction: column-reverse;
     justify-content: space-between;
     align-items: center;

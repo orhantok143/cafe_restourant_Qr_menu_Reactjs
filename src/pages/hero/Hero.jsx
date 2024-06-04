@@ -1,26 +1,49 @@
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 import "./Hero.css";
-import hero_img from "../../image/indir (7).jpg";
-import h1 from "../../image/h1.png";
+import laptop from "../../image/web_hero_1.jpg";
+import h1 from "../../image/h3.png";
 // import { Link } from "react-router-dom";
-// import h3 from "../../image/h3.png";
+
+import mobile from "../../image/mobile_baharat.jpg";
+import { NavLink } from "react-router-dom";
 
 const Hero = () => {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
+  // const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
+  // const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
+
   return (
     <div className="_hero">
       <div className="_hero_bg">
-        <img src={hero_img} alt="hero_bg" srcSet="" />
+        <img
+          src={
+            isDesktopOrLaptop
+              ? laptop
+              : isTabletOrMobile
+              ? mobile
+              : isPortrait
+              ? laptop
+              : null
+          }
+          alt="hero_bg"
+          srcSet=""
+        />
       </div>
       <div className="__hero">
         <div className="_hero_left">
-          <h3 className="_title">Hoşgeldiniz</h3>
+          <h3 className="_title">- Garden -</h3>
           <p className="_text">
-            Hamaloğlu Kafe, günlük hayatın koşuşturmasından uzaklaşmak
-            isteyenler için huzurlu bir kaçış noktasıdır. Özenle hazırladığımız
-            taze ve lezzetli atıştırmalıklar, özel kahve çeşitlerimiz ve modern,
-            rahat atmosferimizle sizi bekliyoruz.
+            Hamaloğlu Kafe’ye hoş geldiniz! Güne enerjik bir kahvaltıyla
+            başlayın, zengin ana yemeklerimizle gününüzü tatlandırın.
+            Serinletici içeceklerimiz ve nefis tatlılarımızla kendinizi
+            şımartın. Her yudumda lezzeti, her lokmada huzuru hissedin.
           </p>
-          <a href="/">Başla</a>
+          <NavLink to="/products">Başla</NavLink>
         </div>
 
         <div className="circle-container _hero_right">
@@ -45,9 +68,9 @@ const Hero = () => {
               clipPath="circle(100px at center)"
               className="rotating-img"
             />
-            <text fontSize="22" fill="#dbdbdbe4">
+            <text fontSize="22" fill=" #eee">
               <textPath href="#circlePath" startOffset="0" className="text_rot">
-                HAMALOĞLUDAYIZ
+                HAMALDAYIZ
               </textPath>
             </text>
           </svg>

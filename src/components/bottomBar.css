@@ -1,29 +1,84 @@
-.container {
-  position: relative;
-  width: 300px;
-  height: 300px;
+.bottom-bar {
+  width: 20%;
+  height: 3rem;
+  background: #000000aa;
+  /* box-shadow: 0px 0px 10px rgb(126, 0, 145); */
+  border: 1px solid rgb(137, 134, 134);
+  border-radius: 1.2rem;
+  display: flex;
+  /* box-sizing: border-box; */
+  justify-content: space-between;
+  align-items: center;
+  /* gap: 0.5rem 1rem; */
+  padding: 10px;
+  /* position: fixed;
+  bottom: -2%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  z-index: 2;
 }
 
-.circle {
-  position: absolute;
-  top: calc(50% - 50px); /* Y diğerleriyle aynı merkezde */
-  left: calc(50% - 50px); /* X diğerleriyle aynı merkezde */
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 1px solid rgb(173, 18, 18);
-}
-
-.button {
-  position: absolute;
-  top: calc(50% + 50px); /* 50px aşağıda */
-  left: calc(50% - 50px); /* Diğerleriyle aynı merkezde */
-  width: 100px;
-  height: 40px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 20px;
+.bottom-bar .bottom_icon {
+  padding: 0.3rem;
+  font-size: 1.4rem;
+  display: flex;
+  /* transform: rotate(0deg); */
+  background: #1718003c;
+  /* place-items: center; */
+  /* text-align: center; */
+  /* align-self: center; */
+  border: 0.8px solid rgb(133, 133, 133);
+  /* box-shadow: 0px 0px 5px rgb(208, 114, 0); */
+  border-radius: 30%;
+  color: rgb(231, 231, 231);
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
-  font-size: 16px;
+}
+
+.bottom-bar .active {
+  /* transform: translateY(-12%); */
+  color: #2a2a2a; /* Change color for active icon */
+  z-index: 1;
+  background: #e1ce01;
+  /* #e7bc00; */
+  border-radius: 50%;
+  box-shadow: 0px 0px 7px rgb(255, 255, 255);
+}
+
+.hookah {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+._sub {
+  align-self: flex-end;
+}
+
+@media only screen and (max-width: 1000px) {
+  /* Tablet ve mobil cihazlar için */
+  .bottom-bar {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* Tablet ve mobil cihazlar için */
+  .bottom-bar {
+    width: 40%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  /* Küçük ekranlar (mobil cihazlar) için */
+  .bottom-bar {
+    width: 3rem;
+    height: 250px;
+    background: #bb004ec3;
+    flex-direction: column;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(17, 17, 17, 0.922);
+    backdrop-filter: blur(30px); /* Apply blur effect */
+    /* box-shadow: 0px 0px 10px whitesmoke; */
+  }
 }
