@@ -5,15 +5,10 @@ import { categories } from "../../src/image/data";
 const SubCategory = () => {
   const c = categories.map((c) => c.subCategory.flat()).flat();
 
-  console.log(c);
-
   const [selectedOption, setSelectedOption] = useState(""); // State to manage the selected option
 
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
-    // if (onChange) {
-    //   onChange(event.target.value); // Call onChange prop if provided
-    // }
   };
 
   return (

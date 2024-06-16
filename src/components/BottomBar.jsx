@@ -5,16 +5,11 @@ import { FaCoffee } from "react-icons/fa";
 import { GiCakeSlice } from "react-icons/gi";
 import "./bottomBar.css";
 import Smoke from "./Smoke";
-import { useNavigate } from "react-router-dom";
 
 const BottomBar = () => {
   const [activeIcon, setActiveIcon] = useState(0);
-  const navigate = useNavigate();
   const handleClick = (icon) => {
     setActiveIcon(icon.id);
-    localStorage.setItem("category", icon.label);
-    // navigate("..");
-    navigate("");
   };
 
   const icons = [

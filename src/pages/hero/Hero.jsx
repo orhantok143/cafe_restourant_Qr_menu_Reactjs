@@ -1,21 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import "./Hero.css";
 import laptop from "../../image/web_hero_1.jpg";
 import h1 from "../../image/h3.png";
-// import { Link } from "react-router-dom";
-
 import mobile from "../../image/mobile_baharat.jpg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { checkToken } from "../../redux/login/loginSlice";
 
 const Hero = () => {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: "(min-width: 1224px)",
-  });
-  // const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
+  const navigate = useNavigate();
+  const param = useParams();
+  const dispatch = useDispatch();
+
+  const loginState = useSelector((state) => state.auth); // loginState'i alın
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      dispatch(checkToken(token));
+    }
+  }, [dispatch, navigate, param.id]);
+
+  useEffect(() => {
+    if (loginState.tokenValid) {
+      navigate(`/${param.id}/anasayfa`);
+    }
+  }, [loginState.tokenValid, navigate, param.id]);
+
+  const isDesktopOrLaptop = useMediaQuery({ query: "(min-width: 1224px)" });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
-  // const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
 
   return (
     <div className="_hero">
@@ -43,9 +58,8 @@ const Hero = () => {
             Serinletici içeceklerimiz ve nefis tatlılarımızla kendinizi
             şımartın. Her yudumda lezzeti, her lokmada huzuru hissedin.
           </p>
-          <NavLink to="/products">Başla</NavLink>
+          <NavLink to={`/${param.id}/menu`}>Başla</NavLink>
         </div>
-
         <div className="circle-container _hero_right">
           <svg
             width="350"

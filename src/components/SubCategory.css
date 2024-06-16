@@ -1,9 +1,3 @@
-.sub-category {
-  /* transform: rotate(90deg); */
-
-  align-self: flex-end;
-}
-
 .custom-select {
   color: black;
   appearance: none; /* Remove default select styles */
