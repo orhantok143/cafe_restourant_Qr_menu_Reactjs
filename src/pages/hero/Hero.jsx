@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 import "./Hero.css";
 import laptop from "../../image/web_hero_1.jpg";
 import h1 from "../../image/h3.png";
-import mobile from "../../image/kasık.jpg";
+// import mobile from "../../image/kasık.jpg";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { checkToken } from "../../redux/login/loginSlice";
@@ -28,18 +28,14 @@ const Hero = () => {
     }
   }, [loginState.tokenValid, navigate, param.id]);
 
-  const isDesktopOrLaptop = useMediaQuery({ query: "(min-width: 1224px)" });
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
-  const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
+  // const isDesktopOrLaptop = useMediaQuery({ query: "(min-width: 1224px)" });
+  // const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  // const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
 
   return (
     <div className="_hero">
       <div className="_hero_bg">
-        <img
-          src={isDesktopOrLaptop ? laptop : isTabletOrMobile ? mobile : null}
-          alt="hero_bg"
-          srcSet=""
-        />
+        <img src={laptop} alt="hero_bg" srcSet="" />
       </div>
       <div className="__hero">
         <div className="_hero_left">
