@@ -36,15 +36,7 @@ const Hero = () => {
     <div className="_hero">
       <div className="_hero_bg">
         <img
-          src={
-            isDesktopOrLaptop
-              ? laptop
-              : isTabletOrMobile
-              ? mobile
-              : isPortrait
-              ? laptop
-              : null
-          }
+          src={isDesktopOrLaptop ? laptop : isTabletOrMobile ? mobile : null}
           alt="hero_bg"
           srcSet=""
         />
