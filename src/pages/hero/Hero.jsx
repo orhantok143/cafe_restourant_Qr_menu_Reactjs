@@ -3,7 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import "./Hero.css";
 import laptop from "../../image/web_hero_1.jpg";
 import h1 from "../../image/h3.png";
-import mobile from "../../image/mobile_baharat.jpg";
+import mobile from "../../image/kasık.jpg";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { checkToken } from "../../redux/login/loginSlice";
