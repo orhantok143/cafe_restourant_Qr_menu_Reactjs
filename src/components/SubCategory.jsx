@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import "./SubCategory.css"; // Import CSS file
-import { categories } from "../../src/image/data";
+import { useDispatch, useSelector } from "react-redux";
+import { currentSubCategory } from "../redux/category/categorySlice";
 
 const SubCategory = () => {
-  const c = categories.map((c) => c.subCategory.flat()).flat();
+  const categories = useSelector((state) => state.categories.categories);
+  const dispatch = useDispatch();
 
-  const [selectedOption, setSelectedOption] = useState(""); // State to manage the selected option
+  const currentsubCategory = useSelector(
+    (state) => state.categories.currentSubCategory
+  );
+  const subCategory = categories
+    ?.map((category) => category.subCategory)
+    ?.flat();
 
   const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
+    console.log(event.target.value);
+    dispatch(currentSubCategory(event.target.value));
   };
 
   return (
@@ -16,13 +24,12 @@ const SubCategory = () => {
       <select
         className="custom-select"
         aria-label="Subcategory Selection"
-        value={selectedOption} // Set selected value from state
         onChange={handleSelectChange}
       >
-        <option value="">Seç</option>
-        {c.map((option, index) => (
-          <option key={index} value={option.subCategory}>
-            {option.subCategory}
+        <option value=""> {currentsubCategory} </option>
+        {subCategory?.map((option, index) => (
+          <option key={index} value={option.label}>
+            {option.title}
           </option>
         ))}
       </select>

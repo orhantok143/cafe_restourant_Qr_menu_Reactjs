@@ -16,13 +16,23 @@ const initialState = {
     success: false,
     loading: false,
     error: false,
-    message: ""
+    message: "",
+    currentSubCategory: "Kahvaltı",
+    currentCategory: "Yemek"
 }
 
 const categoriesSlice = createSlice({
     name: 'categories',
     initialState,
-    reducers: {},
+    reducers: {
+        currentSubCategory: (state, action) => {
+            state.currentSubCategory = action.payload
+        },
+        currentCategory: (state, action) => {
+            state.currentCategory = action.payload
+
+        }
+    },
 
 
     extraReducers: (builder) => {
@@ -47,5 +57,6 @@ const categoriesSlice = createSlice({
     }
 });
 
+export const { currentCategory, currentSubCategory } = categoriesSlice.actions
 
 export default categoriesSlice.reducer;

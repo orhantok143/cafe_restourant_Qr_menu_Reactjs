@@ -12,8 +12,9 @@
     255,
     0.081
   ); /* Set semi-transparent white background */
-  backdrop-filter: blur(30px); /* Apply blur effect */
-  box-shadow: 0px 0px 4px rgb(176, 176, 176);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  box-shadow: 0px 0px 5px rgb(0, 0, 0);
   position: relative;
   margin-bottom: 0.8rem;
   margin-top: 0.4rem;
@@ -34,7 +35,7 @@
   color: rgba(245, 245, 245, 0.745);
   background: rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(3px);
-  z-index: 1;
+  z-index: 2;
   padding: 3rem 2rem;
   /* display: none; */
 }
@@ -105,34 +106,60 @@
 
 .__icon {
   width: 100%;
+  height: fit-content;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem;
+  justify-content: space-around;
+  padding: 0.4rem 0.8rem;
   position: absolute;
   bottom: 0;
   right: 0;
   transform: translate(0%);
 }
 
+.__icon ._timer {
+  display: flex;
+  align-items: end;
+}
+.__icon ._timer p {
+  color: rgba(245, 245, 245, 0.544);
+  font-size: 9px;
+  padding-bottom: 0.45rem;
+}
+
 .__icon svg {
   font-size: 2.4rem;
-  padding: 0.4rem;
+  padding: 0 0.4rem;
   color: rgba(245, 245, 245, 0.745);
   cursor: pointer;
 }
 
 ._star {
+  margin-top: 0.4rem;
   width: 100%;
-  place-items: center;
+  /* place-items: center; */
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
-._star svg {
-  font-size: 2rem;
-  padding: 0 0.3rem;
-  color: rgba(245, 245, 245, 0.607);
+
+._star span svg {
+  font-size: 1.3rem;
+  padding: 0 0.2rem;
+  color: rgba(245, 245, 245, 0.471);
+}
+._star ._rate {
+  background: #e1ce01;
+  height: max-content;
+  width: max-content;
+  padding: 0.3rem;
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+  border-radius: 30%;
+  box-shadow: 0px 0px 8px rgb(0, 0, 0);
+  text-shadow: 0px 0px 15px black;
 }
 
 @media only screen and (max-width: 768px) {
@@ -143,17 +170,15 @@
     height: 15rem;
     margin-bottom: 0.2rem;
   }
+  .__icon {
+    height: fit-content;
+  }
   .__icon svg {
-    font-size: 2.3rem;
+    font-size: 2.1rem;
     padding: 0.4rem;
+    font-weight: 200;
   }
-  ._star {
-    padding: 0 0.5rem;
-  }
-  ._star svg {
-    font-size: 2rem;
-    padding: 0 0.2rem;
-  }
+
   .card_text h4 {
     font-size: 0.8rem;
   }

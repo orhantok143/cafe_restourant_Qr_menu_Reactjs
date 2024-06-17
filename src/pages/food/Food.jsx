@@ -2,8 +2,8 @@ import React from "react";
 import "./food.css";
 import { FaRegStar, FaRegHeart, FaRegComment } from "react-icons/fa";
 import { SlBadge } from "react-icons/sl";
-import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { RiShare2Line } from "react-icons/ri";
+import { IoIosTimer } from "react-icons/io";
 
 const Food = ({ product, tokenValid }) => {
   const handleShare = async () => {
@@ -46,16 +46,18 @@ const Food = ({ product, tokenValid }) => {
         </div>
         {tokenValid ? (
           <div className="_star">
-            <FaRegStar />
-            <FaRegStar />
-            <FaRegStar />
-            <FaRegStar />
-            <FaRegStar />
+            <span>
+              <FaRegStar />
+              <FaRegStar />
+              <FaRegStar />
+              <FaRegStar />
+              <FaRegStar />
+            </span>
+            <p className="_rate"> {product.averageRating} </p>
           </div>
         ) : null}
-        {tokenValid ? null : (
-          <p className="desc">{product.description?.substring(0, 40)}...</p>
-        )}
+
+        <p className="desc">{product.description?.substring(0, 40)}...</p>
       </div>
       {tokenValid ? (
         <>
@@ -64,11 +66,12 @@ const Food = ({ product, tokenValid }) => {
             <FaRegHeart className="_like" />
           </div>
           <div className="__icon">
-            <AiOutlineLike />
+            <div className="_timer">
+              <IoIosTimer />
+              <p className="_mints">12dk</p>
+            </div>
             <RiShare2Line onClick={handleShare} />
             <FaRegComment />
-
-            <AiOutlineDislike />
           </div>
         </>
       ) : null}

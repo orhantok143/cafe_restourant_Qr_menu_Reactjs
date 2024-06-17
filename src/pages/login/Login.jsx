@@ -14,8 +14,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../components/Loading";
 import { auth, googleProvider } from "../../firebase";
-import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
-import axiosInstance from "../../redux/config";
+import { signInWithPopup } from "firebase/auth";
 
 const Login = () => {
   const [isActive, setIsActive] = useState(true);
@@ -23,7 +22,6 @@ const Login = () => {
   const param = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -97,18 +95,18 @@ const Login = () => {
     navigate(`/${param.id}/anasayfa`);
   };
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        const token = await user?.getIdToken();
-        await axiosInstance.post("admin/loginwithgoogle", { token });
-        setUser(user);
-      } else {
-        setUser(null);
-      }
-    });
-    return () => unsubscribe();
-  }, [user]);
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, async (user) => {
+  //     if (!user) {
+  //       const token = await user?.getIdToken();
+  //       await axiosInstance.post("admin/loginwithgoogle", { token });
+  //       setUser(user);
+  //     } else {
+  //       setUser(null);
+  //     }
+  //   });
+  //   return () => unsubscribe();
+  // }, [user]);
 
   return (
     <div className="_container">

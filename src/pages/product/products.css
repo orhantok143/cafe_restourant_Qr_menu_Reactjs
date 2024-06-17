@@ -55,6 +55,7 @@
     align-items: flex-end;
     justify-content: space-between;
     bottom: -1%;
+    overflow: hidden;
   }
 }
 @media only screen and (max-width: 480px) {

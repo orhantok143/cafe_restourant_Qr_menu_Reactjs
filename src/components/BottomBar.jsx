@@ -5,12 +5,17 @@ import { FaCoffee } from "react-icons/fa";
 import { GiCakeSlice } from "react-icons/gi";
 import "./bottomBar.css";
 import Smoke from "./Smoke";
+import { currentCategory } from "../redux/category/categorySlice";
+import { useDispatch } from "react-redux";
 
 const BottomBar = () => {
   const [activeIcon, setActiveIcon] = useState(0);
   const handleClick = (icon) => {
     setActiveIcon(icon.id);
+    dispatch(currentCategory(icon.label));
   };
+
+  const dispatch = useDispatch();
 
   const icons = [
     {
@@ -37,7 +42,9 @@ const BottomBar = () => {
           to={icon.path}
           key={index}
           className={`bottom_icon ${activeIcon === index ? "active" : ""}`}
-          onClick={() => handleClick(icon)}
+          onClick={() => {
+            handleClick(icon);
+          }}
         >
           {icon.icon}
         </span>
