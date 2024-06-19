@@ -15,7 +15,6 @@ const SubCategory = () => {
     ?.flat();
 
   const handleSelectChange = (event) => {
-    console.log(event.target.value);
     dispatch(currentSubCategory(event.target.value));
   };
 

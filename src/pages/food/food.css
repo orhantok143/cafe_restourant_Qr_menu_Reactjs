@@ -6,12 +6,7 @@
   width: 15rem;
   padding: 0.8rem;
   border-radius: 0.8rem 0.8rem 2rem 2rem;
-  background: rgba(
-    255,
-    255,
-    255,
-    0.081
-  ); /* Set semi-transparent white background */
+  background: rgba(255, 255, 255, 0.076);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   box-shadow: 0px 0px 5px rgb(0, 0, 0);
@@ -25,9 +20,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: space-evenly;
-
   border-radius: 0.8rem 0.8rem 2rem 2rem;
   top: 0;
   left: 0;
@@ -47,14 +40,13 @@
 }
 
 ._img {
-  width: 7.2rem;
-  height: 5.4rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 ._card img {
-  width: 100%;
-  height: 100%;
+  height: 10rem;
+  aspect-ratio: 1/1;
   object-fit: cover;
+  background-color: transparent;
 }
 
 ._card .card_text {
@@ -102,6 +94,17 @@
   justify-content: space-between;
   align-items: center;
   color: rgba(245, 245, 245, 0.745);
+}
+
+._icons ._liked {
+  fill: rgb(164, 0, 27);
+  cursor: pointer;
+}
+._click_area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .__icon {
@@ -183,8 +186,13 @@
     font-size: 0.8rem;
   }
   ._card img {
-    width: 7rem;
-    height: 5rem;
+    /* width: 7rem; */
+    height: 5.6rem;
+    /* aspect-ratio: 1/1; */
+  }
+  .card_text .desc {
+    font-size: 0.6rem;
+    color: rgba(213, 209, 209, 0.83);
   }
 }
 @media only screen and (max-width: 480px) {

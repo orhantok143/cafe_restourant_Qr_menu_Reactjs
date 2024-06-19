@@ -1,16 +1,15 @@
 .bottom-bar {
-  width: 40%;
+  width: 35%;
   height: 3rem;
   background: #000000aa;
   border: 1px solid rgb(137, 134, 134);
-  border-radius: 1.2rem;
+  border-radius: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 10px;
-
   z-index: 2;
+  margin-top: 0.2rem;
 }
 
 .bottom-bar .bottom_icon {
@@ -53,21 +52,12 @@
 @media only screen and (max-width: 768px) {
   /* Tablet ve mobil cihazlar için */
   .bottom-bar {
-    width: 40%;
+    width: 80%;
   }
 }
 @media only screen and (max-width: 480px) {
   /* Küçük ekranlar (mobil cihazlar) için */
   .bottom-bar {
-    width: 3rem;
-    height: 250px;
-    background: #bb004ec3;
-    flex-direction: column;
-    box-sizing: border-box;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(17, 17, 17, 0.922);
-    backdrop-filter: blur(30px);
-    /* box-shadow: 0px 0px 10px whitesmoke; */
+    width: 80%;
   }
 }

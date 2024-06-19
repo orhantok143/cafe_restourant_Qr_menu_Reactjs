@@ -1,11 +1,17 @@
 import React from "react";
 import "./food.css";
-import { FaRegStar, FaRegHeart, FaRegComment } from "react-icons/fa";
-import { SlBadge } from "react-icons/sl";
+import { FaRegComment } from "react-icons/fa";
 import { RiShare2Line } from "react-icons/ri";
 import { IoIosTimer } from "react-icons/io";
+import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 
-const Food = ({ product, tokenValid }) => {
+const Food = ({
+  product,
+  tokenValid,
+  handleOnClick,
+  handleAddToFavorite,
+  favoritedLocal,
+}) => {
   const handleShare = async () => {
     if (navigator.share) {
       try {
@@ -36,15 +42,16 @@ const Food = ({ product, tokenValid }) => {
           <p className="_active_title">Saatler arasında servise açıktır</p>
         </div>
       ) : null}
-      <div className="_img">
-        <img src={product.images[0].url} alt="food" />
-      </div>
-      <div className="card_text">
-        <div className="_text_header">
-          <h4 className="title"> {product.name} </h4>
-          <p className="price"> {product.price} TL</p>
+      <div className="_click_area" onClick={() => handleOnClick(product)}>
+        <div className="_img">
+          <img src={product.images[0].url} alt="food" />
         </div>
-        {tokenValid ? (
+        <div className="card_text">
+          <div className="_text_header">
+            <h4 className="title"> {product.name} </h4>
+            <p className="price"> {product.price} TL</p>
+          </div>
+          {/* {tokenValid ? (
           <div className="_star">
             <span>
               <FaRegStar />
@@ -55,15 +62,30 @@ const Food = ({ product, tokenValid }) => {
             </span>
             <p className="_rate"> {product.averageRating} </p>
           </div>
-        ) : null}
+        ) : null} */}
 
-        <p className="desc">{product.description?.substring(0, 40)}...</p>
+          <p className="desc">{product.description?.substring(0, 114)}...</p>
+        </div>
       </div>
       {tokenValid ? (
         <>
           <div className="_icons">
-            <SlBadge className="_book" />
-            <FaRegHeart className="_like" />
+            {product.averageRating > 0 ? (
+              <p className="_rating"> {product.averageRating} </p>
+            ) : (
+              <div>{}</div>
+            )}
+            {favoritedLocal?.some((item) => item === product._id) ? (
+              <IoMdHeart
+                className="_liked"
+                onClick={() => handleAddToFavorite(product)}
+              />
+            ) : (
+              <IoMdHeartEmpty
+                className="_like"
+                onClick={() => handleAddToFavorite(product)}
+              />
+            )}
           </div>
           <div className="__icon">
             <div className="_timer">

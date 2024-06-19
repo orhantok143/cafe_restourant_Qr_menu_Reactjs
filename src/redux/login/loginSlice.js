@@ -8,7 +8,6 @@ export const loginUser = createAsyncThunk(
         try {
             const response = await axiosInstance.post("admin/login", userData);
             localStorage.setItem('token', response.data.token);
-            console.log("ResponseFrom Login::", response.data);
 
             return response.data;
         } catch (error) {
@@ -37,7 +36,6 @@ export const loginWithGoogle = createAsyncThunk(
         try {
             const response = await axiosInstance.post("admin/loginwithgoogle", userData);
             localStorage.setItem('token', response.data.token); // Token'ı localStorage'a kaydet
-            console.log("Token From With Google::", response.data);
             return response.data;
 
         } catch (error) {

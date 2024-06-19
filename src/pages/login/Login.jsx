@@ -13,8 +13,6 @@ import {
 } from "../../redux/login/loginSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../components/Loading";
-import { auth, googleProvider } from "../../firebase";
-import { signInWithPopup } from "firebase/auth";
 
 const Login = () => {
   const [isActive, setIsActive] = useState(true);
@@ -35,15 +33,6 @@ const Login = () => {
       navigate(`/${param.id}/anasayfa`);
     }
   }, [navigate, param.id, loginState.tokenValid]);
-
-  const handleLoginWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-      navigate(`/${param.id}/anasayfa`);
-    } catch (error) {
-      console.error("Error during signInWithPopup", error);
-    }
-  };
 
   const initialLoginValues = {
     email: "",
@@ -164,7 +153,7 @@ const Login = () => {
                 <div className="_social_form">
                   <p>Ve ya</p>
                   <div className="_social">
-                    <FcGoogle onClick={handleLoginWithGoogle} />
+                    <FcGoogle />
                     <FaXTwitter />
                     <FaApple />
                   </div>
