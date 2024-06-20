@@ -11,26 +11,11 @@ const Food = ({
   handleOnClick,
   handleAddToFavorite,
   favoritedLocal,
+  handleShare,
+  productRef,
 }) => {
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: product.name,
-          text: product.description,
-          url: window.location.href,
-        });
-        console.log("Shared successfully");
-      } catch (error) {
-        console.error("Error sharing:", error);
-      }
-    } else {
-      alert("Web Share API is not supported in your browser.");
-    }
-  };
-
   return (
-    <div className="_card">
+    <div className="_card" ref={productRef}>
       {product.isActive ? (
         <div className="transp">
           <p className="_active_title">{product.name}</p>

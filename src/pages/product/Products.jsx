@@ -24,9 +24,11 @@ import {
 } from "../../redux/products/productSlice";
 import { getAllCategories } from "../../redux/category/categorySlice";
 import { IoCloseOutline } from "react-icons/io5";
+import { toPng } from "html-to-image";
 
 const Products = () => {
   const isLogin = true;
+  const productRef = useRef();
   const [detail, setDetail] = useState(false);
   const [detailProduct, setDetailProduct] = useState(null);
   const search = useSelector((state) => state.products.search);
@@ -62,6 +64,26 @@ const Products = () => {
   };
 
   const handleShare = async (product) => {
+    try {
+      const dataUrl = await toPng(productRef.current);
+
+      const blob = await fetch(dataUrl).then((res) => res.blob());
+      const file = new File([blob], "product.png", { type: blob.type });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({
+          title: product.name,
+          files: [file],
+          text: product.description,
+          url: window.location.href,
+        });
+      } else {
+        window.open(dataUrl, "_blank");
+      }
+    } catch (error) {
+      console.error("Error sharing");
+    }
+
     if (navigator.share) {
       try {
         await navigator.share({
@@ -150,6 +172,8 @@ const Products = () => {
                     logedUser={logedUser}
                     favoritedLocal={favoritedLocal}
                     handleAddToFavorite={handleAddToFavorite}
+                    handleShare={handleAddToFavorite}
+                    productRef={productRef}
                   />
                 ))}
             </div>
