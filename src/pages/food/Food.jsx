@@ -20,7 +20,7 @@ const Food = ({
       const dataUrl = await toPng(productRef.current);
 
       const blob = await fetch(dataUrl).then((res) => res.blob());
-      const file = new File([blob], "product.png", { type: blob.type });
+      const file = new File([blob], `${product.name}.png`, { type: blob.type });
 
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
         navigator.share({
