@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./food.css";
 import { FaRegComment } from "react-icons/fa";
 import { RiShare2Line } from "react-icons/ri";
 import { IoIosTimer } from "react-icons/io";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
+import { toPng } from "html-to-image";
 
 const Food = ({
   product,
