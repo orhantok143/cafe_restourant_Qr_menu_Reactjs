@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { getAllBusinesses } from "./redux/businesses/businessesSlice";
 import { getAllCategories } from "./redux/category/categorySlice";
 import { getAllProducts } from "./redux/products/productSlice";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 const App = () => {
   const dispatch = useDispatch()
@@ -23,6 +24,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/:id/login" element={<Login />} />
+        <Route path="/:id/admin" element={<Dashboard />} />
         <Route path="/:id/menu" element={<Products />} />
         <Route path="/:id/anasayfa" element={<Hero />} />
       </Routes>

@@ -1,0 +1,14 @@
+body {
+  background-color: rgb(242, 242, 242);
+}
+
+._container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  background-color: aliceblue;
+  margin: 0 auto;
+  padding: 1rem;
+}

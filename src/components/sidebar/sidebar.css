@@ -1,0 +1,107 @@
+.__header {
+  width: 13rem;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.381);
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 6px whitesmoke;
+  border-radius: 1rem;
+}
+.head {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.head p {
+  font-size: 0.85rem;
+  color: rgb(199, 199, 199);
+  font-weight: 500;
+  padding: 0.2rem;
+}
+
+.head .admin {
+  font-size: 0.65rem;
+  font-weight: 300;
+  color: rgba(199, 199, 199, 0.886);
+}
+
+.head img {
+  width: 3rem;
+  padding: 0.1rem;
+  box-shadow: 0px 0px 5px rgb(169, 169, 169);
+  border-radius: 50%;
+  margin-bottom: 0.2rem;
+}
+
+.menu {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.menu ul {
+  width: 100%;
+  padding: 1rem;
+  /* margin-bottom: 5rem; */
+}
+
+.menu ul li {
+  display: flex;
+  padding: 0.7rem 0;
+  align-items: center;
+}
+.menu ul li svg {
+  font-size: 1.5rem;
+  margin-right: 1.3rem;
+}
+.menu ul li:nth-child(1) {
+  color: rgba(0, 241, 64, 0.835);
+}
+.menu ul li:nth-child(2) {
+  color: rgba(72, 0, 241, 0.897);
+}
+.menu ul li:nth-child(3) {
+  color: rgba(241, 68, 0, 0.897);
+}
+.menu ul li:nth-child(4) {
+  color: rgba(241, 193, 0, 0.897);
+}
+.menu ul li:nth-child(5) {
+  color: rgba(189, 0, 241, 0.897);
+}
+
+.menu ul li p {
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: rgba(199, 199, 199, 0.819);
+}
+
+.logout {
+  padding: 1rem;
+}
+.logout li {
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logout li svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: rgba(191, 0, 0, 0.819);
+  font-size: 1.3rem;
+  margin-right: 1.3rem;
+  border-radius: 2rem;
+  box-shadow: 0px 0px 10px rgba(191, 0, 0, 0.819);
+  padding: 0.2rem;
+}
+
+.logout li p {
+  color: rgba(199, 199, 199, 0.819);
+  font-weight: 300;
+  font-size: 0.8rem;
+}
