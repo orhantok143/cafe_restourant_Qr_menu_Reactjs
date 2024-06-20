@@ -84,20 +84,20 @@ const Products = () => {
       console.error("Error sharing");
     }
 
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: product.name,
-          text: product.description,
-          url: window.location.href,
-        });
-        console.log("Shared successfully");
-      } catch (error) {
-        console.error("Error sharing:", error);
-      }
-    } else {
-      alert("Web Share API is not supported in your browser.");
-    }
+    // if (navigator.share) {
+    //   try {
+    //     await navigator.share({
+    //       title: product.name,
+    //       text: product.description,
+    //       url: window.location.href,
+    //     });
+    //     console.log("Shared successfully");
+    //   } catch (error) {
+    //     console.error("Error sharing:", error);
+    //   }
+    // } else {
+    //   alert("Web Share API is not supported in your browser.");
+    // }
   };
 
   const handleOnClick = (product, event) => {
