@@ -6,7 +6,7 @@ import Leftbar from "../../components/leftbar/Leftbar";
 
 const Dashboard = () => {
   return (
-    <div className="_container">
+    <div className="container">
       <Sidebar />
       <Main />
       <Leftbar />
