@@ -43,6 +43,11 @@ const Products = () => {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [favoritedLocal, setFavoritedLocal] = useState([]);
+  const combinedRefs = (node) => {
+    // You can access detailRef.current and productRef.current here
+    detailRef.current = node;
+    productRef.current = node;
+  };
 
   const handleAddToFavorite = (product) => {
     const updatedFavorites = favoritedLocal.includes(product._id)
@@ -180,7 +185,7 @@ const Products = () => {
           </React.Fragment>
         ))}
       {detail ? (
-        <div className="_product_details" ref={detailRef}>
+        <div className="_product_details" ref={combinedRefs}>
           <div className="_pic">
             <img src={detailProduct?.images[0].url} alt="product resmi" />
           </div>
