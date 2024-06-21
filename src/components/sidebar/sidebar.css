@@ -1,42 +1,56 @@
 .__header {
-  width: 13rem;
-  height: 100%;
+  width: max-content;
   background-color: rgba(0, 0, 0, 0.381);
   backdrop-filter: blur(10px);
   box-shadow: 0px 0px 2px whitesmoke;
   border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
 }
+.__header .menu_icon {
+  display: none;
+}
+.close {
+  display: none;
+}
+
 .head {
-  margin-top: 0.8rem;
-  padding: 0.5rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
+}
+.head .txt {
+  padding: 0 0.6rem;
+}
+.top_menu {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.top_menu svg {
+  color: rgb(199, 199, 199);
+  font-size: 1.2rem;
 }
 
 .head p {
-  font-size: 0.85rem;
+  font-size: 0.65rem;
   color: rgb(199, 199, 199);
   font-weight: 500;
-  padding: 0.2rem;
 }
 
-.head .admin {
-  font-size: 0.65rem;
+.head .txt .admin {
+  font-size: 0.6rem;
   font-weight: 300;
-  color: rgba(199, 199, 199, 0.886);
+  color: rgba(172, 172, 172, 0.886);
 }
 
 .head img {
-  width: 3rem;
+  width: 2rem;
   padding: 0.1rem;
-  box-shadow: 0px 0px 5px rgb(169, 169, 169);
+  box-shadow: 0px 0px 3px rgb(169, 169, 169);
   border-radius: 50%;
   margin-bottom: 0.2rem;
 }
 
 .menu {
-  padding: 1rem 0;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -45,8 +59,15 @@
 
 .menu ul {
   width: 100%;
-  padding: 1rem;
-  /* margin-bottom: 5rem; */
+  padding: 0.5rem 1rem;
+}
+ul span {
+  display: flex;
+  align-items: stretch;
+  width: 70%;
+  padding-top: 0.5rem;
+  border-bottom: 1px solid rgb(113, 113, 113);
+  margin: 0 auto;
 }
 
 .menu ul li {
@@ -55,7 +76,7 @@
   align-items: center;
 }
 .menu ul li svg {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-right: 1.3rem;
 }
 .menu ul li:nth-child(1) {
@@ -76,12 +97,12 @@
 
 .menu ul li p {
   font-weight: 300;
-  font-size: 0.8rem;
+  font-size: 0.64rem;
   color: rgba(199, 199, 199, 0.819);
 }
 
 .logout {
-  padding: 1rem;
+  padding: 0.5rem 1rem;
 }
 .logout li {
   padding: 1rem 0;
@@ -103,5 +124,90 @@
 .logout li p {
   color: rgba(199, 199, 199, 0.819);
   font-weight: 300;
-  font-size: 0.8rem;
+  font-size: 0.64rem;
+}
+
+/* Extra Small Devices, Phones (Portrait) */
+@media only screen and (max-width: 600px) {
+  .__header {
+    width: max-content;
+  }
+  .sidebar {
+    display: none;
+  }
+  .close {
+    display: block;
+  }
+
+  .__header .menu_icon {
+    display: block;
+    color: rgba(199, 199, 199, 0.819);
+    font-size: 1.3rem;
+  }
+}
+
+/* Small Devices, Phones (Landscape) */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+}
+
+/* Medium Devices, Tablets */
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+  .__header {
+    width: 5rem;
+  }
+  .menu {
+    align-items: center;
+    justify-content: space-between;
+  }
+  .menu ul li {
+    padding: 0.4rem 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .menu ul li svg {
+    margin: 0;
+  }
+  .menu ul li p {
+    font-size: 0.6rem;
+    text-wrap: nowrap;
+    padding: 0.5rem 0;
+  }
+  .logout li {
+    padding: 0;
+    flex-direction: column;
+  }
+  .logout li p {
+    padding-top: 0.5rem;
+    text-wrap: nowrap;
+  }
+  .logout li svg {
+    margin: 0;
+  }
+  .head {
+    flex-direction: column;
+  }
+  .head p {
+    display: none;
+  }
+  .top_menu svg {
+    display: none;
+  }
+  ul span {
+    width: 90%;
+  }
+}
+
+/* Large Devices, Desktops */
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+}
+
+/* Extra Large Devices, Wide Screens */
+@media only screen and (min-width: 1201px) {
+}
+
+/* Orientation-specific styles */
+@media only screen and (orientation: landscape) {
+}
+
+@media only screen and (orientation: portrait) {
 }
