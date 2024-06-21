@@ -2,14 +2,11 @@ import React from "react";
 import "./sidebar.css";
 import logo from "../../image/hamaloğlu-Photoroom.png-Photoroom.png";
 import { RiDashboardFill } from "react-icons/ri";
-import { MdCategory } from "react-icons/md";
-import { AiFillProduct } from "react-icons/ai";
+import { MdCategory, MdModeStandby } from "react-icons/md";
+import { AiFillProduct, AiOutlineSubnode } from "react-icons/ai";
 import { TbCategoryPlus } from "react-icons/tb";
 import { FaSquarePlus } from "react-icons/fa6";
-import { MdLogout } from "react-icons/md";
-import { LuGitBranchPlus } from "react-icons/lu";
 import { SiGooglepubsub } from "react-icons/si";
-import { AiOutlineSubnode } from "react-icons/ai";
 
 const Sidebar = () => {
   return (
@@ -56,7 +53,7 @@ const Sidebar = () => {
 
         <div className="logout">
           <li>
-            <MdLogout />
+            <MdModeStandby />
             <p>Çıkış Yap</p>
           </li>
         </div>

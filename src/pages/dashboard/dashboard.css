@@ -5,10 +5,13 @@ body {
 .container {
   width: 100vw;
   height: 100vh;
+  background-image: url("../../image/admin_bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   align-items: start;
   justify-content: space-between;
-  background-color: aliceblue;
+
   margin: 0 auto;
   padding: 1rem;
 }
