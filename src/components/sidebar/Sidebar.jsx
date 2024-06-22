@@ -14,10 +14,7 @@ const Sidebar = () => {
   const [isMenu, setIsmenu] = useState(true);
 
   return (
-    <aside
-      className="__header"
-      style={{ boxShadow: isMenu ? "0px 0px 2px whitesmoke" : "none" }}
-    >
+    <aside className="__header">
       <RiMenu2Fill
         className="menu_icon"
         style={{
@@ -40,13 +37,7 @@ const Sidebar = () => {
               <span className="admin">Admin</span>
             </div>
           </div>
-          <MdClose
-            style={{
-              display: isMenu ? "block" : "none",
-            }}
-            className="close"
-            onClick={() => setIsmenu(!isMenu)}
-          />
+          <MdClose className="close" onClick={() => setIsmenu(!isMenu)} />
         </div>
         <div className="menu">
           <ul>

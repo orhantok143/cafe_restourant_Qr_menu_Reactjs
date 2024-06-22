@@ -1,10 +1,11 @@
 .__header {
-  width: max-content;
+  width: auto;
   background-color: rgba(0, 0, 0, 0.381);
   backdrop-filter: blur(10px);
   box-shadow: 0px 0px 2px whitesmoke;
   border-radius: 1rem;
   transition: all 0.3s ease-in-out;
+  z-index: 2;
 }
 .__header .menu_icon {
   display: none;
@@ -130,7 +131,10 @@ ul span {
 /* Extra Small Devices, Phones (Portrait) */
 @media only screen and (max-width: 600px) {
   .__header {
-    width: max-content;
+    width: auto;
+    position: fixed;
+    left: 0.7rem;
+    top: 0.7rem;
   }
   .sidebar {
     display: none;
@@ -141,8 +145,9 @@ ul span {
 
   .__header .menu_icon {
     display: block;
-    color: rgba(199, 199, 199, 0.819);
-    font-size: 1.3rem;
+    color: rgba(230, 230, 230, 0.819);
+    font-size: 1.7rem;
+    padding: 0.23rem;
   }
 }
 
@@ -152,9 +157,6 @@ ul span {
 
 /* Medium Devices, Tablets */
 @media only screen and (min-width: 769px) and (max-width: 992px) {
-  .__header {
-    width: 5rem;
-  }
   .menu {
     align-items: center;
     justify-content: space-between;

@@ -1,3 +1,31 @@
 .leftbar {
-  background-color: rgba(44, 0, 85, 0.76);
+  background-color: rgba(255, 255, 255, 0.76);
+  width: 25%;
+}
+
+/* Extra Small Devices, Phones (Portrait) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small Devices, Phones (Landscape) */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+}
+
+/* Medium Devices, Tablets */
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+}
+
+/* Large Devices, Desktops */
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+}
+
+/* Extra Large Devices, Wide Screens */
+@media only screen and (min-width: 1201px) {
+}
+
+/* Orientation-specific styles */
+@media only screen and (orientation: landscape) {
+}
+
+@media only screen and (orientation: portrait) {
 }
