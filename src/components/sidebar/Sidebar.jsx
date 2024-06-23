@@ -41,7 +41,7 @@ const Sidebar = () => {
         </div>
         <div className="menu">
           <ul>
-            <li>
+            <li className="active">
               <RiDashboardFill />
               <p>Dashboard</p>
             </li>

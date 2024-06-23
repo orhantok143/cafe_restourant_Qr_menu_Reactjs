@@ -1,8 +1,12 @@
 .__header {
   width: auto;
-  background-color: rgba(0, 0, 0, 0.381);
+  background-color: rgba(255, 255, 255, 0.893);
+
+  /* background-color: rgba(0, 0, 0, 0.742); */
   backdrop-filter: blur(10px);
-  box-shadow: 0px 0px 2px whitesmoke;
+  box-shadow: 0px 0px 5px rgb(28, 27, 27);
+
+  /* box-shadow: 0px 0px 2px whitesmoke; */
   border-radius: 1rem;
   transition: all 0.3s ease-in-out;
   z-index: 2;
@@ -27,26 +31,27 @@
   padding: 1rem;
 }
 .top_menu svg {
-  color: rgb(199, 199, 199);
+  color: rgba(0, 0, 0, 0.886);
   font-size: 1.2rem;
 }
 
 .head p {
   font-size: 0.65rem;
-  color: rgb(199, 199, 199);
+  color: rgba(0, 0, 0, 0.886);
+
   font-weight: 500;
 }
 
 .head .txt .admin {
   font-size: 0.6rem;
   font-weight: 300;
-  color: rgba(172, 172, 172, 0.886);
+  color: rgba(0, 0, 0, 0.886);
 }
 
 .head img {
   width: 2rem;
   padding: 0.1rem;
-  box-shadow: 0px 0px 3px rgb(169, 169, 169);
+  box-shadow: 0px 0px 3px rgb(0, 0, 0);
   border-radius: 50%;
   margin-bottom: 0.2rem;
 }
@@ -72,9 +77,24 @@ ul span {
 }
 
 .menu ul li {
+  height: auto;
   display: flex;
-  padding: 0.7rem 0;
+  margin-bottom: 0.7rem;
+  padding: 0.3rem;
   align-items: center;
+  border-radius: 0.7rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.menu ul li:hover {
+  background-color: rgb(219, 219, 219);
+  transform: scale(1.1);
+}
+
+.menu ul .active {
+  background-color: rgb(219, 219, 219);
+  transform: scale(1.1);
 }
 .menu ul li svg {
   font-size: 1.2rem;
@@ -97,9 +117,9 @@ ul span {
 }
 
 .menu ul li p {
-  font-weight: 300;
+  font-weight: 500;
   font-size: 0.64rem;
-  color: rgba(199, 199, 199, 0.819);
+  color: rgba(0, 0, 0, 0.886);
 }
 
 .logout {
@@ -123,8 +143,8 @@ ul span {
 }
 
 .logout li p {
-  color: rgba(199, 199, 199, 0.819);
-  font-weight: 300;
+  color: rgba(0, 0, 0, 0.886);
+  font-weight: 500;
   font-size: 0.64rem;
 }
 
@@ -145,7 +165,7 @@ ul span {
 
   .__header .menu_icon {
     display: block;
-    color: rgba(230, 230, 230, 0.819);
+    color: rgba(0, 0, 0, 0.886);
     font-size: 1.7rem;
     padding: 0.23rem;
   }
