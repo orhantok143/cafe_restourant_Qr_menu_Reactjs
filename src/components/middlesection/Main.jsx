@@ -50,7 +50,29 @@ const Main = () => {
           </div>
         </div>
       </div>
-      <div className="lists">list</div>
+      <div className="lists">
+        <div className="list_header">
+          <h1>Ürünler</h1>
+          <div className="controlbar">
+            <input type="search" placeholder="Ara..." />
+            <div className="categoryControl">
+              <select name="" id="" className="selection">
+                <option value="">Seç</option>
+                <option value="">Mutfak</option>
+                <option value="">Bar</option>
+                <option value="">Tatlı</option>
+                <option value="">Nargile</option>
+              </select>
+              <select name="" id="" className="selection">
+                <option value="">Seç</option>
+                <option value="">Kahvaltı</option>
+                <option value="">Tavuk Yemekleri</option>
+                <option value="">Et Yemekleri</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
   );
 };
