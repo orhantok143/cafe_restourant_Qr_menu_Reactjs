@@ -14,9 +14,8 @@ const Main = () => {
             <p>Ürünler</p>
           </div>
           <div className="down_card">
-            <p>
-              Ürün sayısı <span>100</span>{" "}
-            </p>
+            <p>Ürün sayısı</p>
+            <span>100</span>
           </div>
         </div>
         <div className="card">
@@ -25,9 +24,8 @@ const Main = () => {
             <p>Kategoriler</p>
           </div>
           <div className="down_card">
-            <p>
-              Ürün sayısı <span>100</span>{" "}
-            </p>
+            <p>Kategori sayısı</p>
+            <span>100</span>
           </div>
         </div>
         <div className="card">
@@ -36,64 +34,18 @@ const Main = () => {
             <p>Şubeler</p>
           </div>
           <div className="down_card">
-            <p>
-              Ürün sayısı <span>100</span>{" "}
-            </p>
+            <p>Şube sayısı</p>
+            <span>100</span>
           </div>
         </div>
         <div className="card">
           <div className="up_card">
             <SiGooglepubsub />
-            <p>Şubeler</p>
+            <p>Yorumlar</p>
           </div>
           <div className="down_card">
-            <p>
-              Ürün sayısı <span>100</span>{" "}
-            </p>
-          </div>
-        </div>
-        <div className="card">
-          <div className="up_card">
-            <SiGooglepubsub />
-            <p>Şubeler</p>
-          </div>
-          <div className="down_card">
-            <p>
-              Ürün sayısı <span>100</span>{" "}
-            </p>
-          </div>
-        </div>
-        <div className="card">
-          <div className="up_card">
-            <SiGooglepubsub />
-            <p>Şubeler</p>
-          </div>
-          <div className="down_card">
-            <p>
-              Ürün sayısı <span>100</span>{" "}
-            </p>
-          </div>
-        </div>
-        <div className="card">
-          <div className="up_card">
-            <SiGooglepubsub />
-            <p>Şubeler</p>
-          </div>
-          <div className="down_card">
-            <p>
-              Ürün sayısı <span>100</span>{" "}
-            </p>
-          </div>
-        </div>
-        <div className="card">
-          <div className="up_card">
-            <SiGooglepubsub />
-            <p>Şubeler</p>
-          </div>
-          <div className="down_card">
-            <p>
-              Ürün sayısı <span>100</span>{" "}
-            </p>
+            <p>Yorum sayısı</p>
+            <span>100</span>
           </div>
         </div>
       </div>

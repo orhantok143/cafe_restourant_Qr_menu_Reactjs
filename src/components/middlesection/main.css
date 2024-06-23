@@ -27,11 +27,12 @@
   justify-content: space-between;
   padding: 0.7rem;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .cards .card:hover {
   background-color: rgb(255, 255, 255);
-  transform: scale(1.15) rotate(4deg);
+  transform: scale(1.15) rotate(3deg);
 }
 
 .cards .card .up_card {
@@ -44,8 +45,23 @@
 }
 .card .up_card p {
   font-size: 0.85rem;
-  font-weight: 300;
+  font-weight: 400;
   color: rgb(0, 0, 0);
+}
+
+.card .down_card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card .down_card p {
+  font-size: 0.7rem;
+}
+
+.card .down_card span {
+  font-weight: 300;
+  font-size: 0.8rem;
 }
 
 .cards .card:nth-child(1) .up_card svg {
