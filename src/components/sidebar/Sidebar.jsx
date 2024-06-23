@@ -9,8 +9,9 @@ import { FaSquarePlus } from "react-icons/fa6";
 import { SiGooglepubsub } from "react-icons/si";
 import { RiMenu2Fill } from "react-icons/ri";
 import { MdClose } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ param }) => {
   const [isMenu, setIsmenu] = useState(true);
 
   return (
@@ -41,45 +42,61 @@ const Sidebar = () => {
         </div>
         <div className="menu">
           <ul>
-            <li className="active">
-              <RiDashboardFill />
-              <p>Dashboard</p>
+            <li>
+              <NavLink to={`/${param.id}/dashboard`}>
+                <RiDashboardFill />
+                <p>Dashboard</p>
+              </NavLink>
             </li>
             <li>
-              <AiFillProduct />
-              <p>Ürünler</p>
+              <NavLink to={`/${param.id}/products`}>
+                <AiFillProduct />
+                <p>Ürünler</p>
+              </NavLink>
             </li>
             <li>
-              <TbCategoryPlus />
-              <p>Ürün Ekle</p>
+              <NavLink to={`/${param.id}/add-product`}>
+                <TbCategoryPlus />
+                <p>Ürün Ekle</p>
+              </NavLink>
             </li>
             <li>
-              <MdCategory />
-              <p>Kategori</p>
+              <NavLink to={`/${param.id}/categories`}>
+                <MdCategory />
+                <p>Kategori</p>
+              </NavLink>
             </li>
             <li>
-              <FaSquarePlus />
-              <p>Kategori Ekle</p>
+              <NavLink to={`/${param.id}/add-category`}>
+                <FaSquarePlus />
+                <p>Kategori Ekle</p>
+              </NavLink>
             </li>
             <span></span>
           </ul>
 
           <ul>
             <li>
-              <SiGooglepubsub />
-              <p>Şubeler</p>
+              <NavLink to={`/${param.id}/branch`}>
+                <SiGooglepubsub />
+                <p>Şubeler</p>
+              </NavLink>
             </li>
             <li>
-              <AiOutlineSubnode />
-              <p>Şube Ekle</p>
+              <NavLink to={`/${param.id}/add-branch`}>
+                <AiOutlineSubnode />
+                <p>Şube Ekle</p>
+              </NavLink>
             </li>
             <span></span>
           </ul>
 
           <div className="logout">
             <li>
-              <MdModeStandby />
-              <p>Çıkış Yap</p>
+              <NavLink to="/">
+                <MdModeStandby />
+                <p>Çıkış Yap</p>
+              </NavLink>
             </li>
           </div>
         </div>

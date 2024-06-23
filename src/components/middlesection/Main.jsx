@@ -41,6 +41,61 @@ const Main = () => {
             </p>
           </div>
         </div>
+        <div className="card">
+          <div className="up_card">
+            <SiGooglepubsub />
+            <p>Şubeler</p>
+          </div>
+          <div className="down_card">
+            <p>
+              Ürün sayısı <span>100</span>{" "}
+            </p>
+          </div>
+        </div>
+        <div className="card">
+          <div className="up_card">
+            <SiGooglepubsub />
+            <p>Şubeler</p>
+          </div>
+          <div className="down_card">
+            <p>
+              Ürün sayısı <span>100</span>{" "}
+            </p>
+          </div>
+        </div>
+        <div className="card">
+          <div className="up_card">
+            <SiGooglepubsub />
+            <p>Şubeler</p>
+          </div>
+          <div className="down_card">
+            <p>
+              Ürün sayısı <span>100</span>{" "}
+            </p>
+          </div>
+        </div>
+        <div className="card">
+          <div className="up_card">
+            <SiGooglepubsub />
+            <p>Şubeler</p>
+          </div>
+          <div className="down_card">
+            <p>
+              Ürün sayısı <span>100</span>{" "}
+            </p>
+          </div>
+        </div>
+        <div className="card">
+          <div className="up_card">
+            <SiGooglepubsub />
+            <p>Şubeler</p>
+          </div>
+          <div className="down_card">
+            <p>
+              Ürün sayısı <span>100</span>{" "}
+            </p>
+          </div>
+        </div>
       </div>
       <div className="lists">list</div>
     </main>

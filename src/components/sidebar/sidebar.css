@@ -1,9 +1,9 @@
 .__header {
   width: auto;
-  background-color: rgba(255, 255, 255, 0.893);
+  /* background-color: rgba(255, 255, 255, 0.893); */
 
   /* background-color: rgba(0, 0, 0, 0.742); */
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   box-shadow: 0px 0px 5px rgb(28, 27, 27);
 
   /* box-shadow: 0px 0px 2px whitesmoke; */
@@ -77,46 +77,50 @@ ul span {
 }
 
 .menu ul li {
-  height: auto;
-  display: flex;
-  margin-bottom: 0.7rem;
-  padding: 0.3rem;
-  align-items: center;
-  border-radius: 0.7rem;
-  transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 
-.menu ul li:hover {
+.menu ul li a {
+  height: auto;
+  margin-bottom: 0.7rem;
+  border-radius: 0.7rem;
+  padding: 0.3rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.menu ul li a:hover {
   background-color: rgb(219, 219, 219);
   transform: scale(1.1);
 }
 
-.menu ul .active {
+.menu .active {
   background-color: rgb(219, 219, 219);
   transform: scale(1.1);
 }
-.menu ul li svg {
+.menu ul li a svg {
   font-size: 1.2rem;
   margin-right: 1.3rem;
 }
-.menu ul li:nth-child(1) {
+.menu ul li:nth-child(1) a {
   color: rgba(0, 241, 64, 0.835);
 }
-.menu ul li:nth-child(2) {
+.menu ul li:nth-child(2) a {
   color: rgba(72, 0, 241, 0.897);
 }
-.menu ul li:nth-child(3) {
+.menu ul li:nth-child(3) a {
   color: rgba(241, 68, 0, 0.897);
 }
-.menu ul li:nth-child(4) {
+.menu ul li:nth-child(4) a {
   color: rgba(241, 193, 0, 0.897);
 }
-.menu ul li:nth-child(5) {
+.menu ul li:nth-child(5) a {
   color: rgba(189, 0, 241, 0.897);
 }
 
-.menu ul li p {
+.menu ul li a p {
   font-weight: 500;
   font-size: 0.64rem;
   color: rgba(0, 0, 0, 0.886);
@@ -125,14 +129,20 @@ ul span {
 .logout {
   padding: 0.5rem 1rem;
 }
+
 .logout li {
+  list-style: none;
+}
+
+.logout li a {
+  text-decoration: none;
   padding: 1rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.logout li svg {
+.logout li a svg {
   width: 1.5rem;
   height: 1.5rem;
   color: rgba(191, 0, 0, 0.819);
@@ -142,7 +152,7 @@ ul span {
   box-shadow: 0px 0px 10px rgba(191, 0, 0, 0.819);
 }
 
-.logout li p {
+.logout li a p {
   color: rgba(0, 0, 0, 0.886);
   font-weight: 500;
   font-size: 0.64rem;
@@ -181,28 +191,29 @@ ul span {
     align-items: center;
     justify-content: space-between;
   }
-  .menu ul li {
-    padding: 0.4rem 0;
-    display: flex;
+  /* .menu ul li a */
+  .menu ul li a {
+    padding: 0.6rem 0.3rem;
+    margin: 0;
     flex-direction: column;
   }
-  .menu ul li svg {
+  .menu ul li a svg {
     margin: 0;
   }
-  .menu ul li p {
+  .menu ul li a p {
     font-size: 0.6rem;
     text-wrap: nowrap;
-    padding: 0.5rem 0;
+    padding-top: 0.3rem;
   }
-  .logout li {
+  .logout li a {
     padding: 0;
     flex-direction: column;
   }
-  .logout li p {
+  .logout li a p {
     padding-top: 0.5rem;
     text-wrap: nowrap;
   }
-  .logout li svg {
+  .logout li a svg {
     margin: 0;
   }
   .head {
@@ -210,6 +221,9 @@ ul span {
   }
   .head p {
     display: none;
+  }
+  .top_menu {
+    justify-content: center;
   }
   .top_menu svg {
     display: none;
