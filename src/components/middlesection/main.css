@@ -156,6 +156,7 @@
   }
   .controlbar input {
     margin-bottom: 0.7rem;
+    font-size: 16px;
   }
   .controlbar .categoryControl {
     display: flex;
