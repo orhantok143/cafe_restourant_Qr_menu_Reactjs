@@ -12,7 +12,7 @@ import {
   checkToken,
 } from "../../redux/login/loginSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Loading from "../../components/Loading";
+// import Loading from "../../components/Loading";
 import { getAllProducts } from "../../redux/products/productSlice";
 import { getAllCategories } from "../../redux/category/categorySlice";
 
