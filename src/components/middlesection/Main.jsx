@@ -3,6 +3,7 @@ import "./main.css";
 import { AiFillProduct } from "react-icons/ai";
 import { MdCategory } from "react-icons/md";
 import { SiGooglepubsub } from "react-icons/si";
+import { FaCommentDots } from "react-icons/fa6";
 
 const Main = () => {
   return (
@@ -40,7 +41,7 @@ const Main = () => {
         </div>
         <div className="card">
           <div className="up_card">
-            <SiGooglepubsub />
+            <FaCommentDots />
             <p>Yorumlar</p>
           </div>
           <div className="down_card">

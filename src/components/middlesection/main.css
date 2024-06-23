@@ -75,6 +75,9 @@
 .cards .card:nth-child(3) .up_card svg {
   color: rgba(0, 241, 64, 0.835);
 }
+.cards .card:nth-child(4) .up_card svg {
+  color: rgb(207, 124, 0);
+}
 
 /* Extra Small Devices, Phones (Portrait) */
 @media only screen and (max-width: 600px) {
