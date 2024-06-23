@@ -13,6 +13,8 @@ import {
 } from "../../redux/login/loginSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../components/Loading";
+import { getAllProducts } from "../../redux/products/productSlice";
+import { getAllCategories } from "../../redux/category/categorySlice";
 
 const Login = () => {
   const [isActive, setIsActive] = useState(true);
@@ -22,6 +24,8 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    dispatch(getAllProducts());
+    dispatch(getAllCategories());
     const token = localStorage.getItem("token");
     if (token) {
       dispatch(checkToken(token));
@@ -99,7 +103,7 @@ const Login = () => {
 
   return (
     <div className="_container">
-      {loginState.loading ? <Loading /> : null}
+      {/* {loginState.loading ? <Loading /> : null} */}
       <div
         className="_form_container"
         style={
