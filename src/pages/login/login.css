@@ -1,7 +1,7 @@
 ._container {
   width: 100vw;
   height: 100vh;
-  background: #dbdadb;
+  /* background: #dbdadb; */
   display: flex;
   position: relative;
   align-items: center;
@@ -10,8 +10,10 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  aspect-ratio: 1/1;
   color: rgba(229, 229, 229, 0.927);
 }
+
 ._container ._form_container {
   background: #c7c7c700;
   width: 30%;
@@ -173,6 +175,10 @@ button:hover {
 }
 
 @media (max-width: 480px) {
+  ._container {
+    background-image: url("../../image/login_mobile.jpg");
+  }
+
   ._container ._form_container {
     width: 70%;
   }

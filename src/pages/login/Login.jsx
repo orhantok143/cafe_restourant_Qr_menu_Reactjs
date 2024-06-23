@@ -12,7 +12,6 @@ import {
   checkToken,
 } from "../../redux/login/loginSlice";
 import { useDispatch, useSelector } from "react-redux";
-// import Loading from "../../components/Loading";
 import { getAllProducts } from "../../redux/products/productSlice";
 import { getAllCategories } from "../../redux/category/categorySlice";
 
@@ -88,22 +87,8 @@ const Login = () => {
     navigate(`/${param.id}/anasayfa`);
   };
 
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, async (user) => {
-  //     if (!user) {
-  //       const token = await user?.getIdToken();
-  //       await axiosInstance.post("admin/loginwithgoogle", { token });
-  //       setUser(user);
-  //     } else {
-  //       setUser(null);
-  //     }
-  //   });
-  //   return () => unsubscribe();
-  // }, [user]);
-
   return (
     <div className="_container">
-      {/* {loginState.loading ? <Loading /> : null} */}
       <div
         className="_form_container"
         style={
