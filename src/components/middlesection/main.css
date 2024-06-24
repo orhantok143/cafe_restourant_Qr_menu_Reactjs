@@ -113,6 +113,10 @@
   color: rgba(245, 245, 245, 0.778);
 }
 
+.controlbar .categoryControl {
+  gap: 0.7rem;
+}
+
 .selection {
   margin-right: 0.7rem;
   border: none;
@@ -155,6 +159,7 @@
     justify-content: flex-start;
   }
   .controlbar input {
+    margin: 0;
     margin-bottom: 0.7rem;
     font-size: 16px;
   }
@@ -165,6 +170,7 @@
   }
   .categoryControl .selection {
     width: 100%;
+    margin: 0;
   }
 }
 

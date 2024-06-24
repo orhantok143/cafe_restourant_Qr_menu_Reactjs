@@ -4,8 +4,10 @@ import { AiFillProduct } from "react-icons/ai";
 import { MdCategory } from "react-icons/md";
 import { SiGooglepubsub } from "react-icons/si";
 import { FaCommentDots } from "react-icons/fa6";
+import List from "../list/List";
 
 const Main = () => {
+  const headers = ["Ad", "Soyad", "Yaş", "Meslek"];
   return (
     <main className="main">
       <div className="cards">
@@ -55,7 +57,7 @@ const Main = () => {
           <h1>Ürünler</h1>
           <div className="controlbar">
             <input type="search" placeholder="Ara..." />
-            <div className="categoryControl">
+            {/* <div className="categoryControl">
               <select name="" id="" className="selection">
                 <option value="">Seç</option>
                 <option value="">Mutfak</option>
@@ -69,9 +71,10 @@ const Main = () => {
                 <option value="">Tavuk Yemekleri</option>
                 <option value="">Et Yemekleri</option>
               </select>
-            </div>
+            </div> */}
           </div>
         </div>
+        <List headers={headers} itemsPerPage={5} />
       </div>
     </main>
   );
