@@ -1,25 +1,27 @@
 .container {
   max-width: 1400px;
-  /* height: 100%; */
+  min-height: 100vh;
+  height: 100%;
   background-image: linear-gradient(
-    to bottom left,
-    #000000,
-    #200512,
-    #310523,
-    #41013a,
-    #4a0057,
-    #660063,
-    #83006d,
-    #a00075,
-    #cb0d63,
-    #e83b4b,
-    #f5672f,
-    #f49400
+    to left bottom,
+    #590032,
+    #53043c,
+    #4a0b45,
+    #3e134d,
+    #2d1954,
+    #2b174c,
+    #281644,
+    #25143d,
+    #260e2a,
+    #200a1b,
+    #16040e,
+    #000000
   );
   display: flex;
   align-items: start;
   justify-content: space-between;
   background-repeat: repeat;
+  background-size: auto; /* Arka planın doğal boyutunda tekrar etmesini sağlar */
   margin: 0 auto;
   padding: 1rem;
 }

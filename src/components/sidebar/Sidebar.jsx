@@ -43,31 +43,31 @@ const Sidebar = ({ param }) => {
         <div className="menu">
           <ul>
             <li>
-              <NavLink to={`/${param.id}/dashboard`}>
+              <NavLink to={`/${param.id}/admin/dashboard`}>
                 <RiDashboardFill />
                 <p>Dashboard</p>
               </NavLink>
             </li>
             <li>
-              <NavLink to={`/${param.id}/products`}>
+              <NavLink to={`/${param.id}/admin/products`}>
                 <AiFillProduct />
                 <p>Ürünler</p>
               </NavLink>
             </li>
             <li>
-              <NavLink to={`/${param.id}/add-product`}>
+              <NavLink to={`/${param.id}/admin/add-product`}>
                 <TbCategoryPlus />
                 <p>Ürün Ekle</p>
               </NavLink>
             </li>
             <li>
-              <NavLink to={`/${param.id}/categories`}>
+              <NavLink to={`/${param.id}/admin/categories`}>
                 <MdCategory />
                 <p>Kategori</p>
               </NavLink>
             </li>
             <li>
-              <NavLink to={`/${param.id}/add-category`}>
+              <NavLink to={`/${param.id}/admin/add-category`}>
                 <FaSquarePlus />
                 <p>Kategori Ekle</p>
               </NavLink>
@@ -77,13 +77,13 @@ const Sidebar = ({ param }) => {
 
           <ul>
             <li>
-              <NavLink to={`/${param.id}/branch`}>
+              <NavLink to={`/${param.id}/admin/branch`}>
                 <SiGooglepubsub />
                 <p>Şubeler</p>
               </NavLink>
             </li>
             <li>
-              <NavLink to={`/${param.id}/add-branch`}>
+              <NavLink to={`/${param.id}/admin/add-branch`}>
                 <AiOutlineSubnode />
                 <p>Şube Ekle</p>
               </NavLink>

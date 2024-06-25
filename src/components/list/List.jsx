@@ -3,6 +3,7 @@ import "./list.css";
 import { NavLink } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import { IoAddCircle } from "react-icons/io5";
 
 const List = ({ headers, itemsPerPage }) => {
   const items = [
@@ -58,7 +59,8 @@ const List = ({ headers, itemsPerPage }) => {
 
         <IoIosArrowForward className="pagination-button" onClick={handleNext} />
       </div>
-      <NavLink to="/add-item" className="add-item-button">
+      <NavLink to="../add-product" className="add-item-button add-product">
+        <IoAddCircle />
         Ekle
       </NavLink>
     </div>

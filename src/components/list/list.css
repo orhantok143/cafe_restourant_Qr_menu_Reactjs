@@ -1,4 +1,5 @@
 .list-container {
+  width: 100%;
   margin-top: 0.7rem;
   display: flex;
   flex-direction: column;
@@ -37,10 +38,6 @@
   background-color: #00000029;
   transition: all 0.3s ease-in-out;
 }
-.glass-table :nth-child(even) tr:hover {
-  background-color: #5500bc;
-  transform: scaleX(1.04);
-}
 
 .pagination-container {
   display: flex;
@@ -69,7 +66,7 @@
 .add-item-button {
   padding: 0.4rem 1.4rem;
   margin-top: 0.7rem;
-  background-color: rgb(0, 175, 12);
+  background-color: rgba(0, 82, 18, 0.3);
   border: none;
   box-shadow: 0px 0px 5px rgb(66, 66, 66);
   border-radius: 0.8rem;
@@ -83,6 +80,40 @@
 }
 
 .add-item-button:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
+  background-color: rgb(0, 175, 12);
+  transform: scale(1.05);
+  color: whitesmoke;
+}
+.add-item-button:hover svg {
+  color: whitesmoke;
+}
+
+/* Extra Small Devices, Phones (Portrait) */
+@media only screen and (max-width: 600px) {
+  .glass-table {
+    padding: 1rem;
+  }
+}
+
+/* Small Devices, Phones (Landscape) */
+@media only screen and (max-width: 825px) {
+}
+
+/* Medium Devices, Tablets */
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+}
+
+/* Large Devices, Desktops */
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+}
+
+/* Extra Large Devices, Wide Screens */
+@media only screen and (min-width: 1201px) {
+}
+
+/* Orientation-specific styles */
+@media only screen and (orientation: landscape) {
+}
+
+@media only screen and (orientation: portrait) {
 }

@@ -1,0 +1,68 @@
+.list {
+  width: 62%;
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 0px 2px whitesmoke;
+  padding: 1rem;
+}
+.action-button {
+  font-size: 1rem;
+  border-radius: 5px;
+  color: #8e1212;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s, border 0.3s;
+}
+
+.action-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.add-product {
+  width: 5rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+.add-product svg {
+  font-size: 1.6rem;
+  color: lawngreen;
+}
+
+/* Extra Small Devices, Phones (Portrait) */
+@media only screen and (max-width: 600px) {
+  .list {
+    width: 100%;
+    border-radius: 0 0 0.7rem 0.7rem;
+  }
+  .sub {
+    display: none;
+  }
+}
+
+/* Small Devices, Phones (Landscape) */
+@media only screen and (max-width: 825px) {
+}
+
+/* Medium Devices, Tablets */
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+}
+
+/* Large Devices, Desktops */
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+}
+
+/* Extra Large Devices, Wide Screens */
+@media only screen and (min-width: 1201px) {
+}
+
+/* Orientation-specific styles */
+@media only screen and (orientation: landscape) {
+}
+
+@media only screen and (orientation: portrait) {
+}
