@@ -8,7 +8,7 @@ const Loading = ({ type, color }) => (
       color="#c09e00"
       height={50}
       width={50}
-      delay={100}
+      delay={10}
     />
   </div>
 );
