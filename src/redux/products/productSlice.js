@@ -20,6 +20,14 @@ export const addMyFavorite = createAsyncThunk(
     }
 )
 
+export const addProduct = createAsyncThunk(
+    "product/add-product",
+    async (data) => {
+        const response = await axiosInstance.post("product/create", data)
+        return response.data
+    }
+)
+
 
 const initialState = {
     products: null,
@@ -72,6 +80,20 @@ const productSlice = createSlice({
             .addCase(addMyFavorite.rejected, (state, action) => {
 
                 state.message = action.error.message;
+            }).addCase(addProduct.pending, (state) => {
+                state.loading = true
+                state.error = false
+                state.success = false
+            })
+            .addCase(addProduct.fulfilled, (state, action) => {
+                state.loading = false
+                state.error = false
+                state.success = true
+            })
+            .addCase(addProduct.rejected, (state, action) => {
+                state.success = false;
+                state.loading = false;
+                state.error = true;
             });
     }
 });

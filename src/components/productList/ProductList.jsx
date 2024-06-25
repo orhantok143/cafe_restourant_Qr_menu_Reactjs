@@ -4,8 +4,10 @@ import "./productlist.css"; // CSS dosyamızı import ediyoruz
 import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import { IoAddCircle } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const ProductList = ({ param }) => {
+  const addingProduct = useSelector((state) => state.products.loading);
   const [products, setProducts] = useState([
     {
       id: 1,
@@ -49,13 +51,15 @@ const ProductList = ({ param }) => {
                 <td className="sub">{product.subCategory}</td>
                 <td>{product.price}</td>
                 <td>
-                  <NavLink to={`/${param.id}/admin/edit/${product.id}`}>
-                    <CiEdit className="action-button" />
-                  </NavLink>
-                  <MdDelete
-                    onClick={() => handleDelete(product.id)}
-                    className="action-button"
-                  />
+                  <div className="action">
+                    <NavLink to={`/${param.id}/admin/edit/${product.id}`}>
+                      <CiEdit className="action-button" />
+                    </NavLink>
+                    <MdDelete
+                      onClick={() => handleDelete(product.id)}
+                      className="action-button"
+                    />
+                  </div>
                 </td>
               </tr>
             ))}
@@ -63,7 +67,8 @@ const ProductList = ({ param }) => {
         </table>
         <NavLink to="../add-product" className="add-item-button add-product">
           <IoAddCircle />
-          Ekle
+
+          {addingProduct ? "ürün Ekleniyor" : "Ekle"}
         </NavLink>
       </div>
     </div>

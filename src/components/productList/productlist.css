@@ -9,10 +9,25 @@
 .action-button {
   font-size: 1rem;
   border-radius: 5px;
-  color: #8e1212;
+  color: rgba(255, 255, 0, 0.681);
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s, border 0.3s;
+}
+
+.action-button:nth-child(1) {
+  color: red;
+}
+
+/* .action-button:nth-child(1) {
+  margin-right: 1rem;
+} */
+.action {
+  /* background-color: #02cc05; */
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 1rem;
 }
 
 .action-button:hover {

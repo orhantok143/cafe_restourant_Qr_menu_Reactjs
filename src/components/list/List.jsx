@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoAddCircle } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const List = ({ headers, itemsPerPage }) => {
   const items = [
@@ -11,6 +12,7 @@ const List = ({ headers, itemsPerPage }) => {
     { Ad: "Ürün 2", Soyad: "Detay 2", Yaş: "30", Meslek: "Kategori 2" },
     // Daha fazla öğe ekleyin
   ];
+  const addingProduct = useSelector((state) => state.products.loading);
   const [pageNumber, setPageNumber] = useState(0);
 
   const pagesVisited = pageNumber * itemsPerPage;
@@ -61,7 +63,7 @@ const List = ({ headers, itemsPerPage }) => {
       </div>
       <NavLink to="../add-product" className="add-item-button add-product">
         <IoAddCircle />
-        Ekle
+        {addingProduct ? "ürün Ekleniyor" : "Ekle"}
       </NavLink>
     </div>
   );

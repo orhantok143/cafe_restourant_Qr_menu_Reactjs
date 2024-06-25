@@ -2,11 +2,15 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./AddProduct.css";
-
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../../redux/products/productSlice";
 const AddProduct = () => {
+  const dispatch = useDispatch();
+  const addingProduct = useSelector((state) => state.products.loading);
+
   const initialValues = {
-    title: "",
-    desc: "",
+    name: "",
+    description: "",
     price: "",
     image: null,
     category: "",
@@ -14,8 +18,8 @@ const AddProduct = () => {
   };
 
   const validationSchema = Yup.object({
-    title: Yup.string().required("Title is required"),
-    desc: Yup.string().required("Description is required"),
+    name: Yup.string().required("name is required"),
+    description: Yup.string().required("Description is required"),
     price: Yup.number()
       .required("Price is required")
       .positive("Price must be a positive number"),
@@ -27,7 +31,7 @@ const AddProduct = () => {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       const formData = new FormData();
 
       // Dizi oluştur ve formdaki alanları döngüye sokarak formData'ya ekle
@@ -35,6 +39,8 @@ const AddProduct = () => {
         formData.append(key, values[key]);
       });
       console.log("FormData:", ...formData.entries());
+      dispatch(addProduct(formData));
+      resetForm();
     },
   });
 
@@ -43,31 +49,31 @@ const AddProduct = () => {
       <h1>Add Product</h1>
       <form onSubmit={formik.handleSubmit}>
         <div className="form-field">
-          <label htmlFor="title">Title</label>
+          <label htmlFor="name">name</label>
           <input
-            id="title"
-            name="title"
+            id="name"
+            name="name"
             type="text"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.title}
+            value={formik.values.name}
           />
-          {formik.touched.title && formik.errors.title ? (
-            <div className="__error">{formik.errors.title}</div>
+          {formik.touched.name && formik.errors.name ? (
+            <div className="__error">{formik.errors.name}</div>
           ) : null}
         </div>
 
         <div className="form-field">
-          <label htmlFor="desc">Description</label>
+          <label htmlFor="description">Description</label>
           <textarea
-            id="desc"
-            name="desc"
+            id="description"
+            name="description"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.desc}
+            value={formik.values.description}
           />
-          {formik.touched.desc && formik.errors.desc ? (
-            <div className="__error">{formik.errors.desc}</div>
+          {formik.touched.description && formik.errors.description ? (
+            <div className="__error">{formik.errors.description}</div>
           ) : null}
         </div>
 
@@ -133,7 +139,7 @@ const AddProduct = () => {
         </div>
 
         <button className="add-item-button" type="submit">
-          Submit
+          {addingProduct ? "ürün Ekleniyor..." : "Ekle"}
         </button>
       </form>
     </div>
