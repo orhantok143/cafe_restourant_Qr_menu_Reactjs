@@ -19,7 +19,7 @@ const ProductList = ({ param }) => {
   console.log(products.products);
   const handleDelete = (id) => {
     dispatch(deleteProduct(id));
-    setProducts(products.filter((p) => p._id == id));
+    setProducts(products.filter((p) => p._id === id));
   };
 
   useEffect(() => {
