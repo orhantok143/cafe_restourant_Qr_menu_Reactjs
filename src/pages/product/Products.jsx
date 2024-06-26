@@ -219,10 +219,7 @@ const Products = () => {
               })}
             </div>
 
-            <p className="desc">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero eos
-              accusamus, qui omnis eveniet nisi quos aliquid officiis ut ipsa.
-            </p>
+            <p className="desc">{detailProduct.description}</p>
           </div>
 
           <div className="_icons">
