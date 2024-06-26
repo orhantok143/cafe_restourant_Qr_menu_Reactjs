@@ -29,6 +29,15 @@ export const addProduct = createAsyncThunk(
 )
 
 
+export const deleteProduct = createAsyncThunk(
+    "product/delete-product",
+    async (id) => {
+        const response = await axiosInstance.delete(`product/${id}`)
+        return response.data
+    }
+)
+
+
 const initialState = {
     products: null,
     success: false,
@@ -71,7 +80,7 @@ const productSlice = createSlice({
                 state.error = true;
                 state.message = action.error.message;
             }).addCase(addMyFavorite.pending, (state) => {
-
+                state.loading = true
             })
             .addCase(addMyFavorite.fulfilled, (state, action) => {
 
@@ -79,7 +88,7 @@ const productSlice = createSlice({
             })
             .addCase(addMyFavorite.rejected, (state, action) => {
 
-                state.message = action.error.message;
+                state.message = action.error
             }).addCase(addProduct.pending, (state) => {
                 state.loading = true
                 state.error = false
@@ -94,6 +103,21 @@ const productSlice = createSlice({
                 state.success = false;
                 state.loading = false;
                 state.error = true;
+            }).addCase(deleteProduct.pending, (state) => {
+                state.loading = true
+                state.error = false
+                state.success = false
+            })
+            .addCase(deleteProduct.fulfilled, (state, action) => {
+                state.loading = false
+                state.error = false
+                state.success = true
+            })
+            .addCase(deleteProduct.rejected, (state, action) => {
+                state.success = false;
+                state.loading = false;
+                state.error = true;
+                state.message = state.error
             });
     }
 });

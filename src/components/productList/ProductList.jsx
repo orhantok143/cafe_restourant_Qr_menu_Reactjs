@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./productlist.css"; // CSS dosyamızı import ediyoruz
 import { MdDelete } from "react-icons/md";
@@ -6,17 +6,25 @@ import { CiEdit } from "react-icons/ci";
 import { IoAddCircle } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { selectActiveProducts } from "../../redux/selectors";
-import { getAllProducts } from "../../redux/products/productSlice";
+import {
+  deleteProduct,
+  getAllProducts,
+} from "../../redux/products/productSlice";
 
 const ProductList = ({ param }) => {
   const dispatch = useDispatch();
   const addingProduct = useSelector((state) => state.products.loading);
-  const products = useSelector(selectActiveProducts);
+  const [products, setProducts] = useState(useSelector(selectActiveProducts));
 
   console.log(products.products);
   const handleDelete = (id) => {
-    // products.filter((product) => product._id !== id);
+    dispatch(deleteProduct(id));
+    setProducts(products.filter((p) => p._id == id));
   };
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, []);
 
   useEffect(() => {
     if (!products.products) {
