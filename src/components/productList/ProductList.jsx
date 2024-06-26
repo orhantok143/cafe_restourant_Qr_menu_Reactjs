@@ -14,7 +14,6 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const ProductList = ({ param }) => {
   const dispatch = useDispatch();
-  const addingProduct = useSelector((state) => state.products.loading);
   const activeProducts = useSelector(selectActiveProducts);
   const [products, setProducts] = useState([]);
 
