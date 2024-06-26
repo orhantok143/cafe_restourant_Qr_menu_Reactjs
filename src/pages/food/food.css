@@ -40,12 +40,12 @@
 }
 
 ._img {
+  object-fit: cover;
   margin-bottom: 0.4rem;
+  height: fit-content;
 }
 ._card img {
-  height: 10rem;
-  aspect-ratio: 1/1;
-  object-fit: cover;
+  /* height: 10rem; */
   background-color: transparent;
 }
 
