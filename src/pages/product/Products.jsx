@@ -163,7 +163,7 @@ const Products = () => {
             </div>
             <div className="_products_food">
               {products.products
-                ?.filter((p) => c && p.subCategory.title === c.title)
+                ?.filter((p) => c && p.subCategory === c.title)
                 ?.filter((p) =>
                   p.name.toLowerCase().includes(search.toLowerCase())
                 )
