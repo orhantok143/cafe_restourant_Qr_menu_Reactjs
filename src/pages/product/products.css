@@ -1,11 +1,12 @@
 ._bg {
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   background-image: url("../../image/indir\ \(8\).jpg");
   background-repeat: repeat-y;
   background-size: cover;
   box-shadow: inset 0px 0px 1000px rgba(0, 0, 0, 0.463);
   overflow: hidden;
+  margin-top: 3.8rem;
 }
 
 ._products_food {

@@ -80,7 +80,6 @@ const productSlice = createSlice({
                 state.error = true;
                 state.message = action.error.message;
             }).addCase(addMyFavorite.pending, (state) => {
-                state.loading = true
             })
             .addCase(addMyFavorite.fulfilled, (state, action) => {
 
