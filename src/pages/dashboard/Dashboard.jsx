@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import List from "../../components/list/List";
 import ProductList from "../../components/productList/ProductList";
 import AddProduct from "../../components/addProduct/AddProduct";
+import AddCategory from "../../components/addCategory/AddCategory";
 
 const Dashboard = () => {
   const param = useParams();
@@ -19,7 +20,7 @@ const Dashboard = () => {
         <Route path="products" element={<ProductList param={param} />} />
         <Route path="add-product" element={<AddProduct />} />
         <Route path="categories" element={<List />} />
-        <Route path="add-category" element={<Main />} />
+        <Route path="add-category" element={<AddCategory />} />
         <Route path="branches" element={<List />} />
         <Route path="add-branch" element={<Main />} />
       </Routes>

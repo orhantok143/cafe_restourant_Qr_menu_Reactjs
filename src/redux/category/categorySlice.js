@@ -11,6 +11,16 @@ export const getAllCategories = createAsyncThunk(
         return response.data
     }
 );
+
+export const addCategory = createAsyncThunk(
+    "categories/add-category",
+    async (data) => {
+        const response = await axiosInstance.post("category/create", data)
+        return response.data
+    }
+)
+
+
 const initialState = {
     categories: null,
     success: false,
@@ -49,6 +59,22 @@ const categoriesSlice = createSlice({
                 state.categories = action.payload
             })
             .addCase(getAllCategories.rejected, (state, action) => {
+                state.success = false;
+                state.loading = false;
+                state.error = true;
+                state.message = action.error.message;
+            }).addCase(addCategory.pending, (state) => {
+                state.loading = true
+                state.error = false
+                state.success = false
+            })
+            .addCase(addCategory.fulfilled, (state, action) => {
+                state.loading = false
+                state.error = false
+                state.success = true
+
+            })
+            .addCase(addCategory.rejected, (state, action) => {
                 state.success = false;
                 state.loading = false;
                 state.error = true;

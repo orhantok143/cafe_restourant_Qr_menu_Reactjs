@@ -1,35 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./productlist.css"; // CSS dosyamızı import ediyoruz
 import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import { IoAddCircle } from "react-icons/io5";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectActiveProducts } from "../../redux/selectors";
+import { getAllProducts } from "../../redux/products/productSlice";
 
 const ProductList = ({ param }) => {
+  const dispatch = useDispatch();
   const addingProduct = useSelector((state) => state.products.loading);
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      title: "Ürün 1",
-      category: "Kategori 1",
-      subCategory: "Alt Kategori 1",
-      price: "100 TL",
-    },
-    {
-      id: 2,
-      title: "Ürün 2",
-      category: "Kategori 2",
-      subCategory: "Alt Kategori 1",
-      price: "200 TL",
-    },
-    // Daha fazla ürün ekleyin
-  ]);
+  const products = useSelector(selectActiveProducts);
 
+  console.log(products.products);
   const handleDelete = (id) => {
-    setProducts(products.filter((product) => product.id !== id));
+    // products.filter((product) => product._id !== id);
   };
 
+  useEffect(() => {
+    if (!products.products) {
+      dispatch(getAllProducts());
+    }
+  }, [dispatch, products]);
   return (
     <div className="list">
       <div className="list-container">
@@ -44,19 +37,21 @@ const ProductList = ({ param }) => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
-              <tr key={product.id}>
-                <td>{product.title}</td>
+            {products.products?.map((product) => (
+              <tr key={product._id}>
+                <td>{product.name}</td>
                 <td>{product.category}</td>
                 <td className="sub">{product.subCategory}</td>
                 <td>{product.price}</td>
                 <td>
                   <div className="action">
-                    <NavLink to={`/${param.id}/admin/edit/${product.id}`}>
+                    <NavLink
+                      to={`/${param.id}/admin/add-product/${product._id}`}
+                    >
                       <CiEdit className="action-button" />
                     </NavLink>
                     <MdDelete
-                      onClick={() => handleDelete(product.id)}
+                      onClick={() => handleDelete(product._id)}
                       className="action-button"
                     />
                   </div>

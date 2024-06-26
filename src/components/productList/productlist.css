@@ -6,6 +6,7 @@
   box-shadow: 0px 0px 2px whitesmoke;
   padding: 1rem;
 }
+
 .action-button {
   font-size: 1.3rem;
   border-radius: 5px;
@@ -41,7 +42,7 @@
 }
 .add-product svg {
   font-size: 1.6rem;
-  color: lawngreen;
+  color: whitesmoke;
 }
 
 /* Extra Small Devices, Phones (Portrait) */

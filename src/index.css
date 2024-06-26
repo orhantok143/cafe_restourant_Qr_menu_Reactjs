@@ -144,6 +144,7 @@ body {
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
   -webkit-overflow-x: hidden;
+  color: whitesmoke;
   /* scrollbar: hidden; */
 }
 
