@@ -21,6 +21,15 @@ export const addCategory = createAsyncThunk(
 )
 
 
+export const deleteCategory = createAsyncThunk(
+    "categories/delete-category",
+    async (id) => {
+        const response = await axiosInstance.delete(`category/${id}`)
+        return response.data
+    }
+)
+
+
 const initialState = {
     categories: null,
     success: false,

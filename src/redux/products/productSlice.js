@@ -96,21 +96,21 @@ const productSlice = createSlice({
             .addCase(addProduct.fulfilled, (state, action) => {
                 state.loading = false
                 state.error = false
-                state.success = true
+
             })
             .addCase(addProduct.rejected, (state, action) => {
                 state.success = false;
                 state.loading = false;
                 state.error = true;
             }).addCase(deleteProduct.pending, (state) => {
-                state.loading = true
+
                 state.error = false
                 state.success = false
             })
             .addCase(deleteProduct.fulfilled, (state, action) => {
                 state.loading = false
                 state.error = false
-                state.success = true
+
             })
             .addCase(deleteProduct.rejected, (state, action) => {
                 state.success = false;

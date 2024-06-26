@@ -18,19 +18,19 @@ const ProductList = ({ param }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    if (!activeProducts.length) {
-      dispatch(getAllProducts());
-    }
-  }, [dispatch, activeProducts]);
+    dispatch(getAllProducts());
+  }, [dispatch]);
 
   useEffect(() => {
-    setProducts(activeProducts);
-  }, [activeProducts]);
+    setProducts(activeProducts?.products);
+  }, [activeProducts?.products]);
 
   const handleDelete = (id) => {
     dispatch(deleteProduct(id));
-    setProducts(products.filter((p) => p._id !== id));
+    setProducts(products?.filter((p) => p._id !== id));
   };
+
+  console.log("Products::", products);
 
   return (
     <div className="list">
@@ -46,7 +46,7 @@ const ProductList = ({ param }) => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {products?.map((product) => (
               <tr key={product._id}>
                 <td>{product.name}</td>
                 <td>{product.category}</td>
