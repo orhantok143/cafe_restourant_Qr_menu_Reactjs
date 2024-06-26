@@ -10,6 +10,7 @@ import {
   deleteProduct,
   getAllProducts,
 } from "../../redux/products/productSlice";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const ProductList = ({ param }) => {
   const dispatch = useDispatch();
@@ -69,6 +70,22 @@ const ProductList = ({ param }) => {
             ))}
           </tbody>
         </table>
+        <div className="pagination-container">
+          <IoIosArrowBack
+            className="pagination-button"
+            // onClick={() => handlePrevious(category._id)}
+          />
+
+          <IoIosArrowForward
+            className="pagination-button"
+            // onClick={() =>
+            //   handleNext(
+            //     category._id,
+            //     Math.ceil(category.subCategory.length / itemsPerPage)
+            //   )
+            // }
+          />
+        </div>
         <NavLink to="../add-product" className="add-item-button add-product">
           <IoAddCircle />
           {addingProduct ? "Ürün Ekleniyor" : "Ekle"}
