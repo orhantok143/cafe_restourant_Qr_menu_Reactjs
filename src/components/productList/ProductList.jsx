@@ -24,7 +24,7 @@ const ProductList = ({ param }) => {
 
   useEffect(() => {
     dispatch(getAllProducts());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (!products.products) {
