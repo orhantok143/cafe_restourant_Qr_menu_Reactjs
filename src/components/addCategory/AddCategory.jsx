@@ -25,7 +25,7 @@ const AddCategory = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className="form-container ">
       <h1>Add Category</h1>
       <Formik
         initialValues={{
@@ -40,7 +40,7 @@ const AddCategory = () => {
         }}
       >
         {({ setFieldValue }) => (
-          <Form>
+          <Form className="list-container">
             <div className="form-field">
               <label htmlFor="title">Ana Kategori</label>
               <Field name="title" type="text" className="form-control" />
@@ -68,7 +68,7 @@ const AddCategory = () => {
               />
               <ErrorMessage name="image" component="div" className="__error" />
             </div>
-            <button type="submit" className="add-item-button">
+            <button type="submit" className="add-item-button add-product">
               {addingProduct ? "Kategory Ekleniyor..." : "Kategori Ekle"}
             </button>
           </Form>

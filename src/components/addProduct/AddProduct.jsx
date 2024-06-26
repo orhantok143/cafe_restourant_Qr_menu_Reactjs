@@ -47,7 +47,7 @@ const AddProduct = () => {
   return (
     <div className="form-container">
       <h1>Add Product</h1>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} className="list-container">
         <div className="form-field">
           <label htmlFor="name">name</label>
           <input

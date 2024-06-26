@@ -32,18 +32,18 @@
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.add-product {
+/* .add-product {
   width: 5rem;
   height: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem;
-}
-.add-product svg {
+} */
+/* .add-product svg {
   font-size: 1.6rem;
   color: whitesmoke;
-}
+} */
 
 /* Extra Small Devices, Phones (Portrait) */
 @media only screen and (max-width: 600px) {

@@ -39,6 +39,7 @@ const CategoryList = ({ param }) => {
 
   return (
     <div className="list">
+      <h1>Kategori ve Alt-Kategoriler</h1>
       <div className="list-container">
         <table className="glass-table">
           <thead>
@@ -90,12 +91,11 @@ const CategoryList = ({ param }) => {
             // }
           />
         </div>
+        <NavLink to="../add-category" className="add-item-button add-product">
+          <IoAddCircle />
+          {addingProduct ? "Kategori Ekleniyor" : "Ekle"}
+        </NavLink>
       </div>
-
-      <NavLink to="../add-category" className="add-item-button add-product">
-        <IoAddCircle />
-        {addingProduct ? "Kategori Ekleniyor" : "Ekle"}
-      </NavLink>
     </div>
   );
 };

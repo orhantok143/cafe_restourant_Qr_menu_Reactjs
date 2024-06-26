@@ -35,6 +35,7 @@ const ProductList = ({ param }) => {
 
   return (
     <div className="list">
+      <h1>Ürünler</h1>
       <div className="list-container">
         <table className="glass-table">
           <thead>
@@ -88,7 +89,7 @@ const ProductList = ({ param }) => {
         </div>
         <NavLink to="../add-product" className="add-item-button add-product">
           <IoAddCircle />
-          {addingProduct ? "Ürün Ekleniyor" : "Ekle"}
+          Ekle
         </NavLink>
       </div>
     </div>

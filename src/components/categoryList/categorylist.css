@@ -33,16 +33,10 @@
 }
 
 .add-product {
-  width: 5rem;
-  height: 2rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem;
-}
-.add-product svg {
-  font-size: 1.6rem;
-  color: whitesmoke;
+  justify-content: space-evenly;
+  column-gap: 1rem;
 }
 
 /* Extra Small Devices, Phones (Portrait) */
