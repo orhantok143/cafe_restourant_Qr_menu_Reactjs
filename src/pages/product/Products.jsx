@@ -151,6 +151,7 @@ const Products = () => {
       // Tarihlerin karşılaştırılması için getTime() kullanılıyor
       return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
     });
+
   return (
     <div className="_bg">
       {products?.loading || categories?.loading ? <Loading /> : null}
