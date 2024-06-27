@@ -11,7 +11,7 @@
 
 ._products_food {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   place-items: center;
 }
 
@@ -47,7 +47,7 @@
 ._product_details {
   width: 30%;
   padding: 1.6rem;
-  position: absolute;
+  position: fixed;
   top: 25%;
   left: 50%;
   transform: translate(-50%, 0%);
@@ -143,9 +143,9 @@
 
 @media only screen and (max-width: 768px) {
   /* Tablet ve mobil cihazlar için */
-  /* ._products_food {
-    grid-template-columns: repeat(3, 1fr);
-  } */
+  ._products_food {
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  }
   ._product_details {
     width: 40%;
   }
@@ -160,9 +160,9 @@
 }
 @media only screen and (max-width: 480px) {
   /* Küçük ekranlar (mobil cihazlar) için */
-  /* ._products_food {
-    grid-template-columns: repeat(2, 1fr);
-  } */
+  ._products_food {
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  }
   ._bg ._buttomGroup {
     width: 80%;
     flex-direction: column;
