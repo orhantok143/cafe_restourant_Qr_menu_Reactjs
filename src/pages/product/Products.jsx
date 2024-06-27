@@ -39,7 +39,7 @@ const Products = () => {
   const currentCategory = useSelector(selectCurrentCategory);
   const products = useSelector(selectActiveProducts);
   const categories = useSelector(selectActiveCategories);
-  const { tokenValid, logedUser } = useSelector((state) => state.auth);
+  const { tokenValid, user } = useSelector((state) => state.auth);
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [favoritedLocal, setFavoritedLocal] = useState([]);
@@ -116,11 +116,11 @@ const Products = () => {
   };
 
   useEffect(() => {
-    if (logedUser && logedUser.myFavorites) {
-      dispatch(initialLoad(logedUser.myFavorites));
-      setFavoritedLocal(logedUser.myFavorites); // Local state'i logedUser.myFavorites ile başlat
+    if (user && user.myFavorites) {
+      dispatch(initialLoad(user.myFavorites));
+      setFavoritedLocal(user.myFavorites); // Local state'i logedUser.myFavorites ile başlat
     }
-  }, [logedUser, dispatch]);
+  }, [user, dispatch]);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -155,7 +155,7 @@ const Products = () => {
   return (
     <div className="_bg">
       {products?.loading || categories?.loading ? <Loading /> : null}
-      <Header tokenValid={tokenValid} logedUser={logedUser} />
+      <Header tokenValid={tokenValid} user={user} />
       {isLogin &&
         c?.map((c, index) => (
           <React.Fragment key={c._id || index}>
@@ -175,7 +175,7 @@ const Products = () => {
                     tokenValid={tokenValid}
                     param={param}
                     handleOnClick={(e) => handleOnClick(product, e)}
-                    logedUser={logedUser}
+                    user={user}
                     favoritedLocal={favoritedLocal}
                     handleAddToFavorite={handleAddToFavorite}
                     handleShare={handleAddToFavorite}

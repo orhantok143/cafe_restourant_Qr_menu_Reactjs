@@ -9,14 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSearch } from "../../redux/products/productSlice";
 import { selectfavorited } from "../../redux/selectors";
 
-const Header = ({ logedUser, tokenValid }) => {
+const Header = ({ user, tokenValid }) => {
   const navigate = useNavigate();
   const param = useParams();
   const dispatch = useDispatch();
   const favorited = useSelector(selectfavorited);
 
   const handleLogin = () => {
-    if (!tokenValid && !logedUser) {
+    if (!tokenValid && !user) {
       navigate(`/${param.id}/login`);
     }
   };
@@ -42,7 +42,7 @@ const Header = ({ logedUser, tokenValid }) => {
             <IoMdHeart className="_cart" />
           ) : null}
           {tokenValid ? (
-            logedUser?.image ? (
+            user?.image ? (
               // <img src={logedUser?.image} />
               <> {} </>
             ) : (
