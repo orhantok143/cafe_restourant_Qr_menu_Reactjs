@@ -8,7 +8,6 @@ export const loginUser = createAsyncThunk(
         try {
             const response = await axiosInstance.post("admin/login", userData);
             localStorage.setItem('token', response.data.token);
-
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -35,9 +34,8 @@ export const loginWithGoogle = createAsyncThunk(
     async (userData, { rejectWithValue }) => {
         try {
             const response = await axiosInstance.post("admin/loginwithgoogle", userData);
-            localStorage.setItem('token', response.data.token); // Token'ı localStorage'a kaydet
+            localStorage.setItem('token', response.data.token);
             return response.data;
-
         } catch (error) {
             return rejectWithValue(error.response.data);
         }
@@ -50,6 +48,7 @@ export const checkToken = createAsyncThunk(
     async (token, { rejectWithValue }) => {
         try {
             const response = await axiosInstance.post("admin/checktoken", { token });
+            console.log("checktoken::", response.data);
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -58,7 +57,7 @@ export const checkToken = createAsyncThunk(
 );
 
 const initialState = {
-    logedUser: null,
+    user: null,
     token: null,
     success: false,
     loading: false,
@@ -77,14 +76,14 @@ const authSlice = createSlice({
         login: (state, action) => {
             state.isAuthenticated = true;
             state.user = action.payload.user;
-            state.tokenValid = true; // Token geçerliliği ayarlanıyor
-            localStorage.setItem('token', action.payload.token); // LocalStorage'a token kaydediliyor
+            state.tokenValid = true;
+            localStorage.setItem('token', action.payload.token);
         },
         logout: (state) => {
             state.isAuthenticated = false;
             state.user = null;
-            state.tokenValid = false; // Token geçerliliği kaldırılıyor
-            localStorage.removeItem('token'); // LocalStorage'dan token kaldırılıyor
+            state.tokenValid = false;
+            localStorage.removeItem('token');
         },
     },
     extraReducers: (builder) => {
@@ -98,18 +97,18 @@ const authSlice = createSlice({
                 state.loading = false;
                 state.error = false;
                 state.success = true;
-                state.logedUser = action.payload.user;
-                state.token = action.payload.token
-                state.isAuthenticated = true; // Kullanıcı giriş yaptı
-                state.tokenValid = true; // Token geçerli
+                state.user = action.payload.user;
+                state.token = action.payload.token;
+                state.isAuthenticated = true;
+                state.tokenValid = true;
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.success = false;
                 state.loading = false;
                 state.error = true;
                 state.message = action.payload;
-                state.isAuthenticated = false; // Giriş başarısız
-                state.tokenValid = false; // Token geçersiz
+                state.isAuthenticated = false;
+                state.tokenValid = false;
             })
             .addCase(loginWithGoogle.pending, (state) => {
                 state.loading = true;
@@ -120,17 +119,17 @@ const authSlice = createSlice({
                 state.loading = false;
                 state.error = false;
                 state.success = true;
-                state.logedUser = action.payload;
-                state.isAuthenticated = true; // Google ile giriş yaptı
-                state.tokenValid = true; // Token geçerli
+                state.user = action.payload;
+                state.isAuthenticated = true;
+                state.tokenValid = true;
             })
             .addCase(loginWithGoogle.rejected, (state, action) => {
                 state.success = false;
                 state.loading = false;
                 state.error = true;
                 state.message = action.payload;
-                state.isAuthenticated = false; // Giriş başarısız
-                state.tokenValid = false; // Token geçersiz
+                state.isAuthenticated = false;
+                state.tokenValid = false;
             })
             .addCase(registerUser.pending, (state) => {
                 state.loading = true;
@@ -158,18 +157,18 @@ const authSlice = createSlice({
                 state.loading = false;
                 state.error = false;
                 state.success = true;
-                state.token = action.payload.token
-                state.logedUser = action.payload.userFind
-                state.tokenValid = true; // Token doğrulama sonucunu buradan al
-                state.isAuthenticated = true; // Doğrulama başarılıysa kullanıcı doğrulanmış olur
+                state.token = action.payload.token;
+                state.user = action.payload.userFind;
+                state.tokenValid = true;
+                state.isAuthenticated = true;
             })
             .addCase(checkToken.rejected, (state, action) => {
                 state.success = false;
                 state.loading = false;
                 state.error = true;
                 state.message = action.payload;
-                state.tokenValid = false; // Token geçersiz
-                state.isAuthenticated = false; // Kullanıcı doğrulanmamış olur
+                state.tokenValid = false;
+                state.isAuthenticated = false;
             });
     },
 });

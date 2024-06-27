@@ -17,10 +17,10 @@ import { getAllCategories } from "../../redux/category/categorySlice";
 
 const Login = () => {
   const [isActive, setIsActive] = useState(true);
-  const loginState = useSelector((state) => state.auth);
   const param = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const loginState = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -33,9 +33,13 @@ const Login = () => {
 
   useEffect(() => {
     if (loginState.tokenValid) {
-      navigate(`/${param.id}/anasayfa`);
+      if (loginState.user?.role === "Admin") {
+        navigate(`/${param.id}/admin/dashboard`);
+      } else {
+        navigate(`/${param.id}/anasayfa`);
+      }
     }
-  }, [navigate, param.id, loginState.tokenValid]);
+  }, [navigate, param.id, loginState.tokenValid, loginState.user]);
 
   const initialLoginValues = {
     email: "",

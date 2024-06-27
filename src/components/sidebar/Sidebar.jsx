@@ -10,9 +10,17 @@ import { SiGooglepubsub } from "react-icons/si";
 import { RiMenu2Fill } from "react-icons/ri";
 import { MdClose } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/login/loginSlice";
 
 const Sidebar = ({ param }) => {
   const [isMenu, setIsmenu] = useState(true);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    console.log("çıkış yapıldı");
+  };
 
   return (
     <aside className="__header">
@@ -92,8 +100,8 @@ const Sidebar = ({ param }) => {
           </ul>
 
           <div className="logout">
-            <li>
-              <NavLink to="/">
+            <li onClick={handleLogout}>
+              <NavLink to={`/${param.id}/login`}>
                 <MdModeStandby />
                 <p>Çıkış Yap</p>
               </NavLink>

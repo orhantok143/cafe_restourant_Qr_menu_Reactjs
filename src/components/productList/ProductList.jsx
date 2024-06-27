@@ -30,8 +30,6 @@ const ProductList = ({ param }) => {
     setProducts(products?.filter((p) => p._id !== id));
   };
 
-  console.log("Products::", products);
-
   return (
     <div className="list">
       <h1>Ürünler</h1>
