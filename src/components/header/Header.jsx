@@ -8,6 +8,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearch } from "../../redux/products/productSlice";
 import { selectfavorited } from "../../redux/selectors";
+import { logout } from "../../redux/login/loginSlice";
+import { RiDashboardFill } from "react-icons/ri";
 
 const Header = ({ user, tokenValid }) => {
   const navigate = useNavigate();
@@ -21,15 +23,22 @@ const Header = ({ user, tokenValid }) => {
     }
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   const handleOnChange = (e) => {
     dispatch(setSearch(e.target.value));
   };
+
+  console.log("User::", user);
 
   return (
     <div className="_header">
       <div className="_top_header">
         <div className="_logo">
           <img className="lo" src={img} alt="" srcSet="" />
+          {user?.role === "User" ? <RiDashboardFill /> : <></>}
         </div>
         <div className="_icons">
           <input
@@ -46,7 +55,7 @@ const Header = ({ user, tokenValid }) => {
               // <img src={logedUser?.image} />
               <> {} </>
             ) : (
-              <FaUser className="_user" />
+              <FaUser className="_user" onClick={handleLogout} />
             )
           ) : (
             <FaUserPlus onClick={handleLogin} className="_user" />
