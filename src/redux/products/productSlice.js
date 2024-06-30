@@ -37,6 +37,16 @@ export const deleteProduct = createAsyncThunk(
     }
 )
 
+export const ratingProduct = createAsyncThunk(
+    "product/rate-product",
+    async (data) => {
+        console.log("Data:", data);
+        const response = await axiosInstance.post(`product/${data.id}/rating`, data.data)
+        return response.data
+    }
+)
+
+
 
 const initialState = {
     products: null,

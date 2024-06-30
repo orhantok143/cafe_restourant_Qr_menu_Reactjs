@@ -31,14 +31,20 @@ const Header = ({ user, tokenValid }) => {
     dispatch(setSearch(e.target.value));
   };
 
-  console.log("User::", user);
+  const handleToDashboard = () => {
+    navigate(`/${param.id}/admin/dashboard`);
+  };
 
   return (
     <div className="_header">
       <div className="_top_header">
         <div className="_logo">
           <img className="lo" src={img} alt="" srcSet="" />
-          {user?.role === "User" ? <RiDashboardFill /> : <></>}
+          {user?.role === "Admin" ? (
+            <RiDashboardFill onClick={handleToDashboard} />
+          ) : (
+            <></>
+          )}
         </div>
         <div className="_icons">
           <input

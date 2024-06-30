@@ -48,7 +48,6 @@ export const checkToken = createAsyncThunk(
     async (token, { rejectWithValue }) => {
         try {
             const response = await axiosInstance.post("admin/checktoken", { token });
-            console.log("checktoken::", response.data);
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data);

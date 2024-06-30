@@ -3,7 +3,6 @@ import "./products.css";
 import Food from "../food/Food";
 import BottomBar from "../../components/BottomBar";
 import Header from "../../components/header/Header";
-// import SubCategory from "../../components/SubCategory";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../components/Loading";
 import { FaRegStar, FaStar } from "react-icons/fa";
@@ -21,6 +20,7 @@ import {
   addMyFavorite,
   getAllProducts,
   initialLoad,
+  ratingProduct,
 } from "../../redux/products/productSlice";
 import { getAllCategories } from "../../redux/category/categorySlice";
 import { IoCloseOutline } from "react-icons/io5";
@@ -40,22 +40,23 @@ const Products = () => {
   const products = useSelector(selectActiveProducts);
   const categories = useSelector(selectActiveCategories);
   const { tokenValid, user } = useSelector((state) => state.auth);
-  const [rating, setRating] = useState(0);
-  const [hover, setHover] = useState(0);
   const [favoritedLocal, setFavoritedLocal] = useState([]);
-  const combinedRefs = (node) => {
-    // You can access detailRef.current and productRef.current here
+  const [userRating, setUserRating] = useState(null);
+  const [hover, setHover] = useState(0);
+
+  const combinedRefs = useCallback((node) => {
+    // Refs for both product and detail components
     detailRef.current = node;
     productRef.current = node;
-  };
+  }, []);
 
   const handleAddToFavorite = (product) => {
     const updatedFavorites = favoritedLocal.includes(product._id)
       ? favoritedLocal.filter((id) => id !== product._id)
       : [...favoritedLocal, product._id];
 
-    setFavoritedLocal(updatedFavorites); // Local state'i güncelle
-    dispatch(addMyFavorite(product)); // Redux store ve veritabanı için favori ekleme/çıkarma aksiyonunu dispatch et
+    setFavoritedLocal(updatedFavorites);
+    dispatch(addMyFavorite(product));
   };
 
   const handleClickOutside = useCallback((event) => {
@@ -64,14 +65,15 @@ const Products = () => {
     }
   }, []);
 
-  const handleRating = (rate) => {
-    setRating(rate);
+  const handleRating = (ratingValue, id) => {
+    const data = { data: { rating: ratingValue, comment: "" }, id: id };
+
+    dispatch(ratingProduct(data));
   };
 
   const handleShare = async (product) => {
     try {
       const dataUrl = await toPng(productRef.current);
-
       const blob = await fetch(dataUrl).then((res) => res.blob());
       const file = new File([blob], "product.png", { type: blob.type });
 
@@ -86,23 +88,8 @@ const Products = () => {
         window.open(dataUrl, "_blank");
       }
     } catch (error) {
-      console.error("Error sharing");
+      console.error("Error sharing:", error);
     }
-
-    // if (navigator.share) {
-    //   try {
-    //     await navigator.share({
-    //       title: product.name,
-    //       text: product.description,
-    //       url: window.location.href,
-    //     });
-    //     console.log("Shared successfully");
-    //   } catch (error) {
-    //     console.error("Error sharing:", error);
-    //   }
-    // } else {
-    //   alert("Web Share API is not supported in your browser.");
-    // }
   };
 
   const handleOnClick = (product, event) => {
@@ -118,7 +105,7 @@ const Products = () => {
   useEffect(() => {
     if (user && user.myFavorites) {
       dispatch(initialLoad(user.myFavorites));
-      setFavoritedLocal(user.myFavorites); // Local state'i logedUser.myFavorites ile başlat
+      setFavoritedLocal(user.myFavorites);
     }
   }, [user, dispatch]);
 
@@ -130,7 +117,7 @@ const Products = () => {
   }, [handleClickOutside]);
 
   useEffect(() => {
-    if (!products.produstc && !categories.categories) {
+    if (!products.products && !categories.categories) {
       dispatch(getAllProducts());
       dispatch(getAllCategories());
     }
@@ -143,12 +130,19 @@ const Products = () => {
     }
   }, [dispatch, param.id, navigate]);
 
+  useEffect(() => {
+    // Check if the user has rated this product before
+    const userRating = detailProduct?.reviews?.find(
+      (review) => review.user === user._id
+    );
+    setUserRating(userRating ? userRating.rating : null);
+  }, [detailProduct, user?._id]);
+
   const c = categories?.categories
     ?.filter((category) => category.title.includes(currentCategory))
     ?.map((c) => c.subCategory.flat())
     .flat()
     .sort((a, b) => {
-      // Tarihlerin karşılaştırılması için getTime() kullanılıyor
       return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
     });
 
@@ -178,7 +172,7 @@ const Products = () => {
                     user={user}
                     favoritedLocal={favoritedLocal}
                     handleAddToFavorite={handleAddToFavorite}
-                    handleShare={handleAddToFavorite}
+                    handleShare={handleShare}
                     productRef={productRef}
                   />
                 ))}
@@ -204,13 +198,39 @@ const Products = () => {
                   <div
                     key={index}
                     className="star"
-                    onMouseEnter={() => setHover(ratingValue)}
-                    onMouseLeave={() => setHover(0)}
-                    onClick={() => handleRating(ratingValue)}
-                    onTouchStart={() => setHover(ratingValue)}
-                    onTouchEnd={() => handleRating(ratingValue)}
+                    onMouseEnter={() => {
+                      if (userRating === null) {
+                        setHover(ratingValue);
+                      }
+                    }}
+                    onMouseLeave={() => {
+                      if (userRating === null) {
+                        setHover(0);
+                      }
+                    }}
+                    onClick={() => {
+                      if (userRating === null) {
+                        handleRating(ratingValue, detailProduct._id);
+                      }
+                    }}
+                    onTouchStart={() => {
+                      if (userRating === null) {
+                        setHover(ratingValue);
+                      }
+                    }}
+                    onTouchEnd={() => {
+                      if (userRating === null) {
+                        handleRating(ratingValue);
+                      }
+                    }}
                   >
-                    {ratingValue <= (hover || rating) ? (
+                    {userRating !== null ? (
+                      ratingValue <= userRating ? (
+                        <FaStar className="fillStar" />
+                      ) : (
+                        <FaRegStar />
+                      )
+                    ) : ratingValue <= hover ? (
                       <FaStar className="fillStar" />
                     ) : (
                       <FaRegStar />
@@ -249,7 +269,6 @@ const Products = () => {
       ) : null}
 
       <div className="_buttomGroup">
-        {/* <SubCategory /> */}
         <BottomBar />
       </div>
     </div>

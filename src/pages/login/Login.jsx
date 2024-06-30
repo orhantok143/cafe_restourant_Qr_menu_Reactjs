@@ -33,13 +33,9 @@ const Login = () => {
 
   useEffect(() => {
     if (loginState.tokenValid) {
-      if (loginState.user?.role === "Admin") {
-        navigate(`/${param.id}/admin/dashboard`);
-      } else {
-        navigate(`/${param.id}/anasayfa`);
-      }
+      navigate(`/${param.id}/anasayfa`);
     }
-  }, [navigate, param.id, loginState.tokenValid, loginState.user]);
+  }, [navigate, param.id, loginState.tokenValid]);
 
   const initialLoginValues = {
     email: "",
