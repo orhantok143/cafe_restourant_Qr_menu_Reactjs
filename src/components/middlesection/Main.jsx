@@ -150,12 +150,7 @@ const Main = () => {
             <input type="search" placeholder="Ara..." />
           </div>
         </div>
-        <List
-          headers={header.header}
-          itemsPerPage={5}
-          items={header.items}
-          head={header.head}
-        />
+        <List headers={header.header} items={header.items} head={header.head} />
       </div>
     </main>
   );
