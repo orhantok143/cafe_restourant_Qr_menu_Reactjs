@@ -189,9 +189,9 @@
     font-size: 0.8rem;
   }
   ._card img {
-    width: 7rem;
+    /* width: 7rem; */
     height: 5.6rem;
-    aspect-ratio: 1/1;
+    /* aspect-ratio: 1/1; */
   }
   .card_text .desc {
     font-size: 0.6rem;
