@@ -46,7 +46,7 @@ const Main = () => {
     () => ({
       head: "Şubeler",
       header: ["İŞLETME İSMİ", "ŞUBELER"],
-      items: branch?.businesses?.filter((branch) => branch._id === param.id),
+      items: branch?.filter((branch) => branch._id === param.id),
     }),
     [branch, param.id]
   );
