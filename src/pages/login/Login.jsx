@@ -14,6 +14,10 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/products/productSlice";
 import { getAllCategories } from "../../redux/category/categorySlice";
+import {
+  selectActiveCategories,
+  selectActiveProducts,
+} from "../../redux/selectors";
 
 const Login = () => {
   const [isActive, setIsActive] = useState(true);
@@ -21,15 +25,19 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loginState = useSelector((state) => state.auth);
+  const products = useSelector(selectActiveProducts);
+  const categories = useSelector(selectActiveCategories);
 
   useEffect(() => {
-    dispatch(getAllProducts());
-    dispatch(getAllCategories());
+    if (!products.products && !categories.categories) {
+      dispatch(getAllProducts());
+      dispatch(getAllCategories());
+    }
     const token = localStorage.getItem("token");
     if (token) {
       dispatch(checkToken(token));
     }
-  }, [dispatch]);
+  }, [dispatch, products.products, categories.categories]);
 
   useEffect(() => {
     if (loginState.tokenValid) {

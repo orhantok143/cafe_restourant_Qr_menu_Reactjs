@@ -43,8 +43,10 @@ const ProductList = ({ param }) => {
   };
 
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
+    if (!activeProducts.products) {
+      dispatch(getAllProducts());
+    }
+  }, [dispatch, activeProducts.products]);
 
   useEffect(() => {
     setProducts(activeProducts?.products);

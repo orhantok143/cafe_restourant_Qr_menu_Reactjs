@@ -9,7 +9,7 @@ export const getAllBusinesses = createAsyncThunk(
     'businesses/getAll',
     async () => {
         const response = await axios.get(baseUrl + "admin")
-        return response.data
+        return response.data.data
     }
 );
 const initialState = {

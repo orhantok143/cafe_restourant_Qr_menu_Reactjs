@@ -20,7 +20,7 @@ const selectCurrentSubCategory = state => state.categories.currentSubCategory;
 export const selectcurrentSubCategory = selectCurrentSubCategory;
 
 
-const selectBusinesses = state => state.businesses.businesses ? state.businesses.businesses.data : []
+const selectBusinesses = state => state.businesses.businesses
 
 
 export const selectActiveBusinesses = selectBusinesses;

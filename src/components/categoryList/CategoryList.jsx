@@ -47,8 +47,10 @@ const CategoryList = ({ param }) => {
   };
 
   useEffect(() => {
-    dispatch(getAllCategories());
-  }, [dispatch]);
+    if (!activeCategory?.categories) {
+      dispatch(getAllCategories());
+    }
+  }, [dispatch, activeCategory.categories]);
 
   useEffect(() => {
     setCategories(activeCategory?.categories);

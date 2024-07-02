@@ -9,33 +9,21 @@ import ProductList from "../../components/productList/ProductList";
 import AddProduct from "../../components/addProduct/AddProduct";
 import AddCategory from "../../components/addCategory/AddCategory";
 import CategoryList from "../../components/categoryList/CategoryList";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/products/productSlice";
-import { getAllCategories } from "../../redux/category/categorySlice";
+import { useDispatch } from "react-redux";
 import { checkToken } from "../../redux/login/loginSlice";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const param = useParams();
-  const loginState = useSelector((state) => state.auth);
-
+  const navigate = useNavigate();
   useEffect(() => {
-    dispatch(getAllProducts());
-    dispatch(getAllCategories());
     const token = localStorage.getItem("token");
     if (token) {
       dispatch(checkToken(token));
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (loginState.tokenValid) {
-      navigate(`/${param.id}/anasayfa`);
     } else {
       navigate(`/${param.id}/login`);
     }
-  }, [navigate, param.id, loginState.tokenValid]);
+  }, [dispatch, navigate, param.id]);
 
   return (
     <div className="container">
