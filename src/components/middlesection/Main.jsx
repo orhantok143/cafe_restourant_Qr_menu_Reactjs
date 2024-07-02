@@ -46,7 +46,7 @@ const Main = () => {
     () => ({
       head: "Şubeler",
       header: ["İŞLETME İSMİ", "ŞUBELER"],
-      items: branch.businesses?.filter((branch) => branch._id === param.id),
+      items: branch.filter((branch) => branch._id === param.id),
     }),
     [branch, param.id]
   );
@@ -55,6 +55,7 @@ const Main = () => {
     () => ({
       head: "Yorumlar",
       header: ["YORUM YAPAN", "ÜRÜN", "YORUM"],
+      items: products.products?.map((p) => p.comments).flat(),
     }),
     []
   );
@@ -108,7 +109,7 @@ const Main = () => {
           </div>
           <div className="down_card">
             <p>Ürün sayısı</p>
-            <span>100</span>
+            <span> {memoizedProductList.items?.length} </span>
           </div>
         </div>
         <div className="card" onClick={() => handleOnClick("Category")}>
@@ -118,7 +119,7 @@ const Main = () => {
           </div>
           <div className="down_card">
             <p>Kategori sayısı</p>
-            <span>100</span>
+            <span> {memoizedCategoryList.items?.length} </span>
           </div>
         </div>
         <div className="card" onClick={() => handleOnClick("Branch")}>
@@ -128,7 +129,7 @@ const Main = () => {
           </div>
           <div className="down_card">
             <p>Şube sayısı</p>
-            <span>100</span>
+            <span> {memoizedBranchList.items?.length} </span>
           </div>
         </div>
         <div className="card" onClick={() => handleOnClick("Comment")}>
@@ -138,7 +139,7 @@ const Main = () => {
           </div>
           <div className="down_card">
             <p>Yorum sayısı</p>
-            <span>100</span>
+            <span> {memoizedCommentList.items?.length} </span>
           </div>
         </div>
       </div>
