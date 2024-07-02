@@ -18,9 +18,10 @@
 .cards .card {
   width: 90%;
   height: 5.6rem;
-  background-color: rgb(219, 219, 219);
+  background-color: rgba(0, 0, 0, 0.534);
   backdrop-filter: blur(10px);
-  box-shadow: 0px 0px 5px rgb(28, 27, 27);
+  box-shadow: 0px 0px 1px rgb(187, 187, 187);
+  color: rgb(209, 209, 209);
   border-radius: 0.7rem;
   display: flex;
   flex-direction: column;
@@ -33,6 +34,7 @@
 .cards .card:hover {
   background-color: rgb(255, 255, 255);
   transform: scale(1.15) rotate(1.4deg);
+  color: black;
 }
 
 .cards .card .up_card {
@@ -46,7 +48,6 @@
 .card .up_card p {
   font-size: 0.85rem;
   font-weight: 400;
-  color: rgb(0, 0, 0);
 }
 
 .card .down_card {
