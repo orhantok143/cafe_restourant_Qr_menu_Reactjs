@@ -57,7 +57,7 @@ const Main = () => {
       header: ["YORUM YAPAN", "ÜRÜN", "YORUM"],
       items: products.products?.map((p) => p.comments).flat(),
     }),
-    []
+    [products.products]
   );
 
   const handleOnClick = (data) => {
