@@ -5,7 +5,7 @@ import { RiDashboardFill } from "react-icons/ri";
 import { MdCategory, MdModeStandby } from "react-icons/md";
 import { AiFillProduct, AiOutlineSubnode } from "react-icons/ai";
 import { TbCategoryPlus } from "react-icons/tb";
-import { FaSquarePlus } from "react-icons/fa6";
+import { FaKitchenSet, FaSquarePlus } from "react-icons/fa6";
 import { SiGooglepubsub } from "react-icons/si";
 import { RiMenu2Fill } from "react-icons/ri";
 import { MdClose } from "react-icons/md";
@@ -50,6 +50,12 @@ const Sidebar = ({ param }) => {
         </div>
         <div className="menu">
           <ul>
+            <li>
+              <NavLink to={`/${param.id}/menu`}>
+                <FaKitchenSet />
+                <p>Menu'ye Git</p>
+              </NavLink>
+            </li>
             <li>
               <NavLink to={`/${param.id}/admin/dashboard`}>
                 <RiDashboardFill />
