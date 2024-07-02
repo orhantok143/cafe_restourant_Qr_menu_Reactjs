@@ -18,7 +18,7 @@ const ProductList = ({ param }) => {
   const [products, setProducts] = useState([]);
 
   const [pageNumber, setPageNumber] = useState(0);
-  const itemsPerPage = 10;
+  const itemsPerPage = 12;
   const pagesVisited = pageNumber * itemsPerPage;
 
   const displayItems =
