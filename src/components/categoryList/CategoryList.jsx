@@ -19,6 +19,33 @@ const CategoryList = ({ param }) => {
   const activeCategory = useSelector(selectActiveCategories);
   const [categories, setCategories] = useState([]);
 
+  const [pageNumber, setPageNumber] = useState(0);
+  const itemsPerPage = 10;
+  const pagesVisited = pageNumber * itemsPerPage;
+
+  const displayItems =
+    categories?.length > 5
+      ? categories.slice(pagesVisited, pagesVisited + itemsPerPage)
+      : categories;
+
+  const pageCount = Math.ceil(
+    activeCategory?.categoriess?.length / itemsPerPage
+  );
+
+  // Önceki sayfaya geçiş
+  const handlePrevious = () => {
+    if (pageNumber > 0) {
+      setPageNumber(pageNumber - 1);
+    }
+  };
+
+  // Sonraki sayfaya geçiş
+  const handleNext = () => {
+    if (pageNumber < pageCount - 1) {
+      setPageNumber(pageNumber + 1);
+    }
+  };
+
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
@@ -28,7 +55,6 @@ const CategoryList = ({ param }) => {
   }, [activeCategory?.categories]);
 
   const handleDelete = (id) => {
-    console.log(id);
     const updatedCategories = categories.map((category) => ({
       ...category,
       subCategory: category.subCategory?.filter((sub) => sub._id !== id),
@@ -50,7 +76,7 @@ const CategoryList = ({ param }) => {
             </tr>
           </thead>
           <tbody>
-            {categories?.map((category) => (
+            {displayItems?.map((category) => (
               <React.Fragment key={category._id}>
                 {category.subCategory.map((subCategory) => (
                   <tr key={subCategory._id}>
@@ -78,17 +104,12 @@ const CategoryList = ({ param }) => {
         <div className="pagination-container">
           <IoIosArrowBack
             className="pagination-button"
-            // onClick={() => handlePrevious(category._id)}
+            onClick={handlePrevious}
           />
 
           <IoIosArrowForward
             className="pagination-button"
-            // onClick={() =>
-            //   handleNext(
-            //     category._id,
-            //     Math.ceil(category.subCategory.length / itemsPerPage)
-            //   )
-            // }
+            onClick={handleNext}
           />
         </div>
         <NavLink to="../add-category" className="add-item-button add-product">

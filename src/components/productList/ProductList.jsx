@@ -17,6 +17,31 @@ const ProductList = ({ param }) => {
   const activeProducts = useSelector(selectActiveProducts);
   const [products, setProducts] = useState([]);
 
+  const [pageNumber, setPageNumber] = useState(0);
+  const itemsPerPage = 10;
+  const pagesVisited = pageNumber * itemsPerPage;
+
+  const displayItems =
+    activeProducts.products?.length > 5
+      ? activeProducts.products.slice(pagesVisited, pagesVisited + itemsPerPage)
+      : activeProducts.products;
+
+  const pageCount = Math.ceil(activeProducts?.products?.length / itemsPerPage);
+
+  // Önceki sayfaya geçiş
+  const handlePrevious = () => {
+    if (pageNumber > 0) {
+      setPageNumber(pageNumber - 1);
+    }
+  };
+
+  // Sonraki sayfaya geçiş
+  const handleNext = () => {
+    if (pageNumber < pageCount - 1) {
+      setPageNumber(pageNumber + 1);
+    }
+  };
+
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
@@ -45,7 +70,7 @@ const ProductList = ({ param }) => {
             </tr>
           </thead>
           <tbody>
-            {products?.map((product) => (
+            {displayItems?.map((product) => (
               <tr key={product._id}>
                 <td>{product.name}</td>
                 <td>{product.category}</td>
@@ -71,17 +96,12 @@ const ProductList = ({ param }) => {
         <div className="pagination-container">
           <IoIosArrowBack
             className="pagination-button"
-            // onClick={() => handlePrevious(category._id)}
+            onClick={handlePrevious}
           />
 
           <IoIosArrowForward
             className="pagination-button"
-            // onClick={() =>
-            //   handleNext(
-            //     category._id,
-            //     Math.ceil(category.subCategory.length / itemsPerPage)
-            //   )
-            // }
+            onClick={handleNext}
           />
         </div>
         <NavLink to="../add-product" className="add-item-button add-product">

@@ -38,7 +38,6 @@ const AddProduct = () => {
       Object.keys(values).forEach((key) => {
         formData.append(key, values[key]);
       });
-      console.log("FormData:", ...formData.entries());
       dispatch(addProduct(formData));
       resetForm();
     },

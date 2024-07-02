@@ -31,9 +31,6 @@ const List = ({ headers, itemsPerPage, items, head }) => {
     }
   };
 
-  console.log(displayItems);
-  console.log(head);
-
   return (
     <div className="list-container">
       <table className="glass-table">

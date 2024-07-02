@@ -19,7 +19,6 @@ const Sidebar = ({ param }) => {
 
   const handleLogout = () => {
     dispatch(logout());
-    console.log("çıkış yapıldı");
   };
 
   return (

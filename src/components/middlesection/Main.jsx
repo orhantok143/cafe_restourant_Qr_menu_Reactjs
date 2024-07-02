@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./main.css";
 import { AiFillProduct } from "react-icons/ai";
 import { MdCategory } from "react-icons/md";
@@ -19,48 +19,72 @@ import { getAllBusinesses } from "../../redux/businesses/businessesSlice";
 const Main = () => {
   const dispatch = useDispatch();
   const param = useParams();
-  const [whichCard, setwhichCard] = useState("Product");
+  const [whichCard, setWhichCard] = useState("Product");
   const products = useSelector(selectActiveProducts);
   const categories = useSelector(selectActiveCategories);
   const branch = useSelector(selectActiveBusinesses);
-  const productList = {
-    head: "Ürünler",
-    header: ["ÜRÜN İSMİ", "ANA KATEGORİ", "FİYAT"],
-    items: products.products,
-  };
-  const categoryList = {
-    head: "Kategoriler",
-    header: ["KATEGORİ İSMİ", "ALT KATEGORİLER"],
-    items: categories.categories,
-  };
-  const branchList = {
-    head: "Şubeler",
-    header: ["İŞLETME İSMİ", "ŞUBELER"],
-    items: branch?.businesses?.filter((branch) => branch._id === param.id),
-  };
-  const commentList = {
-    head: "Yorumlar",
-    header: ["YORUM YAPAN", "ÜRÜN", "YORUM"],
-  };
+
+  const memoizedProductList = useMemo(
+    () => ({
+      head: "Ürünler",
+      header: ["ÜRÜN İSMİ", "ANA KATEGORİ", "FİYAT"],
+      items: products.products,
+    }),
+    [products]
+  );
+
+  const memoizedCategoryList = useMemo(
+    () => ({
+      head: "Kategoriler",
+      header: ["KATEGORİ İSMİ", "ALT KATEGORİLER"],
+      items: categories.categories,
+    }),
+    [categories]
+  );
+
+  const memoizedBranchList = useMemo(
+    () => ({
+      head: "Şubeler",
+      header: ["İŞLETME İSMİ", "ŞUBELER"],
+      items: branch.businesses?.filter((branch) => branch._id === param.id),
+    }),
+    [branch, param.id]
+  );
+
+  const memoizedCommentList = useMemo(
+    () => ({
+      head: "Yorumlar",
+      header: ["YORUM YAPAN", "ÜRÜN", "YORUM"],
+    }),
+    []
+  );
+
   const handleOnClick = (data) => {
-    setwhichCard(data);
+    setWhichCard(data);
   };
-  const [header, setHeader] = useState(productList);
+
+  const [header, setHeader] = useState(memoizedProductList);
 
   useEffect(() => {
     if (whichCard === "Product") {
-      setHeader(productList);
+      setHeader(memoizedProductList);
     }
     if (whichCard === "Category") {
-      setHeader(categoryList);
+      setHeader(memoizedCategoryList);
     }
     if (whichCard === "Comment") {
-      setHeader(commentList);
+      setHeader(memoizedCommentList);
     }
     if (whichCard === "Branch") {
-      setHeader(branchList);
+      setHeader(memoizedBranchList);
     }
-  }, [whichCard]);
+  }, [
+    whichCard,
+    memoizedProductList,
+    memoizedCategoryList,
+    memoizedCommentList,
+    memoizedBranchList,
+  ]);
 
   useEffect(() => {
     if (!products?.products) {
@@ -69,10 +93,10 @@ const Main = () => {
     if (!categories?.categories) {
       dispatch(getAllCategories());
     }
-    if (branch?.bussiness) {
+    if (!branch?.businesses) {
       dispatch(getAllBusinesses());
     }
-  }, []);
+  }, [dispatch, products.products, categories.categories, branch.businesses]);
 
   return (
     <main className="main">
@@ -120,24 +144,9 @@ const Main = () => {
       </div>
       <div className="lists">
         <div className="list_header">
-          <h1> {header.head} </h1>
+          <h1>{header.head}</h1>
           <div className="controlbar">
             <input type="search" placeholder="Ara..." />
-            {/* <div className="categoryControl">
-              <select name="" id="" className="selection">
-                <option value="">Seç</option>
-                <option value="">Mutfak</option>
-                <option value="">Bar</option>
-                <option value="">Tatlı</option>
-                <option value="">Nargile</option>
-              </select>
-              <select name="" id="" className="selection">
-                <option value="">Seç</option>
-                <option value="">Kahvaltı</option>
-                <option value="">Tavuk Yemekleri</option>
-                <option value="">Et Yemekleri</option>
-              </select>
-            </div> */}
           </div>
         </div>
         <List
