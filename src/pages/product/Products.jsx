@@ -25,6 +25,7 @@ import {
 import { getAllCategories } from "../../redux/category/categorySlice";
 import { IoCloseOutline } from "react-icons/io5";
 import { toPng } from "html-to-image";
+import UserDetails from "../../components/userDetails/UserDetails";
 
 const Products = () => {
   const isLogin = true;
@@ -150,6 +151,7 @@ const Products = () => {
     <div className="_bg">
       {products?.loading || categories?.loading ? <Loading /> : null}
       <Header tokenValid={tokenValid} user={user} />
+      <UserDetails />
       {isLogin &&
         c?.map((c, index) => (
           <React.Fragment key={c._id || index}>
