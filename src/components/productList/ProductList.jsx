@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectActiveProducts } from "../../redux/selectors";
 import {
   deleteProduct,
+  editProduct,
   getAllProducts,
 } from "../../redux/products/productSlice";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -57,6 +58,10 @@ const ProductList = ({ param }) => {
     setProducts(products?.filter((p) => p._id !== id));
   };
 
+  const handleEdit = (product) => {
+    dispatch(editProduct(product));
+  };
+
   return (
     <div className="list">
       <h1>Ürünler</h1>
@@ -80,10 +85,11 @@ const ProductList = ({ param }) => {
                 <td>{product.price}</td>
                 <td>
                   <div className="action">
-                    <NavLink
-                      to={`/${param.id}/admin/add-product/${product._id}`}
-                    >
-                      <CiEdit className="action-button" />
+                    <NavLink to={`/${param.id}/admin/edit-product`}>
+                      <CiEdit
+                        className="action-button"
+                        onClick={() => handleEdit(product)}
+                      />
                     </NavLink>
                     <MdDelete
                       onClick={() => handleDelete(product._id)}

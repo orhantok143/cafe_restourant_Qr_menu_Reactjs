@@ -40,11 +40,26 @@ export const deleteProduct = createAsyncThunk(
 export const ratingProduct = createAsyncThunk(
     "product/rate-product",
     async (data) => {
-        const response = await axiosInstance.post(`product/${data.id}/rating`, data.data)
+        const response = await axiosInstance
+            .post(`product/${data.id}/rating`, data.data)
         return response.data
     }
 )
 
+// Ürünü güncellemek için async thunk
+export const updateProduct = createAsyncThunk(
+    'products/updateProduct',
+    async (productData, { rejectWithValue }) => {
+        try {
+            const response = await axiosInstance
+                .put(`product/${productData.id}`, productData.values);
+            console.log("response::", response.data);
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
 
 
 const initialState = {
@@ -54,7 +69,8 @@ const initialState = {
     error: false,
     message: "",
     search: "",
-    favorited: []
+    favorited: [],
+    editproduct: null
 }
 
 const productSlice = createSlice({
@@ -66,6 +82,9 @@ const productSlice = createSlice({
         },
         initialLoad: (state, action) => {
             state.favorited = action.payload;
+        },
+        editProduct: (state, action) => {
+            state.editproduct = action.payload
         }
     },
 
@@ -126,11 +145,23 @@ const productSlice = createSlice({
                 state.loading = false;
                 state.error = true;
                 state.message = state.error
-            });
+            }).addCase(updateProduct.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(updateProduct.fulfilled, (state, action) => {
+                state.loading = false;
+                // Ürün listesini güncelle
+                // const index = state.products?.products?.findIndex((product) => product._id === action.payload._id);
+
+            })
+            .addCase(updateProduct.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            });;
     }
 });
 
 
-export const { setSearch, initialLoad } = productSlice.actions
+export const { setSearch, initialLoad, editProduct } = productSlice.actions
 
 export default productSlice.reducer;

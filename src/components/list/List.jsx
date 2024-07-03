@@ -5,10 +5,10 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { IoAddCircle } from "react-icons/io5";
 import { useSelector } from "react-redux";
 
-const List = ({ headers, itemsPerPage, items, head }) => {
+const List = ({ headers, items, head }) => {
   const addingProduct = useSelector((state) => state.products.loading);
   const [pageNumber, setPageNumber] = useState(0);
-
+  const itemsPerPage = 10;
   // Sayfada gösterilecek öğeleri hesaplama
   const pagesVisited = pageNumber * itemsPerPage;
   const displayItems =

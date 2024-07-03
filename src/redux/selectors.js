@@ -29,3 +29,7 @@ export const selectActiveBusinesses = selectBusinesses;
 const selectFavorited = state => state.products.favorited
 
 export const selectfavorited = selectFavorited;
+
+const selectEdit = state => state.products.editproduct
+
+export const selecteditProduct = selectEdit;

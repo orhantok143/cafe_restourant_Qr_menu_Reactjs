@@ -11,6 +11,7 @@ import AddCategory from "../../components/addCategory/AddCategory";
 import CategoryList from "../../components/categoryList/CategoryList";
 import { useDispatch } from "react-redux";
 import { checkToken } from "../../redux/login/loginSlice";
+import ProductEdit from "../../components/productEdit/ProductEdit";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const Dashboard = () => {
         <Route exact path="/dashboard" element={<Main />} />
         <Route path="products" element={<ProductList param={param} />} />
         <Route path="add-product" element={<AddProduct />} />
+        <Route path="edit-product" element={<ProductEdit />} />
         <Route path="categories" element={<CategoryList param={param} />} />
         <Route path="add-category" element={<AddCategory />} />
         <Route path="branches" element={<CategoryList />} />

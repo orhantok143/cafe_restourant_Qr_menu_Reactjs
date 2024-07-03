@@ -3,6 +3,7 @@ import "./userDetails.css";
 import { SiCoffeescript } from "react-icons/si";
 import { IoIosSearch } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
+import { IoAddCircleSharp } from "react-icons/io5";
 import { IoImage } from "react-icons/io5";
 import h1 from "../../image/h1.png";
 
@@ -36,8 +37,8 @@ const UserDetails = () => {
       </div>
       <div className="_stories">
         <div className="_story">
-          <img src={h1} alt="story" />
-          <p>Orhantok</p>
+          <IoAddCircleSharp />
+          <p>Ekle</p>
         </div>{" "}
         <div className="_story">
           <img src={h1} alt="story" />
@@ -66,7 +67,7 @@ const UserDetails = () => {
             <IoImage />
             <IoLocationSharp />
           </div>
-          <button type="submit">Share</button>
+          <button type="submit">Paylaş</button>
         </div>
       </div>
     </main>
