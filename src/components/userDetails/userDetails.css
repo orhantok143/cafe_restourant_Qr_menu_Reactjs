@@ -18,6 +18,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: all 300ms ease-in-out;
 }
 
 .top ._social_logo {
@@ -32,26 +33,28 @@
 ._social_logo p {
   font-size: 1rem;
   font-weight: 400;
-  transition: all 300ms ease-in-out;
 }
 
 ._search_items {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0.1rem;
 }
 
 ._search_items ._search_area {
   outline: none;
   border: none;
   padding: 0.25rem 0.4rem;
-  border-radius: 1rem;
-  box-shadow: 0px 0px 2px rgb(0, 155, 49);
+  border-radius: 0.8rem;
+  box-shadow: 0px 0px 2px rgb(216, 2, 55);
   font-size: 16px;
   background: transparent;
   color: rgb(203, 203, 203);
 }
 ._search_items svg {
-  font-size: 1.3rem;
+  padding-right: 0.5rem;
+  font-size: 1.5rem;
   font-weight: 300;
   transition: all 300ms ease-in-out;
 }
@@ -108,7 +111,7 @@
 ._share ._head {
   display: flex;
 }
-._share ._head input {
+._share ._head ._textarea {
   width: 100%;
   background-color: transparent;
   color: rgb(203, 203, 203);

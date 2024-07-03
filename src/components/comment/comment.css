@@ -1,0 +1,75 @@
+.comment {
+  width: 70%;
+  height: max-content;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  backdrop-filter: blur(10px);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.505);
+  border-radius: 1rem;
+  padding: 1rem;
+  padding-bottom: 0.4rem;
+}
+.comment .comment_head img {
+  width: 2.3rem;
+}
+
+.comment_head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  margin-bottom: 0.7rem;
+}
+
+.comment_head svg {
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.comment_head ._profile {
+  display: flex;
+  align-items: end;
+  cursor: pointer;
+}
+
+._profile svg {
+  color: rgb(198, 198, 198);
+  padding: 0.14rem;
+  border-radius: 50%;
+  box-shadow: 0px 0px 1px whitesmoke;
+}
+
+.comment_head p {
+  padding: 0 0 0.2rem 0.5rem;
+  font-size: 0.55rem;
+  color: rgb(255, 255, 255);
+  font-weight: 300;
+}
+
+.comment input {
+  outline: none;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  padding: 0.3rem 0.3rem 5rem 0.4rem;
+  border-radius: 0.3rem;
+  color: rgb(182, 182, 182);
+  text-wrap: wrap;
+}
+.comment input::placeholder {
+  font-size: 0.7rem;
+}
+
+.comment button {
+  padding: 0.5rem 0.7rem;
+  background: #e1ce01;
+  color: black;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.65rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 15px rgb(0, 0, 0);
+}

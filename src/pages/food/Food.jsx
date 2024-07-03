@@ -12,6 +12,7 @@ const Food = ({
   handleOnClick,
   handleAddToFavorite,
   favoritedLocal,
+  handleComment,
 }) => {
   const productRef = useRef();
 
@@ -116,7 +117,7 @@ const Food = ({
               <p className="_mints">12dk</p>
             </div>
             <RiShare2Line onClick={handleShare} />
-            <FaRegComment />
+            <FaRegComment onClick={handleComment} />
           </div>
         </>
       ) : null}

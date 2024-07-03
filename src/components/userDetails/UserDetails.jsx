@@ -5,9 +5,13 @@ import { IoIosSearch } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
 import { IoAddCircleSharp } from "react-icons/io5";
 import { IoImage } from "react-icons/io5";
+import { IoIosLogOut } from "react-icons/io";
 import h1 from "../../image/h1.png";
+import { logout } from "../../redux/login/loginSlice";
+import { useDispatch } from "react-redux";
 
-const UserDetails = () => {
+const UserDetails = ({ setisProfile }) => {
+  const dispatch = useDispatch();
   const [isActive, setisActive] = useState(false);
   const ref = useRef();
   const handleClickOutside = useCallback((event) => {
@@ -15,12 +19,17 @@ const UserDetails = () => {
       setisActive(false);
     }
   }, []);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    setisProfile(false);
+  };
   return (
     <main className="_user_media" onClick={handleClickOutside}>
       <div className="top">
         <div className="_social_logo">
           <SiCoffeescript />
-          {isActive ? null : <p>Cafegram</p>}
+          <p>Cafegram</p>
         </div>
         <div className="_search_items">
           {isActive ? (
@@ -33,8 +42,10 @@ const UserDetails = () => {
           ) : (
             <IoIosSearch onClick={() => setisActive(true)} />
           )}
+          <IoIosLogOut onClick={handleLogout} />
         </div>
       </div>
+
       <div className="_stories">
         <div className="_story">
           <IoAddCircleSharp />
@@ -60,7 +71,11 @@ const UserDetails = () => {
       <div className="_share">
         <div className="_head">
           <img src={h1} alt="user" />
-          <input type="textarea" placeholder="Write something here..." />
+          <input
+            type="textarea"
+            className="_textarea"
+            placeholder="Write something here..."
+          />
         </div>
         <div className="_share_icons">
           <div className="icon">

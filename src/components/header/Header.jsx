@@ -8,10 +8,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearch } from "../../redux/products/productSlice";
 import { selectfavorited } from "../../redux/selectors";
-import { logout } from "../../redux/login/loginSlice";
 import { RiDashboardFill } from "react-icons/ri";
 
-const Header = ({ user, tokenValid }) => {
+const Header = ({ user, tokenValid, setisProfile }) => {
   const navigate = useNavigate();
   const param = useParams();
   const dispatch = useDispatch();
@@ -23,8 +22,8 @@ const Header = ({ user, tokenValid }) => {
     }
   };
 
-  const handleLogout = () => {
-    dispatch(logout());
+  const handleProfile = () => {
+    setisProfile(true);
   };
 
   const handleOnChange = (e) => {
@@ -61,7 +60,7 @@ const Header = ({ user, tokenValid }) => {
               // <img src={logedUser?.image} />
               <> {} </>
             ) : (
-              <FaUser className="_user" onClick={handleLogout} />
+              <FaUser className="_user" onClick={handleProfile} />
             )
           ) : (
             <FaUserPlus onClick={handleLogin} className="_user" />

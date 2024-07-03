@@ -9,6 +9,8 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import { RiShare2Line } from "react-icons/ri";
 import { IoIosTimer } from "react-icons/io";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
+import { FaRegComment } from "react-icons/fa";
+
 import {
   selectActiveCategories,
   selectActiveProducts,
@@ -25,10 +27,13 @@ import {
 import { getAllCategories } from "../../redux/category/categorySlice";
 import { IoCloseOutline } from "react-icons/io5";
 import { toPng } from "html-to-image";
-// import UserDetails from "../../components/userDetails/UserDetails";
+import { Comment } from "../../components/comment/Comment";
+import UserDetails from "../../components/userDetails/UserDetails";
 
 const Products = () => {
   const isLogin = true;
+  const [isComment, setisComment] = useState(false);
+  const [isProfile, setisProfile] = useState(false);
   const productRef = useRef();
   const [detail, setDetail] = useState(false);
   const [detailProduct, setDetailProduct] = useState(null);
@@ -103,6 +108,11 @@ const Products = () => {
     setDetailProduct(null);
   };
 
+  const handleComment = () => {
+    setisComment(true);
+    setDetail(false);
+  };
+
   useEffect(() => {
     if (user && user.myFavorites) {
       dispatch(initialLoad(user.myFavorites));
@@ -150,8 +160,15 @@ const Products = () => {
   return (
     <div className="_bg">
       {products?.loading || categories?.loading ? <Loading /> : null}
-      <Header tokenValid={tokenValid} user={user} />
-      {/* <UserDetails /> */}
+      <Header tokenValid={tokenValid} user={user} setisProfile={setisProfile} />
+      {isProfile ? <UserDetails setisProfile={setisProfile} /> : null}
+      {isComment && user ? (
+        <Comment
+          setisComment={setisComment}
+          user={user}
+          setisProfile={setisProfile}
+        />
+      ) : null}
       {isLogin &&
         c?.map((c, index) => (
           <React.Fragment key={c._id || index}>
@@ -176,6 +193,7 @@ const Products = () => {
                     handleAddToFavorite={handleAddToFavorite}
                     handleShare={handleShare}
                     productRef={productRef}
+                    handleComment={handleComment}
                   />
                 ))}
             </div>
@@ -260,12 +278,13 @@ const Products = () => {
             )}
           </div>
           <div className="__icon">
-            <p className="_rating"> {detailProduct?.averageRating} </p>
-            <RiShare2Line onClick={() => handleShare(detailProduct)} />
             <div className="_timer">
               <IoIosTimer />
               <p className="_mints">12dk</p>
             </div>
+            <RiShare2Line onClick={() => handleShare(detailProduct)} />
+            <FaRegComment onClick={handleComment} />
+            <p className="_rating"> {detailProduct?.averageRating} </p>
           </div>
         </div>
       ) : null}
