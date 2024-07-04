@@ -28,12 +28,10 @@ import { getAllCategories } from "../../redux/category/categorySlice";
 import { IoCloseOutline } from "react-icons/io5";
 import { toPng } from "html-to-image";
 import { Comment } from "../../components/comment/Comment";
-import UserDetails from "../../components/userDetails/UserDetails";
 
 const Products = () => {
   const isLogin = true;
   const [isComment, setisComment] = useState(false);
-  const [isProfile, setisProfile] = useState(false);
   const productRef = useRef();
   const [detail, setDetail] = useState(false);
   const [detailProduct, setDetailProduct] = useState(null);
@@ -160,14 +158,10 @@ const Products = () => {
   return (
     <div className="_bg">
       {products?.loading || categories?.loading ? <Loading /> : null}
-      <Header tokenValid={tokenValid} user={user} setisProfile={setisProfile} />
-      {isProfile ? <UserDetails setisProfile={setisProfile} /> : null}
+      <Header tokenValid={tokenValid} user={user} />
+
       {isComment && user ? (
-        <Comment
-          setisComment={setisComment}
-          user={user}
-          setisProfile={setisProfile}
-        />
+        <Comment setisComment={setisComment} user={user} />
       ) : null}
       {isLogin &&
         c?.map((c, index) => (

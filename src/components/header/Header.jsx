@@ -10,7 +10,7 @@ import { setSearch } from "../../redux/products/productSlice";
 import { selectfavorited } from "../../redux/selectors";
 import { RiDashboardFill } from "react-icons/ri";
 
-const Header = ({ user, tokenValid, setisProfile }) => {
+const Header = ({ user, tokenValid }) => {
   const navigate = useNavigate();
   const param = useParams();
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const Header = ({ user, tokenValid, setisProfile }) => {
   };
 
   const handleProfile = () => {
-    setisProfile(true);
+    navigate(`/${param.id}/profile`);
   };
 
   const handleOnChange = (e) => {

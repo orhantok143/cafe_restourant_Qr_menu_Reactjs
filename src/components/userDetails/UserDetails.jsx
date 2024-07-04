@@ -9,9 +9,9 @@ import { IoIosLogOut } from "react-icons/io";
 import h1 from "../../image/h1.png";
 import { logout } from "../../redux/login/loginSlice";
 import { useDispatch } from "react-redux";
+import { CgProfile } from "react-icons/cg";
 
-const UserDetails = ({ setisProfile }) => {
-  const dispatch = useDispatch();
+const UserDetails = () => {
   const [isActive, setisActive] = useState(false);
   const ref = useRef();
   const handleClickOutside = useCallback((event) => {
@@ -19,11 +19,6 @@ const UserDetails = ({ setisProfile }) => {
       setisActive(false);
     }
   }, []);
-
-  const handleLogout = () => {
-    dispatch(logout());
-    setisProfile(false);
-  };
   return (
     <main className="_user_media" onClick={handleClickOutside}>
       <div className="top">
@@ -42,7 +37,7 @@ const UserDetails = ({ setisProfile }) => {
           ) : (
             <IoIosSearch onClick={() => setisActive(true)} />
           )}
-          <IoIosLogOut onClick={handleLogout} />
+          <CgProfile className="user" />
         </div>
       </div>
 
@@ -50,23 +45,15 @@ const UserDetails = ({ setisProfile }) => {
         <div className="_story">
           <IoAddCircleSharp />
           <p>Ekle</p>
-        </div>{" "}
-        <div className="_story">
-          <img src={h1} alt="story" />
-          <p>Orhantok</p>
-        </div>{" "}
-        <div className="_story">
-          <img src={h1} alt="story" />
-          <p>Orhantok</p>
-        </div>{" "}
-        <div className="_story">
-          <img src={h1} alt="story" />
-          <p>Orhantok</p>
-        </div>{" "}
-        <div className="_story">
-          <img src={h1} alt="story" />
-          <p>Orhantok</p>
-        </div>{" "}
+        </div>
+        {Array.from({ length: 8 }).map((_, index) => {
+          return (
+            <div className="_story" key={index}>
+              <img src={h1} alt="story" />
+              <p>Orhantok</p>
+            </div>
+          );
+        })}
       </div>
       <div className="_share">
         <div className="_head">

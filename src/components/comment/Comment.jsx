@@ -2,10 +2,13 @@ import React from "react";
 import "./comment.css";
 import { IoCloseOutline } from "react-icons/io5";
 import { FaUser } from "react-icons/fa6";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Comment = ({ setisComment, user, setisProfile }) => {
+const Comment = ({ setisComment, user }) => {
+  const navigate = useNavigate();
+  const param = useParams();
   const handleProfile = () => {
-    setisProfile(true);
+    navigate(`/${param.id}/profile`);
   };
   return (
     <div className="comment">

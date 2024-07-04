@@ -47,29 +47,39 @@
   border: none;
   padding: 0.25rem 0.4rem;
   border-radius: 0.8rem;
-  box-shadow: 0px 0px 2px rgb(216, 2, 55);
+  /* box-shadow: 0px 0px 2px rgb(216, 2, 55); */
   font-size: 16px;
   background: transparent;
   color: rgb(203, 203, 203);
 }
+
+._search_items ._search_area::placeholder {
+  font-size: 0.7rem;
+}
 ._search_items svg {
   padding-right: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 300;
   transition: all 300ms ease-in-out;
+  cursor: pointer;
+}
+._search_items .user {
+  font-size: 2.2rem;
+  margin-left: 0.5rem;
 }
 
 ._stories {
   background-color: rgba(72, 72, 72, 0.516);
   padding: 0.4rem;
-  margin-top: 1.2rem;
+  margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(5, minmax(3.5rem, 1fr));
+  grid-template-columns: repeat(9, minmax(2.93rem, 1fr));
   place-items: center;
   border-radius: 1rem;
+  overflow-x: hidden;
 }
 ._story {
-  width: 3.5rem;
+  width: 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,9 +89,10 @@
 
 ._stories :nth-child(1) svg {
   padding: 0;
-  font-size: 3rem;
+  font-size: 2rem;
   color: rgba(216, 2, 55, 0.744);
   border-radius: 50%;
+  text-align: center;
   cursor: pointer;
   box-shadow: 0px 0px 5px whitesmoke;
 }
@@ -93,8 +104,8 @@
 }
 ._story p {
   margin-top: 0.5rem;
-  font-size: 0.55rem;
-  font-weight: 300;
+  font-size: 0.5rem;
+  font-weight: 400;
 }
 ._share {
   width: 100%;
@@ -115,10 +126,15 @@
   width: 100%;
   background-color: transparent;
   color: rgb(203, 203, 203);
+  font-size: 16px;
   outline: none;
   border: none;
   padding-left: 1rem;
 }
+._share ._head ._textarea::placeholder {
+  font-size: 0.7rem;
+}
+
 ._share ._head img {
   width: 2rem;
   aspect-ratio: 1/1;
