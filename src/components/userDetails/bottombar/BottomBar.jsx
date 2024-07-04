@@ -10,11 +10,11 @@ import h1 from "../../../image/h1.png";
 const BottomBar = () => {
   return (
     <div className="bottombar">
-      <NavLink>
+      <NavLink to="/profile">
         <GoHome />
         <p>Home</p>
       </NavLink>
-      <NavLink to="/search">
+      <NavLink>
         <CiSearch />
         <p>Ara</p>
       </NavLink>

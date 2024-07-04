@@ -5,7 +5,7 @@
   color: whitesmoke;
   z-index: 2;
   position: fixed;
-  bottom: 1rem;
+  bottom: 0;
   left: 50%;
   transform: translate(-50%);
   display: flex;
@@ -39,7 +39,7 @@ a img {
 }
 
 a svg {
-  width: 3rem;
+  width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
   padding: 0.4rem;
@@ -48,14 +48,14 @@ a svg {
   transition: all 0.3s ease-in-out;
 }
 
-a .active svg,
-a .active img {
+.active svg,
+.active img {
   transform: translateY(-50%);
   background-color: rgb(216, 2, 55);
   border: 3px solid rgba(0, 0, 0, 0.845);
-  padding: 0.1rem;
+  padding: 0.2rem;
 }
-a .active p {
+.active p {
   display: block;
   transition: all 0.3s ease-in-out;
   transform: translateY(-100%);
