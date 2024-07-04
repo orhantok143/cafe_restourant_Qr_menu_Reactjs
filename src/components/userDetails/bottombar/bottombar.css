@@ -32,7 +32,7 @@ a p {
   transition: all 0.3s ease-in-out;
 }
 a img {
-  width: 3rem;
+  width: 2.5rem;
   padding: 0.5rem;
   transition: all 0.3s ease-in-out;
   border-radius: 50%;
@@ -40,9 +40,10 @@ a img {
 
 a svg {
   width: 3rem;
-  height: 3rem;
+  height: 2.5rem;
   border-radius: 50%;
-  padding: 0.5rem;
+  padding: 0.4rem;
+  font-weight: 300;
   text-align: center;
   transition: all 0.3s ease-in-out;
 }
