@@ -18,7 +18,7 @@
 a {
   width: 3rem;
   text-decoration: none;
-  color: aliceblue;
+  color: rgba(240, 248, 255, 0.764);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,13 +50,15 @@ a svg {
 
 .active svg,
 .active img {
-  transform: translateY(-50%);
+  transform: translateY(-40%);
   background-color: rgb(216, 2, 55);
   border: 3px solid rgba(0, 0, 0, 0.845);
   padding: 0.2rem;
+  color: rgba(245, 245, 245, 0.93);
 }
 .active p {
   display: block;
   transition: all 0.3s ease-in-out;
   transform: translateY(-100%);
+  color: rgba(245, 245, 245, 0.93);
 }
