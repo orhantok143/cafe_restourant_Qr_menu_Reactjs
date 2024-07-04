@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Products from './pages/product/Products';
 import Login from './pages/login/Login';
 import Dashboard from "./pages/dashboard/Dashboard";
-import UserDetails from "./components/userDetails/UserDetails"
+import User from "./pages/user/User";
 
 const App = () => {
 
@@ -18,7 +18,7 @@ const App = () => {
         <Route path="/:id/login" element={<Login />} />
         <Route path="/:id/admin/*" element={<Dashboard />} />
         <Route path="/:id/menu" element={<Products />} />
-        <Route path="/:id/profile" element={<UserDetails />} />
+        <Route path="/:id/profile" element={<User />} />
         <Route path="/:id/anasayfa" element={<Hero />} />
       </Routes>
     </BrowserRouter>

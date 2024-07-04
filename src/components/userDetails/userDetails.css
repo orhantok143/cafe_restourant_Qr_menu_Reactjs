@@ -9,7 +9,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 4;
   padding: 1rem;
 }
 
@@ -73,7 +72,7 @@
   padding: 0.4rem;
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(9, minmax(2.93rem, 1fr));
+  grid-template-columns: repeat(9, minmax(2.95rem, 1fr));
   place-items: center;
   border-radius: 1rem;
   overflow-x: hidden;
