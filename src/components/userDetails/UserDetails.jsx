@@ -5,10 +5,7 @@ import { IoIosSearch } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
 import { IoAddCircleSharp } from "react-icons/io5";
 import { IoImage } from "react-icons/io5";
-import { IoIosLogOut } from "react-icons/io";
 import h1 from "../../image/h1.png";
-import { logout } from "../../redux/login/loginSlice";
-import { useDispatch } from "react-redux";
 import { CgProfile } from "react-icons/cg";
 
 const UserDetails = () => {
