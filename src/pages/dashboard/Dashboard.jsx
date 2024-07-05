@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./dashboard.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Main from "../../components/middlesection/Main";
@@ -9,23 +9,36 @@ import ProductList from "../../components/productList/ProductList";
 import AddProduct from "../../components/addProduct/AddProduct";
 import AddCategory from "../../components/addCategory/AddCategory";
 import CategoryList from "../../components/categoryList/CategoryList";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { checkToken } from "../../redux/login/loginSlice";
 import ProductEdit from "../../components/productEdit/ProductEdit";
+import { selectActiveAuth } from "../../redux/selectors";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const param = useParams();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const [loading, setLoading] = useState(true);
+  const { user } = useSelector(selectActiveAuth);
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if (token) {
-      dispatch(checkToken(token));
+      dispatch(checkToken(token)).finally(() => {
+        setLoading(false);
+      });
     } else {
       navigate(`/${param.id}/login`);
     }
-  }, [dispatch, navigate, param.id]);
+  }, [dispatch, navigate, param.id, token]);
 
+  useEffect(() => {
+    if (!loading) {
+      if (user?.role !== "Admin" && token) {
+        navigate(`/${param.id}/menu`);
+      }
+    }
+  }, [navigate, param.id, user?.role, loading, token]);
   return (
     <div className="container">
       <Sidebar param={param} />

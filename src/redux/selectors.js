@@ -1,3 +1,7 @@
+const selectAuth = state => state.auth;
+
+export const selectActiveAuth = selectAuth;
+
 
 const selectProducts = state => state.products;
 
