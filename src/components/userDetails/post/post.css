@@ -124,11 +124,11 @@
 .do_comment {
   display: flex;
   width: 100%;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
   background-color: black;
   border-radius: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.4rem;
   padding-left: 0;
 }
 .do_comment input {
@@ -140,6 +140,7 @@
   color: whitesmoke;
   font-size: 12px;
   font-weight: 300;
+  text-wrap: nowrap;
 }
 
 .do_comment input::placeholder {
