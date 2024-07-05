@@ -1,0 +1,150 @@
+.posts {
+  width: 100%;
+  background-color: rgba(72, 72, 72, 0.516);
+  height: max-content;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  border-radius: 1rem;
+}
+
+.posts .user {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.user svg {
+  color: white;
+}
+.posts .user .user_text {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.posts .user .user_text img {
+  width: 2rem;
+  aspect-ratio: 1/1;
+}
+.post_detail {
+  padding-left: 0.6rem;
+}
+.post_detail h4 {
+  font-size: 0.7rem;
+  padding-bottom: 0.2rem;
+  font-weight: 300;
+  color: rgb(255, 255, 255);
+}
+.post_detail p {
+  font-size: 0.55rem;
+  font-weight: 200;
+  color: rgb(160, 160, 160);
+}
+.post {
+  width: 100%;
+  margin: 0.5rem 0;
+}
+.post img {
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.post_icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+}
+.post_icons svg {
+  color: rgb(255, 255, 255);
+  font-size: 2.3rem;
+  padding: 0.4rem;
+  font-weight: 400;
+}
+
+.post_user {
+  width: 100%;
+  padding: 0 1rem;
+}
+.post_user .post_title {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.post_user .post_state {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 0.5rem;
+}
+.post_user h4 {
+  padding-right: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: rgb(255, 255, 255);
+}
+.post_user p {
+  color: rgb(178, 178, 178);
+  font-size: 0.6rem;
+}
+._comment {
+  width: calc(100% - 2rem);
+  margin: 0.5rem auto;
+  background-color: black;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+._comment .user_text img {
+  width: 2rem;
+  aspect-ratio: 1/1;
+}
+
+._comment .user_text {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+._comment p {
+  font-size: 0.55rem;
+  padding-bottom: 0.5rem;
+}
+
+._comment svg {
+  color: rgb(255, 255, 255);
+  font-size: 1.6rem;
+  padding: 0.2rem;
+  font-weight: 400;
+}
+
+.do_comment {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  padding-left: 0;
+}
+.do_comment input {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: fit-content;
+  background-color: transparent;
+  color: whitesmoke;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.do_comment input::placeholder {
+  font-size: 0.6rem;
+}
+.do_comment svg {
+  font-size: 1.3rem;
+}

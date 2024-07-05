@@ -7,6 +7,7 @@ import { IoAddCircleSharp } from "react-icons/io5";
 import { IoImage } from "react-icons/io5";
 import h1 from "../../image/h1.png";
 import { CgProfile } from "react-icons/cg";
+import Post from "./post/Post";
 
 const UserDetails = () => {
   const [isActive, setisActive] = useState(false);
@@ -43,7 +44,7 @@ const UserDetails = () => {
           <IoAddCircleSharp />
           <p>Ekle</p>
         </div>
-        {Array.from({ length: 8 }).map((_, index) => {
+        {Array.from({ length: 4 }).map((_, index) => {
           return (
             <div className="_story" key={index}>
               <img src={h1} alt="story" />
@@ -69,6 +70,7 @@ const UserDetails = () => {
           <button type="submit">Paylaş</button>
         </div>
       </div>
+      <Post />
     </main>
   );
 };

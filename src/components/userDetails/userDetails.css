@@ -1,8 +1,5 @@
 ._user_media {
   width: 100%;
-  height: 100vh;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: rgba(0, 0, 0, 0.845);
   color: rgb(203, 203, 203);
   backdrop-filter: blur(20px);
@@ -46,7 +43,6 @@
   border: none;
   padding: 0.25rem 0.4rem;
   border-radius: 0.8rem;
-  /* box-shadow: 0px 0px 2px rgb(216, 2, 55); */
   font-size: 16px;
   background: transparent;
   color: rgb(203, 203, 203);
@@ -72,13 +68,13 @@
   padding: 0.4rem;
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(9, minmax(2.95rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
   place-items: center;
   border-radius: 1rem;
   overflow-x: hidden;
 }
 ._story {
-  width: 2.5rem;
+  width: 3.8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,7 +84,7 @@
 
 ._stories :nth-child(1) svg {
   padding: 0;
-  font-size: 2rem;
+  font-size: 3rem;
   color: rgba(216, 2, 55, 0.744);
   border-radius: 50%;
   text-align: center;
