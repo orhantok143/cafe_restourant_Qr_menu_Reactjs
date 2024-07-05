@@ -15,7 +15,7 @@
   border-radius: 1rem 1rem 0 0;
 }
 
-a {
+.bottombar a {
   width: 3rem;
   text-decoration: none;
   color: rgba(240, 248, 255, 0.764);
@@ -25,20 +25,20 @@ a {
   justify-content: center;
   position: relative;
 }
-a p {
+.bottombar a p {
   display: none;
   font-size: 0.65rem;
   font-weight: 300;
   transition: all 0.3s ease-in-out;
 }
-a img {
+.bottombar img {
   width: 2.5rem;
   padding: 0.5rem;
   transition: all 0.3s ease-in-out;
   border-radius: 50%;
 }
 
-a svg {
+.bottombar svg {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
