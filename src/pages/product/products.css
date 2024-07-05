@@ -1,8 +1,8 @@
 ._bg {
-  /* width: 100%; */
+  width: 100%;
   min-height: 100vh;
   height: 100%;
-  background-image: url("../../image/indir\ \(7\).jpg");
+  background-image: url("../../image/indir\ \(9\).jpg");
   background-repeat: repeat-y;
   background-size: contain;
   box-shadow: inset 0px 0px 1000px rgba(0, 0, 0, 0.463);
