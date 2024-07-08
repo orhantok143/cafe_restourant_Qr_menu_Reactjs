@@ -11,7 +11,12 @@ import Post from "./post/Post";
 import { getAllPost } from "../../redux/post/postSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllComment } from "../../redux/comment/commentSlice";
-import { selectComment, selectPost } from "../../redux/selectors";
+import {
+  selectActiveAuth,
+  selectComment,
+  selectPost,
+} from "../../redux/selectors";
+import { checkToken } from "../../redux/login/loginSlice";
 
 const UserDetails = () => {
   const dispatch = useDispatch();
@@ -19,6 +24,7 @@ const UserDetails = () => {
   const [isActive, setisActive] = useState(false);
   const posts = useSelector(selectPost);
   const comments = useSelector(selectComment);
+  const { user } = useSelector(selectActiveAuth);
 
   const handleClickOutside = useCallback((event) => {
     if (ref.current && !ref.current.contains(event.target)) {
@@ -27,6 +33,7 @@ const UserDetails = () => {
   }, []);
 
   useEffect(() => {
+    dispatch(checkToken());
     dispatch(getAllPost());
     dispatch(getAllComment());
   }, [dispatch]);
@@ -84,7 +91,7 @@ const UserDetails = () => {
           <button type="submit">Paylaş</button>
         </div>
       </div>
-      <Post posts={posts} comments={comments} />
+      <Post user={user} posts={posts} comments={comments} />
     </main>
   );
 };

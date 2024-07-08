@@ -10,7 +10,6 @@ import { RiShare2Line } from "react-icons/ri";
 import { IoIosTimer } from "react-icons/io";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { FaRegComment } from "react-icons/fa";
-
 import {
   selectActiveCategories,
   selectActiveProducts,
@@ -142,7 +141,7 @@ const Products = () => {
   useEffect(() => {
     // Check if the user has rated this product before
     const userRating = detailProduct?.reviews?.find(
-      (review) => review.user === user._id
+      (review) => review.user === user?._id
     );
     setUserRating(userRating ? userRating.rating : null);
   }, [detailProduct, user?._id]);

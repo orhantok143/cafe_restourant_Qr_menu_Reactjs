@@ -14,12 +14,12 @@ const BottomBar = () => {
   const param = useParams();
   const [activeIcon, setActiveIcon] = useState(0);
 
-  const handleProfile = () => {
-    navigate(`/${param.id}/profile`);
-  };
   const handleClick = (icon) => {
     setActiveIcon(icon.id);
-    handleProfile();
+    if (icon.label === "Home") {
+      navigate(`/${param.id}/profile`);
+    }
+
     dispatch(currentCategory(icon.label));
   };
 

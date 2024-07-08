@@ -11,6 +11,17 @@ export const getAllPost = createAsyncThunk(
         return response.data
     }
 );
+
+
+
+
+export const likePost = createAsyncThunk(
+    'post/likePost',
+    async (id) => {
+        const response = await axiosInstance.post(`user/post/${id}`)
+        return response.data
+    }
+)
 const initialState = {
     post: null,
     success: false,
