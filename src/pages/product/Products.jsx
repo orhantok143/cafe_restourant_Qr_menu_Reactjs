@@ -16,7 +16,7 @@ import {
   selectCurrentCategory,
 } from "../../redux/selectors";
 import { checkToken } from "../../redux/login/loginSlice";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   addMyFavorite,
   getAllProducts,
@@ -36,7 +36,6 @@ const Products = () => {
   const [detailProduct, setDetailProduct] = useState(null);
   const search = useSelector((state) => state.products.search);
   const param = useParams();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const detailRef = useRef();
   const currentCategory = useSelector(selectCurrentCategory);
@@ -136,7 +135,7 @@ const Products = () => {
     if (token) {
       dispatch(checkToken(token));
     }
-  }, [dispatch, param.id, navigate]);
+  }, [dispatch]);
 
   useEffect(() => {
     // Check if the user has rated this product before

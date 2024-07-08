@@ -27,7 +27,6 @@ const Login = () => {
   const loginState = useSelector((state) => state.auth);
   const products = useSelector(selectActiveProducts);
   const categories = useSelector(selectActiveCategories);
-
   useEffect(() => {
     if (!products.products && !categories.categories) {
       dispatch(getAllProducts());

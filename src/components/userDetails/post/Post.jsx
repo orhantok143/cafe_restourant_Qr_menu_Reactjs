@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./post.css";
 import { BsThreeDots } from "react-icons/bs";
 import { IoMdHeartEmpty } from "react-icons/io";
@@ -8,44 +8,112 @@ import { IoPaperPlaneOutline } from "react-icons/io5";
 import { MdOutlineBookmarks } from "react-icons/md";
 import h1 from "../../../image/h3.png";
 import postImage from "../../../image/bg_food.jpg";
-import { useDispatch } from "react-redux";
-import { addComment, likeComment } from "../../../redux/comment/commentSlice";
-import { likePost } from "../../../redux/post/postSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addComment,
+  getAllComment,
+  likeComment,
+} from "../../../redux/comment/commentSlice";
+import { getAllPost, likePost } from "../../../redux/post/postSlice";
+import { checkToken } from "../../../redux/login/loginSlice";
+import {
+  selectActiveAuth,
+  selectComment,
+  selectPost,
+} from "../../../redux/selectors";
 
-const Post = ({ posts, comments, user }) => {
+const Post = () => {
   const dispatch = useDispatch();
   const [comment, setComment] = useState({ content: "", postId: "" });
+  const posts = useSelector(selectPost);
+  const comments = useSelector(selectComment);
+  const { user } = useSelector(selectActiveAuth);
+  const [localComments, setLocalComments] = useState([]);
+  const [localPosts, setLocalPosts] = useState([]);
+
+  useEffect(() => {
+    if (comments) {
+      setLocalComments(comments);
+    }
+  }, [comments]);
+
+  useEffect(() => {
+    if (posts) {
+      setLocalPosts(posts);
+    }
+  }, [posts]);
 
   const handleLikeComment = (id) => {
-    dispatch(likeComment(id));
+    dispatch(likeComment(id)).then((response) => {
+      if (response.meta.requestStatus === "fulfilled") {
+        const updatedComment = response.payload;
+        console.log(updatedComment);
+        setLocalComments((prevComments) =>
+          prevComments.map((comment) =>
+            comment._id === updatedComment._id ? updatedComment : comment
+          )
+        );
+      }
+    });
   };
 
   const handleLikePost = (id) => {
-    dispatch(likePost(id));
+    dispatch(likePost(id)).then((response) => {
+      if (response.meta.requestStatus === "fulfilled") {
+        const updatedPost = response.payload.post;
+        setLocalPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post._id === updatedPost._id ? updatedPost : post
+          )
+        );
+      }
+    });
   };
 
   const handleOnChange = (e) => {
     const content = e.target.value;
-    comment.content = content;
-    setComment(comment);
+    setComment({ ...comment, content });
   };
 
-  const handleComment = (data) => {
-    comment.postId = data;
-    console.log(comment);
-    dispatch(addComment(comment));
+  const handleComment = (postId) => {
+    const newComment = { content: comment.content, postId };
+    dispatch(addComment(newComment)).then((response) => {
+      if (response.meta.requestStatus === "fulfilled") {
+        setLocalComments([...localComments, response.payload]);
+        setComment({ content: "", postId: "" });
+      }
+    });
   };
+
+  useEffect(() => {
+    dispatch(checkToken());
+    if (!posts || !comments) {
+      dispatch(getAllPost());
+      dispatch(getAllComment());
+    }
+  }, [dispatch, posts, comments]);
+  useEffect(() => {
+    if (comments) {
+      setLocalComments(comments);
+    }
+  }, [comments]);
+
+  useEffect(() => {
+    if (posts) {
+      setLocalPosts(posts);
+    }
+  }, [posts]);
 
   return (
     <div className="posts">
-      {posts?.map((post) => (
+      {localPosts?.map((post) => (
         <React.Fragment key={post._id}>
           <div className="user">
             <div className="user_text">
               <img src={h1} alt="user_profile" />
               <div className="post_detail">
                 <h4>{user.username} </h4>
-                <p className="post_time">{post.createdAt} </p>
+                <p className="post_time">{post?.createdAt} </p>
               </div>
             </div>
             <BsThreeDots />
@@ -55,7 +123,7 @@ const Post = ({ posts, comments, user }) => {
             <img src={postImage} alt="post_picture" />
             <div className="post_icons">
               <div>
-                <IoMdHeartEmpty onClick={() => handleLikePost(post._id)} />
+                <IoMdHeartEmpty onClick={() => handleLikePost(post?._id)} />
                 <FaRegCommentDots />
                 <IoShareSocialOutline />
               </div>
@@ -64,34 +132,37 @@ const Post = ({ posts, comments, user }) => {
             <div className="post_user">
               <div className="post_title">
                 <h4>{user.username}</h4>
-                <p>{post.content}</p>
+                <p>{post?.content}</p>
               </div>
               <div className="do_comment">
                 <input
                   type="textarea"
                   placeholder="Yorum yaz..."
+                  value={comment.content}
                   onChange={handleOnChange}
                 />
-                <IoPaperPlaneOutline onClick={() => handleComment(post._id)} />
+                <IoPaperPlaneOutline onClick={() => handleComment(post?._id)} />
               </div>
               <div className="post_state">
-                <h4>{user.username} </h4>{" "}
-                <p>ve {post.likes.length} kişi beğendi </p>
+                {post?.likes.length > 0 ? (
+                  <>
+                    <h4>{user.username} </h4>
+                    <p>ve {post?.likes.length} kişi beğendi </p>,
+                  </>
+                ) : null}
                 <p>
-                  {comments?.filter(
-                    (c) => c.postId.toString() === post._id.toString
+                  {localComments?.filter(
+                    (c) => c.postId.toString() === post?._id.toString()
                   ).length > 0
-                    ? "," +
-                      comments?.filter(
-                        (c) => c.postId.toString() === post._id.toString
-                      ).length +
-                      " yorum yapılmış"
+                    ? localComments?.filter(
+                        (c) => c.postId.toString() === post?._id.toString()
+                      ).length + " kişi yorum yapmış"
                     : null}
                 </p>
               </div>
             </div>
-            {comments
-              ?.filter((c) => c.postId.toString() === post._id.toString())
+            {localComments
+              ?.filter((c) => c.postId.toString() === post?._id.toString())
               .map((c) => (
                 <div className="_comment" key={c._id}>
                   <div className="user_text">

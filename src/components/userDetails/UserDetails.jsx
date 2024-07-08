@@ -8,23 +8,15 @@ import { IoImage } from "react-icons/io5";
 import h1 from "../../image/h1.png";
 import { CgProfile } from "react-icons/cg";
 import Post from "./post/Post";
-import { getAllPost } from "../../redux/post/postSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllComment } from "../../redux/comment/commentSlice";
-import {
-  selectActiveAuth,
-  selectComment,
-  selectPost,
-} from "../../redux/selectors";
-import { checkToken } from "../../redux/login/loginSlice";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UserDetails = () => {
-  const dispatch = useDispatch();
   const ref = useRef();
+  const param = useParams();
+  const navigate = useNavigate();
   const [isActive, setisActive] = useState(false);
-  const posts = useSelector(selectPost);
-  const comments = useSelector(selectComment);
-  const { user } = useSelector(selectActiveAuth);
+  const { tokenValid, user } = useSelector((state) => state.auth);
 
   const handleClickOutside = useCallback((event) => {
     if (ref.current && !ref.current.contains(event.target)) {
@@ -33,10 +25,10 @@ const UserDetails = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(checkToken());
-    dispatch(getAllPost());
-    dispatch(getAllComment());
-  }, [dispatch]);
+    if (!user && !tokenValid) {
+      navigate(`/${param.id}/menu`);
+    }
+  }, [user, tokenValid, navigate, param]);
 
   return (
     <main className="_user_media" onClick={handleClickOutside}>
@@ -91,7 +83,7 @@ const UserDetails = () => {
           <button type="submit">Paylaş</button>
         </div>
       </div>
-      <Post user={user} posts={posts} comments={comments} />
+      <Post />
     </main>
   );
 };

@@ -6,18 +6,21 @@ import { GiCakeSlice } from "react-icons/gi";
 import "./bottomBar.css";
 import Smoke from "./Smoke";
 import { currentCategory } from "../redux/category/categorySlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
 const BottomBar = () => {
   const navigate = useNavigate();
   const param = useParams();
   const [activeIcon, setActiveIcon] = useState(0);
+  const { tokenValid, user } = useSelector((state) => state.auth);
 
   const handleClick = (icon) => {
     setActiveIcon(icon.id);
-    if (icon.label === "Home") {
+    if (icon.label === "Home" && tokenValid && user) {
       navigate(`/${param.id}/profile`);
+    } else {
+      navigate(`/${param.id}/login`);
     }
 
     dispatch(currentCategory(icon.label));

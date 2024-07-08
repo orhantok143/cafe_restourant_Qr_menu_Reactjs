@@ -42,6 +42,12 @@ export const selecteditProduct = selectEdit;
 const selectcomment = state => state.comment.comment
 
 export const selectComment = selectcomment;
+
+const selectaddComment = state => state.comment.addComment
+
+export const selectAddComment = selectaddComment;
+
+
 const selectpost = state => state.post.post
 
 export const selectPost = selectpost;
