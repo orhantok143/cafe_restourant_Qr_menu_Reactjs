@@ -1,6 +1,6 @@
 import React from "react";
 import "./bottombar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { GoHome } from "react-icons/go";
 import { CiSearch } from "react-icons/ci";
 import { GoPlus } from "react-icons/go";
@@ -8,13 +8,15 @@ import { CiHeart } from "react-icons/ci";
 import h1 from "../../../image/h1.png";
 
 const BottomBar = () => {
+  const param = useParams();
+
   return (
     <div className="bottombar">
-      <NavLink to="/profile">
+      <NavLink to={`/${param.id}/menu`}>
         <GoHome />
         <p>Home</p>
       </NavLink>
-      <NavLink>
+      <NavLink to="/search">
         <CiSearch />
         <p>Ara</p>
       </NavLink>

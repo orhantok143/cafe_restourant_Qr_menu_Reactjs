@@ -7,11 +7,19 @@ import "./bottomBar.css";
 import Smoke from "./Smoke";
 import { currentCategory } from "../redux/category/categorySlice";
 import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 const BottomBar = () => {
+  const navigate = useNavigate();
+  const param = useParams();
   const [activeIcon, setActiveIcon] = useState(0);
+
+  const handleProfile = () => {
+    navigate(`/${param.id}/profile`);
+  };
   const handleClick = (icon) => {
     setActiveIcon(icon.id);
+    handleProfile();
     dispatch(currentCategory(icon.label));
   };
 

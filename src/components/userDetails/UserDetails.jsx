@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./userDetails.css";
 import { SiCoffeescript } from "react-icons/si";
 import { IoIosSearch } from "react-icons/io";
@@ -8,15 +8,29 @@ import { IoImage } from "react-icons/io5";
 import h1 from "../../image/h1.png";
 import { CgProfile } from "react-icons/cg";
 import Post from "./post/Post";
+import { getAllPost } from "../../redux/post/postSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllComment } from "../../redux/comment/commentSlice";
+import { selectComment, selectPost } from "../../redux/selectors";
 
 const UserDetails = () => {
-  const [isActive, setisActive] = useState(false);
+  const dispatch = useDispatch();
   const ref = useRef();
+  const [isActive, setisActive] = useState(false);
+  const posts = useSelector(selectPost);
+  const comments = useSelector(selectComment);
+
   const handleClickOutside = useCallback((event) => {
     if (ref.current && !ref.current.contains(event.target)) {
       setisActive(false);
     }
   }, []);
+
+  useEffect(() => {
+    dispatch(getAllPost());
+    dispatch(getAllComment());
+  }, [dispatch]);
+
   return (
     <main className="_user_media" onClick={handleClickOutside}>
       <div className="top">
@@ -70,7 +84,7 @@ const UserDetails = () => {
           <button type="submit">Paylaş</button>
         </div>
       </div>
-      <Post />
+      <Post posts={posts} comments={comments} />
     </main>
   );
 };

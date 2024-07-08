@@ -37,3 +37,11 @@ export const selectfavorited = selectFavorited;
 const selectEdit = state => state.products.editproduct
 
 export const selecteditProduct = selectEdit;
+
+
+const selectcomment = state => state.comment.comment
+
+export const selectComment = selectcomment;
+const selectpost = state => state.post.post
+
+export const selectPost = selectpost;

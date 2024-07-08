@@ -1,7 +1,6 @@
 import React from "react";
 import "./header.css";
 import img from "../../image/hamaloğlu-Photoroom.png-Photoroom.png";
-import { FaUser } from "react-icons/fa";
 import { IoMdHeart } from "react-icons/io";
 import { FaUserPlus } from "react-icons/fa6";
 import { useNavigate, useParams } from "react-router-dom";
@@ -20,10 +19,6 @@ const Header = ({ user, tokenValid }) => {
     if (!tokenValid && !user) {
       navigate(`/${param.id}/login`);
     }
-  };
-
-  const handleProfile = () => {
-    navigate(`/${param.id}/profile`);
   };
 
   const handleOnChange = (e) => {
@@ -56,12 +51,7 @@ const Header = ({ user, tokenValid }) => {
             <IoMdHeart className="_cart" />
           ) : null}
           {tokenValid ? (
-            user?.image ? (
-              // <img src={logedUser?.image} />
-              <> {} </>
-            ) : (
-              <FaUser className="_user" onClick={handleProfile} />
-            )
+            <>{} </>
           ) : (
             <FaUserPlus onClick={handleLogin} className="_user" />
           )}
