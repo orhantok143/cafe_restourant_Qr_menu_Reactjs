@@ -13,17 +13,16 @@ const BottomBar = () => {
   const navigate = useNavigate();
   const param = useParams();
   const [activeIcon, setActiveIcon] = useState(0);
-  const { tokenValid, user } = useSelector((state) => state.auth);
+  const { tokenValid } = useSelector((state) => state.auth);
 
   const handleClick = (icon) => {
     setActiveIcon(icon.id);
-    if (icon.label === "Home" && tokenValid && user) {
+    if (icon.label === "Home" && tokenValid) {
       navigate(`/${param.id}/profile`);
-    } else {
-      navigate(`/${param.id}/login`);
     }
-
-    dispatch(currentCategory(icon.label));
+    if (icon.label !== "Home") {
+      dispatch(currentCategory(icon.label));
+    }
   };
 
   const dispatch = useDispatch();
