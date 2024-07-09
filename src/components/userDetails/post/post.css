@@ -120,7 +120,10 @@
   padding: 0.2rem;
   font-weight: 400;
 }
-
+._liked {
+  fill: rgb(164, 0, 27);
+  cursor: pointer;
+}
 .do_comment {
   display: flex;
   width: 100%;
