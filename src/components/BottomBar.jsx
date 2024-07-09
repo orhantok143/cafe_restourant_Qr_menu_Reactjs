@@ -19,6 +19,7 @@ const BottomBar = () => {
     setActiveIcon(icon.id);
     if (icon.label === "Home" && tokenValid) {
       navigate(`/${param.id}/profile`);
+      dispatch(currentCategory("Yemek"));
     }
     if (icon.label !== "Home") {
       dispatch(currentCategory(icon.label));
