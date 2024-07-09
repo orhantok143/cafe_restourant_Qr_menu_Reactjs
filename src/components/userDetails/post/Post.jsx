@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./post.css";
 import { BsThreeDots } from "react-icons/bs";
-import { IoMdHeartEmpty } from "react-icons/io";
+import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import { FaRegCommentDots } from "react-icons/fa6";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { IoPaperPlaneOutline } from "react-icons/io5";
@@ -123,7 +123,17 @@ const Post = () => {
             <img src={postImage} alt="post_picture" />
             <div className="post_icons">
               <div>
-                <IoMdHeartEmpty onClick={() => handleLikePost(post?._id)} />
+                {post.likes.some(
+                  (like) => like.toString() === user._id.toString()
+                ) ? (
+                  <IoMdHeart
+                    className="_liked"
+                    onClick={() => handleLikePost(post?._id)}
+                  />
+                ) : (
+                  <IoMdHeartEmpty onClick={() => handleLikePost(post?._id)} />
+                )}
+
                 <FaRegCommentDots />
                 <IoShareSocialOutline />
               </div>
@@ -162,19 +172,33 @@ const Post = () => {
               </div>
             </div>
             {localComments
-              ?.filter((c) => c.postId.toString() === post?._id.toString())
-              .map((c) => (
-                <div className="_comment" key={c._id}>
+              ?.filter(
+                (comment) => comment.postId.toString() === post?._id.toString()
+              )
+              .map((comment) => (
+                <div className="_comment" key={comment._id}>
                   <div className="user_text">
                     <img src={h1} alt="user_profile" />
                     <div className="post_detail">
                       <h4>{user.username} </h4>
-                      <p className="post_time">{c.createdAt} </p>
+                      <p className="post_time">{comment.createdAt} </p>
                     </div>
                   </div>
-                  <p>{c.content}</p>
+                  <p>{comment.content}</p>
                   <div>
-                    <IoMdHeartEmpty onClick={() => handleLikeComment(c._id)} />
+                    {comment.likes.some(
+                      (like) => like.toString() === user._id.toString()
+                    ) ? (
+                      <IoMdHeart
+                        className="_liked"
+                        onClick={() => handleLikeComment(comment._id)}
+                      />
+                    ) : (
+                      <IoMdHeartEmpty
+                        onClick={() => handleLikeComment(comment._id)}
+                      />
+                    )}
+
                     <FaRegCommentDots />
                   </div>
                 </div>
