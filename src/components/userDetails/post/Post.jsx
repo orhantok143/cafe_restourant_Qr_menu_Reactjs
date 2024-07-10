@@ -7,7 +7,6 @@ import { IoShareSocialOutline } from "react-icons/io5";
 import { IoPaperPlaneOutline } from "react-icons/io5";
 import { MdOutlineBookmarks } from "react-icons/md";
 import h1 from "../../../image/h3.png";
-import postImage from "../../../image/bg_food.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addComment,
