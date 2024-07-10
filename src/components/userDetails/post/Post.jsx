@@ -15,7 +15,7 @@ import {
   likeComment,
 } from "../../../redux/comment/commentSlice";
 import { getAllPost, likePost } from "../../../redux/post/postSlice";
-import { checkToken } from "../../../redux/login/loginSlice";
+import { checkToken, getAllUsers } from "../../../redux/login/loginSlice";
 import {
   selectActiveAuth,
   selectComment,
@@ -27,21 +27,11 @@ const Post = () => {
   const [comment, setComment] = useState({ content: "", postId: "" });
   const posts = useSelector(selectPost);
   const comments = useSelector(selectComment);
+  const { users } = useSelector(selectActiveAuth);
   const { user } = useSelector(selectActiveAuth);
   const [localComments, setLocalComments] = useState([]);
   const [localPosts, setLocalPosts] = useState([]);
-
-  useEffect(() => {
-    if (comments) {
-      setLocalComments(comments);
-    }
-  }, [comments]);
-
-  useEffect(() => {
-    if (posts) {
-      setLocalPosts(posts);
-    }
-  }, [posts]);
+  const [localUsers, setLocalUsers] = useState([]);
 
   const handleLikeComment = (id) => {
     dispatch(likeComment(id)).then((response) => {
@@ -85,13 +75,20 @@ const Post = () => {
     });
   };
 
+  const handleLocalUser = (id) => {
+    const u = localUsers?.find((user) => user._id === id);
+    return u ? u.username : null;
+  };
+
   useEffect(() => {
     dispatch(checkToken());
     if (!posts || !comments) {
       dispatch(getAllPost());
       dispatch(getAllComment());
     }
+    dispatch(getAllUsers());
   }, [dispatch, posts, comments]);
+
   useEffect(() => {
     if (comments) {
       setLocalComments(comments);
@@ -104,6 +101,12 @@ const Post = () => {
     }
   }, [posts]);
 
+  useEffect(() => {
+    if (users) {
+      setLocalUsers(users);
+    }
+  }, [users]);
+
   return (
     <div className="posts">
       {localPosts?.map((post) => (
@@ -112,7 +115,7 @@ const Post = () => {
             <div className="user_text">
               <img src={h1} alt="user_profile" />
               <div className="post_detail">
-                <h4>{user.username} </h4>
+                <h4>{handleLocalUser(post.author)} </h4>
                 <p className="post_time">{post?.createdAt} </p>
               </div>
             </div>
@@ -141,7 +144,7 @@ const Post = () => {
             </div>
             <div className="post_user">
               <div className="post_title">
-                <h4>{user.username}</h4>
+                <h4>{handleLocalUser(post.author)}</h4>
                 <p>{post?.content}</p>
               </div>
               <div className="do_comment">
@@ -156,7 +159,7 @@ const Post = () => {
               <div className="post_state">
                 {post?.likes.length > 0 ? (
                   <>
-                    <h4>{user.username} </h4>
+                    <h4>{handleLocalUser(comment.author)} </h4>
                     <p>ve {post?.likes.length} kişi beğendi </p>,
                   </>
                 ) : null}
@@ -180,7 +183,7 @@ const Post = () => {
                   <div className="user_text">
                     <img src={h1} alt="user_profile" />
                     <div className="post_detail">
-                      <h4>{user.username} </h4>
+                      <h4>{handleLocalUser(comment.author)} </h4>
                       <p className="post_time">{comment.createdAt} </p>
                     </div>
                   </div>

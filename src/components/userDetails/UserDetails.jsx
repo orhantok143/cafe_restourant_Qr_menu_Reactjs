@@ -8,15 +8,20 @@ import { IoImage } from "react-icons/io5";
 import h1 from "../../image/h1.png";
 import { CgProfile } from "react-icons/cg";
 import Post from "./post/Post";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { checkToken } from "../../redux/login/loginSlice";
+import { addPost } from "../../redux/post/postSlice";
 
 const UserDetails = () => {
   const ref = useRef();
+  const fileInputRef = useRef(null);
   const param = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isActive, setisActive] = useState(false);
-  const { tokenValid, user } = useSelector((state) => state.auth);
+  const { tokenValid } = useSelector((state) => state.auth);
+  const [sharePost, setSharePost] = useState({ content: "", image: null });
 
   const handleClickOutside = useCallback((event) => {
     if (ref.current && !ref.current.contains(event.target)) {
@@ -25,10 +30,50 @@ const UserDetails = () => {
   }, []);
 
   useEffect(() => {
-    if (!user && !tokenValid) {
-      navigate(`/${param.id}/menu`);
+    dispatch(checkToken()).then((res) => {
+      const token = localStorage.getItem("token");
+      if (res.meta.requestStatus === "fulfilled") {
+        if (!token) {
+          navigate(`/${param.id}/menu`);
+        }
+      }
+    });
+  }, [dispatch, tokenValid, navigate, param]);
+
+  const handleImageClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSharePost((prevSharePost) => ({
+        ...prevSharePost,
+        image: file,
+      }));
     }
-  }, [user, tokenValid, navigate, param]);
+  };
+
+  const handleShare = () => {
+    const formData = new FormData();
+    formData.append("content", sharePost.content);
+    if (sharePost.image) {
+      formData.append("image", sharePost.image);
+    }
+    dispatch(addPost(formData));
+    setSharePost({
+      content: "",
+      image: null,
+    });
+  };
+
+  const handlePostContent = (e) => {
+    const content = e.target.value;
+    setSharePost((prevSharePost) => ({
+      ...prevSharePost,
+      content,
+    }));
+  };
 
   return (
     <main className="_user_media" onClick={handleClickOutside}>
@@ -69,18 +114,35 @@ const UserDetails = () => {
       <div className="_share">
         <div className="_head">
           <img src={h1} alt="user" />
-          <input
-            type="textarea"
-            className="_textarea"
-            placeholder="Write something here..."
-          />
+
+          <div>
+            {sharePost.image && (
+              <img src={URL.createObjectURL(sharePost.image)} alt="Preview" />
+            )}
+
+            <textarea
+              className="_textarea"
+              placeholder="Write something here..."
+              onChange={handlePostContent}
+              value={sharePost.content}
+            />
+          </div>
         </div>
+
         <div className="_share_icons">
           <div className="icon">
-            <IoImage />
+            <IoImage onClick={handleImageClick} />
             <IoLocationSharp />
           </div>
-          <button type="submit">Paylaş</button>
+          <button type="button" onClick={handleShare}>
+            Paylaş
+          </button>
+          <input
+            type="file"
+            ref={fileInputRef}
+            style={{ display: "none" }}
+            onChange={handleImageUpload}
+          />
         </div>
       </div>
       <Post />

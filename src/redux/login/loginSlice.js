@@ -28,6 +28,19 @@ export const registerUser = createAsyncThunk(
     }
 );
 
+
+export const getAllUsers = createAsyncThunk(
+    "auth/getAllUsers",
+    async () => {
+        try {
+            const response = await axiosInstance.get("user")
+            return response.data
+        } catch (error) {
+            return error.message
+        }
+    }
+)
+
 // Async thunk for login with Google
 export const loginWithGoogle = createAsyncThunk(
     'auth/loginWithGoogle',
@@ -57,6 +70,7 @@ export const checkToken = createAsyncThunk(
 
 const initialState = {
     user: null,
+    users: null,
     token: null,
     success: false,
     loading: false,
@@ -168,6 +182,22 @@ const authSlice = createSlice({
                 state.message = action.payload;
                 state.tokenValid = false;
                 state.isAuthenticated = false;
+            }).addCase(getAllUsers.pending, (state) => {
+                state.loading = true;
+                state.error = false;
+                state.success = false;
+            })
+            .addCase(getAllUsers.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = false;
+                state.success = true;
+                state.users = action.payload
+            })
+            .addCase(getAllUsers.rejected, (state, action) => {
+                state.success = false;
+                state.loading = false;
+                state.error = true;
+                state.message = action.payload;
             });
     },
 });

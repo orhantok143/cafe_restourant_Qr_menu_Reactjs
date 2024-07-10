@@ -117,9 +117,25 @@
 }
 ._share ._head {
   display: flex;
+  align-items: start;
+  /* justify-content: flex-start; */
+}
+._share ._head div {
+  /* width: 100%; */
+  height: 5.5rem;
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  /* justify-content: space-between; */
+}
+
+._share ._head div img {
+  height: auto;
+  width: 4rem;
 }
 ._share ._head ._textarea {
-  width: 100%;
+  width: max-content;
+  max-height: 5.5rem;
   background-color: transparent;
   color: rgb(203, 203, 203);
   font-size: 16px;

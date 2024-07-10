@@ -13,6 +13,23 @@ export const getAllPost = createAsyncThunk(
 );
 
 
+export const addPost = createAsyncThunk(
+    "post/addPost",
+    async (data) => {
+        // FormData içeriğini konsola yazdır
+        for (let [key, value] of data.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+        const response = await axiosInstance.post("user/post", data, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        })
+        return response.data
+    }
+)
+
+
 
 
 export const likePost = createAsyncThunk(
