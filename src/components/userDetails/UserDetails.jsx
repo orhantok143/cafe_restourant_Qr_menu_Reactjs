@@ -78,6 +78,7 @@ const UserDetails = () => {
       ...prevSharePost,
       content,
     }));
+    
   };
 
   const handleLikePost = (id) => {

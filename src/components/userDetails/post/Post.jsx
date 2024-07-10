@@ -57,6 +57,7 @@ const Post = ({post,handleLikePost}) => {
     });
   };
 
+
   const handleLocalUser = (id) => {
     const u = localUsers?.find((user) => user._id === id);
     return u ? u.username : null;
@@ -76,9 +77,7 @@ const Post = ({post,handleLikePost}) => {
   }, [users]);
 
   return (
-    <div className="posts">
-      
-        
+    <div className="posts">        
           <div className="user">
             <div className="user_text">
               <img src={h1} alt="user_profile" />
@@ -91,7 +90,7 @@ const Post = ({post,handleLikePost}) => {
           </div>
 
           <div className="post">
-            <img src={postImage} alt="post_picture" />
+            <img src={post.media[0]?.url} alt="post_picture" />
             <div className="post_icons">
               <div>
                 {post.likes.some(
