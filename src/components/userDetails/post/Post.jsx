@@ -11,33 +11,27 @@ import postImage from "../../../image/bg_food.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addComment,
-  getAllComment,
   likeComment,
 } from "../../../redux/comment/commentSlice";
-import { getAllPost, likePost } from "../../../redux/post/postSlice";
-import { checkToken, getAllUsers } from "../../../redux/login/loginSlice";
+
 import {
   selectActiveAuth,
   selectComment,
-  selectPost,
 } from "../../../redux/selectors";
 
-const Post = () => {
+const Post = ({post,handleLikePost}) => {
   const dispatch = useDispatch();
   const [comment, setComment] = useState({ content: "", postId: "" });
-  const posts = useSelector(selectPost);
   const comments = useSelector(selectComment);
   const { users } = useSelector(selectActiveAuth);
   const { user } = useSelector(selectActiveAuth);
   const [localComments, setLocalComments] = useState([]);
-  const [localPosts, setLocalPosts] = useState([]);
   const [localUsers, setLocalUsers] = useState([]);
 
   const handleLikeComment = (id) => {
     dispatch(likeComment(id)).then((response) => {
       if (response.meta.requestStatus === "fulfilled") {
         const updatedComment = response.payload;
-        console.log(updatedComment);
         setLocalComments((prevComments) =>
           prevComments.map((comment) =>
             comment._id === updatedComment._id ? updatedComment : comment
@@ -47,18 +41,6 @@ const Post = () => {
     });
   };
 
-  const handleLikePost = (id) => {
-    dispatch(likePost(id)).then((response) => {
-      if (response.meta.requestStatus === "fulfilled") {
-        const updatedPost = response.payload.post;
-        setLocalPosts((prevPosts) =>
-          prevPosts.map((post) =>
-            post._id === updatedPost._id ? updatedPost : post
-          )
-        );
-      }
-    });
-  };
 
   const handleOnChange = (e) => {
     const content = e.target.value;
@@ -80,27 +62,13 @@ const Post = () => {
     return u ? u.username : null;
   };
 
-  useEffect(() => {
-    dispatch(checkToken());
-    if (!posts || !comments) {
-      dispatch(getAllPost());
-      dispatch(getAllComment());
-    }
-    dispatch(getAllUsers());
-  }, [dispatch, posts, comments]);
-
+  
   useEffect(() => {
     if (comments) {
       setLocalComments(comments);
     }
   }, [comments]);
-
-  useEffect(() => {
-    if (posts) {
-      setLocalPosts(posts);
-    }
-  }, [posts]);
-
+  
   useEffect(() => {
     if (users) {
       setLocalUsers(users);
@@ -109,8 +77,8 @@ const Post = () => {
 
   return (
     <div className="posts">
-      {localPosts?.map((post) => (
-        <React.Fragment key={post._id}>
+      
+        
           <div className="user">
             <div className="user_text">
               <img src={h1} alt="user_profile" />
@@ -160,7 +128,7 @@ const Post = () => {
                 {post?.likes.length > 0 ? (
                   <>
                     <h4>{handleLocalUser(comment.author)} </h4>
-                    <p>ve {post?.likes.length} kişi beğendi </p>,
+                    <p>{post?.likes.length} kişi beğendi </p>,
                   </>
                 ) : null}
                 <p>
@@ -207,8 +175,6 @@ const Post = () => {
                 </div>
               ))}
           </div>
-        </React.Fragment>
-      ))}
     </div>
   );
 };

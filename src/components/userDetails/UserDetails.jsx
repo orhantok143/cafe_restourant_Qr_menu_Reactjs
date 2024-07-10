@@ -10,8 +10,10 @@ import { CgProfile } from "react-icons/cg";
 import Post from "./post/Post";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { checkToken } from "../../redux/login/loginSlice";
-import { addPost } from "../../redux/post/postSlice";
+import { checkToken, getAllUsers } from "../../redux/login/loginSlice";
+import { addPost, getAllPost, likePost } from "../../redux/post/postSlice";
+import {selectPost } from "../../redux/selectors";
+import { getAllComment } from "../../redux/comment/commentSlice";
 
 const UserDetails = () => {
   const ref = useRef();
@@ -22,6 +24,9 @@ const UserDetails = () => {
   const [isActive, setisActive] = useState(false);
   const { tokenValid } = useSelector((state) => state.auth);
   const [sharePost, setSharePost] = useState({ content: "", image: null });
+  const posts = useSelector(selectPost);
+  const [localPosts, setLocalPosts] = useState([]);
+
 
   const handleClickOutside = useCallback((event) => {
     if (ref.current && !ref.current.contains(event.target)) {
@@ -74,6 +79,34 @@ const UserDetails = () => {
       content,
     }));
   };
+
+  const handleLikePost = (id) => {
+    dispatch(likePost(id)).then((response) => {
+      if (response.meta.requestStatus === "fulfilled") {
+        const updatedPost = response.payload.post;
+        setLocalPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post._id === updatedPost._id ? updatedPost : post
+          )
+        );
+      }
+    });
+  };
+
+  useEffect(() => {
+    dispatch(checkToken());
+    dispatch(getAllUsers());
+    dispatch(getAllComment());
+    if (!posts ) {
+      dispatch(getAllPost());
+    }
+  }, [dispatch, posts]);
+
+  useEffect(() => {
+    if (posts) {
+      setLocalPosts(posts);
+    }
+  }, [posts]);
 
   return (
     <main className="_user_media" onClick={handleClickOutside}>
@@ -145,7 +178,11 @@ const UserDetails = () => {
           />
         </div>
       </div>
-      <Post />
+      {
+        localPosts.map(post=>(
+          <Post post={post} handleLikePost={handleLikePost} key={post._id}/>
+        ))
+      }
     </main>
   );
 };
