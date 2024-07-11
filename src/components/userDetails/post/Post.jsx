@@ -3,7 +3,7 @@ import "./post.css";
 import { BsThreeDots } from "react-icons/bs";
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import { FaRegCommentDots } from "react-icons/fa6";
-import { IoShareSocialOutline } from "react-icons/io5";
+import { IoClose, IoShareSocialOutline } from "react-icons/io5";
 import { IoPaperPlaneOutline } from "react-icons/io5";
 import { MdOutlineBookmarks } from "react-icons/md";
 import h1 from "../../../image/h3.png";
@@ -17,8 +17,9 @@ import {
   selectActiveAuth,
   selectComment,
 } from "../../../redux/selectors";
+import { deletePost} from "../../../redux/post/postSlice";
 
-const Post = ({post,handleLikePost}) => {
+const Post = ({post,handleLikePost,setLocalPosts,localPosts }) => {
   const dispatch = useDispatch();
   const [comment, setComment] = useState({ content: "", postId: "" });
   const comments = useSelector(selectComment);
@@ -26,6 +27,7 @@ const Post = ({post,handleLikePost}) => {
   const { user } = useSelector(selectActiveAuth);
   const [localComments, setLocalComments] = useState([]);
   const [localUsers, setLocalUsers] = useState([]);
+  const [action, setAction] = useState(false)
 
   const handleLikeComment = (id) => {
     dispatch(likeComment(id)).then((response) => {
@@ -62,7 +64,24 @@ const Post = ({post,handleLikePost}) => {
     return u ? u.username : null;
   };
 
-  
+  // const handleUpdatePost =(data)=>{
+  //   dispatch(updatePost(data)).then((response)=>{
+  //     const index = localPosts.findIndex(post=>post._id === response._id)
+  //     localPosts[index] = response
+  //     setLocalPosts(localPosts)
+  //   })
+  // }
+
+const handleDeletePost = (postId)=>{
+    dispatch(deletePost(postId)).then(response=>{
+     if (response.meta.requestStatus ==="fulfilled") {
+      const newPosts = localPosts.filter(p=> p._id !== response.payload._id)    
+      setLocalPosts(newPosts)
+    }
+
+    })
+}
+
   useEffect(() => {
     if (comments) {
       setLocalComments(comments);
@@ -85,9 +104,18 @@ const Post = ({post,handleLikePost}) => {
                 <p className="post_time">{post?.createdAt} </p>
               </div>
             </div>
-            <BsThreeDots />
+            <BsThreeDots onClick={()=>setAction(true)}/>
           </div>
 
+          {action? <div className="dotsdetails">
+            <div className="_action">
+            <p className="delete" onClick={()=> handleDeletePost(post._id)} >Sil</p>
+            <p> Düzenle </p>
+            <p className="block"> Engelle </p>
+            </div>
+            <IoClose onClick={()=>setAction(false)}/>
+          </div>:null
+}
           <div className="post">
             <img src={post.media[0]?.url} alt="post_picture" />
             <div className="post_icons">

@@ -27,6 +27,23 @@ export const addPost = createAsyncThunk(
 )
 
 
+export const updatePost = createAsyncThunk(
+    'post/updatePost',
+    async(data)=>{
+        const response = await axiosInstance.delete(`user/post/${data.id}`,data.values)
+        return response.data
+    }
+)
+
+export const deletePost = createAsyncThunk(
+    'post/updatePost',
+    async(id)=>{
+        const response = await axiosInstance.delete(`user/post/${id}`)
+        return response.data
+    }
+)
+
+
 export const likePost = createAsyncThunk(
     'post/likePost',
     async (id) => {

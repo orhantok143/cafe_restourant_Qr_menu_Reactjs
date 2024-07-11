@@ -5,6 +5,8 @@
   padding: 1rem 0;
   margin :2rem 0;
   border-radius: 1rem;
+  position: relative;
+  transition: all 0.3s ease-in-out;
 }
 
 .posts .user {
@@ -17,6 +19,7 @@
 
 .user svg {
   color: white;
+  cursor: pointer;
 }
 .posts .user .user_text {
   width: max-content;
@@ -151,4 +154,32 @@
 }
 .do_comment svg {
   font-size: 1.3rem;
+}
+
+
+.dotsdetails{
+display: flex;
+width: 6rem;
+backdrop-filter: blur(10px);
+align-items: flex-start;
+justify-content: space-between;
+padding: 0.5rem;
+border-radius: 1rem;
+position: absolute;
+top: 0;
+right: 0;
+transition: all 0.3s ease-in-out;
+}
+.dotsdetails ._action p{ 
+padding: 0.3rem;
+font-size: 0.6rem;
+cursor: pointer;
+}
+
+._action .delete{
+  color:rgb(164, 0, 27);
+
+}
+.dotsdetails svg{
+  cursor: pointer;
 }

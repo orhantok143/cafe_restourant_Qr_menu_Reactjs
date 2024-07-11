@@ -27,6 +27,7 @@ import { getAllCategories } from "../../redux/category/categorySlice";
 import { IoCloseOutline } from "react-icons/io5";
 import { toPng } from "html-to-image";
 import { Comment } from "../../components/comment/Comment";
+import { getTop15ProductsForBusiness } from "./productAlgorithm";
 
 const Products = () => {
   const isLogin = true;
@@ -127,8 +128,12 @@ const Products = () => {
     if (!products.products && !categories.categories) {
       dispatch(getAllProducts());
       dispatch(getAllCategories());
+    }else{
+    getTop15ProductsForBusiness(param.id,products?.products);  
     }
-  }, [dispatch, products, categories]);
+    
+  
+  }, [dispatch, products, categories,param]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -144,6 +149,8 @@ const Products = () => {
     );
     setUserRating(userRating ? userRating.rating : null);
   }, [detailProduct, user?._id]);
+
+
 
   const c = categories?.categories
     ?.filter((category) => category.title.includes(currentCategory))

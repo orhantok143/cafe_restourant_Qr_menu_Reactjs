@@ -6,7 +6,6 @@ import { IoLocationSharp } from "react-icons/io5";
 import { IoAddCircleSharp } from "react-icons/io5";
 import { IoImage } from "react-icons/io5";
 import h1 from "../../image/h1.png";
-import { CgProfile } from "react-icons/cg";
 import Post from "./post/Post";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -65,11 +64,17 @@ const UserDetails = () => {
     if (sharePost.image) {
       formData.append("image", sharePost.image);
     }
-    dispatch(addPost(formData));
-    setSharePost({
-      content: "",
-      image: null,
+    dispatch(addPost(formData)).then((response)=>{
+      if (response.meta.requestStatus ==="fulfilled") {
+        localPosts.push(response.payload.post)
+        setLocalPosts(localPosts)
+        setSharePost({
+        content: "",
+        image: null,
+      });
+      }
     });
+    
   };
 
   const handlePostContent = (e) => {
@@ -127,7 +132,7 @@ const UserDetails = () => {
           ) : (
             <IoIosSearch onClick={() => setisActive(true)} />
           )}
-          <CgProfile className="user" />
+          
         </div>
       </div>
 
@@ -145,6 +150,7 @@ const UserDetails = () => {
           );
         })}
       </div>
+
       <div className="_share">
         <div className="_head">
           <img src={h1} alt="user" />
@@ -179,9 +185,15 @@ const UserDetails = () => {
           />
         </div>
       </div>
+      
       {
         localPosts.map(post=>(
-          <Post post={post} handleLikePost={handleLikePost} key={post._id}/>
+          <Post post={post} 
+          handleLikePost={handleLikePost} 
+          key={post._id} 
+          setLocalPosts={setLocalPosts} 
+          localPosts= {localPosts}
+          />
         ))
       }
     </main>
