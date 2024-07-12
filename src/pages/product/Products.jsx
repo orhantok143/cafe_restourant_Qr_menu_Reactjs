@@ -51,8 +51,6 @@ const Products = () => {
 
 
 
-  
-
   const combinedRefs = useCallback((node) => {
     // Refs for both product and detail components
     detailRef.current = node;
@@ -160,7 +158,6 @@ const Products = () => {
     );
     setUserRating(userRating ? userRating.rating : null);
   }, [detailProduct, user?._id]);
-
 
 
   const c = categories?.categories

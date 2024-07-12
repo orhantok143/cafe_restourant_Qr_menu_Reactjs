@@ -23,6 +23,8 @@ const BottomBar = () => {
     if (icon.label === "Home") {
       // dispatch(currentCategory("Yemek"));
       navigate(`/${param.id}/anasayfa`);
+    dispatch(currentCategory("Yemek"));
+
     }
     // if (icon.label !== "Home") {
     //   dispatch(currentCategory(icon.label));
