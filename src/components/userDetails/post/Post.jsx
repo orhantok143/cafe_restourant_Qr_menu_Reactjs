@@ -75,8 +75,8 @@ const Post = ({post,handleLikePost,setLocalPosts,localPosts }) => {
 const handleDeletePost = (postId)=>{
     dispatch(deletePost(postId)).then(response=>{
      if (response.meta.requestStatus ==="fulfilled") {
-      const newPosts = localPosts.filter(p=> p._id !== response.payload._id)    
-      setLocalPosts(newPosts)
+      const newPosts = localPosts.filter(p => p._id !== response.payload._id);
+      setLocalPosts([...newPosts]);  // Creating a new array reference
     }
 
     })
