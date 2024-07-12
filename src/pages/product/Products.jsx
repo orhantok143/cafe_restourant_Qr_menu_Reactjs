@@ -49,6 +49,10 @@ const Products = () => {
   const [hover, setHover] = useState(0);
   const [commentProduct, setcommentProduct] = useState(null)
 
+
+
+  
+
   const combinedRefs = useCallback((node) => {
     // Refs for both product and detail components
     detailRef.current = node;
