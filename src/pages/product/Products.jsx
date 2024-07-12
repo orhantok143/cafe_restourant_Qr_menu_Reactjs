@@ -168,6 +168,14 @@ const Products = () => {
       return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
     });
 
+
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [currentCategory]); // data değiştiğinde bu effect tetiklenecek
+
+
+
   return (
     <div className="_bg">
       {products?.loading || categories?.loading ? <Loading /> : null}

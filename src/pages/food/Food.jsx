@@ -1,4 +1,4 @@
-import React, { useRef,useEffect } from "react";
+import React, { useRef} from "react";
 import "./food.css";
 import { FaRegComment } from "react-icons/fa";
 import { RiShare2Line } from "react-icons/ri";
@@ -52,9 +52,6 @@ const Food = ({
     //   alert("Web Share API is not supported in your browser.");
     // }
   };
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [product]); // data değiştiğinde bu effect tetiklenecek
   return (
     <div className="_card" ref={productRef}>
       {product.isActive ? (
