@@ -61,6 +61,17 @@ export const updateProduct = createAsyncThunk(
     }
 );
 
+export const addCommentProduct = createAsyncThunk(
+    "Product/commentProduct",
+    async (data) => {
+
+        const response = await axiosInstance.post(`product/${data.productId}/comment`, data)
+        console.log("response::",response.data);
+
+        return response.data
+    }
+)
+
 
 const initialState = {
     products: null,

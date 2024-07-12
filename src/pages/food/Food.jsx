@@ -117,7 +117,7 @@ const Food = ({
               <p className="_mints">12dk</p>
             </div>
             <RiShare2Line onClick={handleShare} />
-            <FaRegComment onClick={handleComment} />
+            <FaRegComment onClick={()=>handleComment(product?._id)} />
           </div>
         </>
       ) : null}

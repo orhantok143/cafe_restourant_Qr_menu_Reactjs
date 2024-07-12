@@ -18,6 +18,7 @@ import {
 import { checkToken } from "../../redux/login/loginSlice";
 import { useParams } from "react-router-dom";
 import {
+  addCommentProduct,
   addMyFavorite,
   getAllProducts,
   initialLoad,
@@ -46,6 +47,7 @@ const Products = () => {
   const [favoritedLocal, setFavoritedLocal] = useState([]);
   const [userRating, setUserRating] = useState(null);
   const [hover, setHover] = useState(0);
+  const [commentProduct, setcommentProduct] = useState(null)
 
   const combinedRefs = useCallback((node) => {
     // Refs for both product and detail components
@@ -105,10 +107,15 @@ const Products = () => {
     setDetailProduct(null);
   };
 
-  const handleComment = () => {
+  const handleComment = (product) => {
     setisComment(true);
     setDetail(false);
+    setcommentProduct(product);
   };
+
+  const handleAddComment = (data)=>{
+    dispatch(addCommentProduct(data))
+  }
 
   useEffect(() => {
     if (user && user.myFavorites) {
@@ -166,7 +173,11 @@ const Products = () => {
       <Header tokenValid={tokenValid} user={user} />
 
       {isComment && user ? (
-        <Comment setisComment={setisComment} user={user} />
+        <Comment 
+        setisComment={setisComment} 
+        user={user} 
+        productId={commentProduct}
+        handleAddComment={handleAddComment} />
       ) : null}
       {isLogin &&
         c?.map((c, index) => (
@@ -282,7 +293,7 @@ const Products = () => {
               <p className="_mints">12dk</p>
             </div>
             <RiShare2Line onClick={() => handleShare(detailProduct)} />
-            <FaRegComment onClick={handleComment} />
+            <FaRegComment onClick={()=>handleComment(detailProduct?._id)} />
             <p className="_rating"> {detailProduct?.averageRating} </p>
           </div>
         </div>
