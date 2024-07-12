@@ -64,18 +64,18 @@ const UserDetails = () => {
     if (sharePost.image) {
       formData.append("image", sharePost.image);
     }
-    dispatch(addPost(formData)).then((response)=>{
-      if (response.meta.requestStatus ==="fulfilled") {
-        localPosts.push(response.payload.post)
-        setLocalPosts(localPosts)
+    dispatch(addPost(formData)).then((response) => {
+      if (response.meta.requestStatus === "fulfilled") {
+        // Yeni bir dizi oluştur ve yanıtla gelen gönderiyi ekle
+        const updatedLocalPosts = [...localPosts, response.payload.post];
+        setLocalPosts(updatedLocalPosts);
         setSharePost({
-        content: "",
-        image: null,
-      });
+          content: "",
+          image: null,
+        });
       }
     });
-    
-  };
+};
 
   const handlePostContent = (e) => {
     const content = e.target.value;
