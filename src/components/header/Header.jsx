@@ -34,7 +34,7 @@ const Header = ({ user, tokenValid }) => {
       <div className="_top_header">
         <div className="_logo">
           <img className="lo" src={img} alt="" srcSet="" />
-          {user?.role === "Admin" ? (
+          {user?.role === "Admin" || user?.role === "SuperAdmin" ? (
             <RiDashboardFill onClick={handleToDashboard} />
           ) : (
             <></>

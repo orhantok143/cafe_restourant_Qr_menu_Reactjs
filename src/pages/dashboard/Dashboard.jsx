@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkToken } from "../../redux/login/loginSlice";
 import ProductEdit from "../../components/productEdit/ProductEdit";
 import { selectActiveAuth } from "../../redux/selectors";
+import AddBranch from "../../components/addBranch/AddBranch";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const Dashboard = () => {
         <Route path="categories" element={<CategoryList param={param} />} />
         <Route path="add-category" element={<AddCategory />} />
         <Route path="branches" element={<CategoryList />} />
-        <Route path="add-branch" element={<Main />} />
+        <Route path="add-branch" element={<AddBranch />} />
       </Routes>
       <Leftbar />
     </div>
