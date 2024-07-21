@@ -7,6 +7,7 @@ import axiosInstance from '../config';
 export const getAllProducts = createAsyncThunk(
     'product/getAll',
     async (businessId) => {
+        console.log("Query::",businessId);
         const response = await axiosInstance.get(`product?businessId=${businessId}`)
         return response.data
     }
