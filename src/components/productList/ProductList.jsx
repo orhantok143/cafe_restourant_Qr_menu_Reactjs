@@ -14,7 +14,7 @@ import {
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const ProductList = ({ param }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const activeProducts = useSelector(selectActiveProducts);
   const [products, setProducts] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
