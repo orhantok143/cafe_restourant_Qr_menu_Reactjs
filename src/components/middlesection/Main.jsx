@@ -97,7 +97,7 @@ const Main = () => {
     if (!branch) {
       dispatch(getAllBusinesses());
     }
-  }, [dispatch, products.products, categories.categories, branch]);
+  }, [dispatch, products.products, categories.categories, branch,param.id]);
 
   return (
     <main className="main">
