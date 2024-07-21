@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import "./productlist.css"; // CSS dosyasını import ediyoruz
 import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
