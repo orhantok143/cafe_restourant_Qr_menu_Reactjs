@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import "./productlist.css"; // CSS dosyasını import ediyoruz
 import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
@@ -17,7 +17,6 @@ const ProductList = ({ param }) => {
   const dispatch = useDispatch();
   const activeProducts = useSelector(selectActiveProducts);
   const [products, setProducts] = useState([]);
-
   const [pageNumber, setPageNumber] = useState(0);
   const itemsPerPage = 12;
   const pagesVisited = pageNumber * itemsPerPage;
@@ -45,9 +44,9 @@ const ProductList = ({ param }) => {
 
   useEffect(() => {
     if (!activeProducts.products) {
-      dispatch(getAllProducts());
+      dispatch(getAllProducts(param.id));
     }
-  }, [dispatch, activeProducts.products]);
+  }, [dispatch, activeProducts.products,param.id]);
 
   useEffect(() => {
     setProducts(activeProducts?.products);

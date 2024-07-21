@@ -6,8 +6,8 @@ import axiosInstance from '../config';
 // Async thunk to fetch users from an API
 export const getAllProducts = createAsyncThunk(
     'product/getAll',
-    async () => {
-        const response = await axiosInstance.get("product")
+    async (businessId) => {
+        const response = await axiosInstance.get(`product?businessId=${businessId}`)
         return response.data
     }
 );

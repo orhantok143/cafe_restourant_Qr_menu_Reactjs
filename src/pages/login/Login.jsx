@@ -29,14 +29,14 @@ const Login = () => {
   const categories = useSelector(selectActiveCategories);
   useEffect(() => {
     if (!products.products && !categories.categories) {
-      dispatch(getAllProducts());
+      dispatch(getAllProducts(param.id));
       dispatch(getAllCategories());
     }
     const token = localStorage.getItem("token");
     if (token) {
       dispatch(checkToken(token));
     }
-  }, [dispatch, products.products, categories.categories]);
+  }, [dispatch, products.products, categories.categories,param.id]);
 
   useEffect(() => {
     if (loginState.tokenValid) {

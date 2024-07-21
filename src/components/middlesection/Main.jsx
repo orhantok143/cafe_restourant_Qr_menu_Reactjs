@@ -89,7 +89,7 @@ const Main = () => {
 
   useEffect(() => {
     if (!products?.products) {
-      dispatch(getAllProducts());
+      dispatch(getAllProducts(param.id));
     }
     if (!categories?.categories) {
       dispatch(getAllCategories());

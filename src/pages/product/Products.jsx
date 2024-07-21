@@ -135,7 +135,7 @@ const Products = () => {
 
   useEffect(() => {
     if (!products.products && !categories.categories) {
-      dispatch(getAllProducts());
+      dispatch(getAllProducts(param.id));
       dispatch(getAllCategories());
     }else{
     getTop15ProductsForBusiness(param.id,products?.products);  
