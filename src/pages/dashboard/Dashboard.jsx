@@ -22,7 +22,6 @@ const Dashboard = () => {
   const token = localStorage.getItem("token");
   const [loading, setLoading] = useState(true);
   const { user } = useSelector(selectActiveAuth);
-
   useEffect(() => {
     if (token) {
       dispatch(checkToken(token)).finally(() => {
