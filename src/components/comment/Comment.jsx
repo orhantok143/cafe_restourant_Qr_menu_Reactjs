@@ -9,8 +9,6 @@ const Comment = ({ setisComment, user,productId ,handleAddComment}) => {
   const param = useParams();
   const [comment, setComment] = useState({content:"",productId})
  
-console.log(comment);
-
   const handleProfile = () => {
     navigate(`/${param.id}/profile`);
   };

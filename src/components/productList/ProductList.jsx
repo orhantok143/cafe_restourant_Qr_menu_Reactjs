@@ -16,7 +16,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 const ProductList = ({ param }) => {
   const dispatch = useDispatch()
   const activeProducts = useSelector(selectActiveProducts);
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const itemsPerPage = 12;
   const pagesVisited = pageNumber * itemsPerPage;
@@ -48,13 +48,13 @@ const ProductList = ({ param }) => {
     }
   }, [dispatch, activeProducts.products,param.id]);
 
-  useEffect(() => {
-    setProducts(activeProducts?.products);
-  }, [activeProducts?.products]);
+  // useEffect(() => {
+  //   setProducts(activeProducts?.products);
+  // }, [activeProducts?.products]);
 
   const handleDelete = (id) => {
-    dispatch(deleteProduct(id));
-    setProducts(products?.filter((p) => p._id !== id));
+    dispatch(deleteProduct(id))
+    // activeProducts?.products?.filter(p=>p._id !== id)
   };
 
   const handleEdit = (product) => {
@@ -76,9 +76,9 @@ const ProductList = ({ param }) => {
             </tr>
           </thead>
           <tbody>
-            {displayItems?.map((product) => (
+            {displayItems?.map((product,key) => (
               <tr key={product._id}>
-                <td>{product.name}</td>
+                <td>{key+1} - {product.name}</td>
                 <td>{product.category}</td>
                 <td className="sub">{product.subCategory}</td>
                 <td>{product.price}</td>

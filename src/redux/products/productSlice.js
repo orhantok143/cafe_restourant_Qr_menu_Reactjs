@@ -7,7 +7,6 @@ import axiosInstance from '../config';
 export const getAllProducts = createAsyncThunk(
     'product/getAll',
     async (businessId) => {
-        console.log("Query::",businessId);
         const response = await axiosInstance.get(`product?businessId=${businessId}`)
         return response.data
     }
@@ -24,7 +23,8 @@ export const addMyFavorite = createAsyncThunk(
 export const addProduct = createAsyncThunk(
     "product/add-product",
     async (data) => {
-        const response = await axiosInstance.post("product/create", data)
+        const response = await axiosInstance.post("product/create", data)   
+        console.log(response.data);   
         return response.data
     }
 )
@@ -33,8 +33,10 @@ export const addProduct = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
     "product/delete-product",
     async (id) => {
-        const response = await axiosInstance.delete(`product/${id}`)
-        return response.data
+        const response = await axiosInstance.delete(`product/${id}`)  
+        console.log(response.data.deletedProduct);
+              
+        return response.data.deletedProduct
     }
 )
 
@@ -54,8 +56,7 @@ export const updateProduct = createAsyncThunk(
         try {
             const response = await axiosInstance
                 .put(`product/${productData.id}`, productData.values);
-            console.log("response::", response.data);
-            return response.data;
+            return response.data.updatedProduct
         } catch (error) {
             return rejectWithValue(error.response.data);
         }
@@ -65,13 +66,11 @@ export const updateProduct = createAsyncThunk(
 export const addCommentProduct = createAsyncThunk(
     "Product/commentProduct",
     async (data) => {
-
         const response = await axiosInstance.post(`product/${data.productId}/comment`, data)
-        console.log("response::",response.data);
-
         return response.data
     }
 )
+
 
 
 const initialState = {
@@ -122,8 +121,7 @@ const productSlice = createSlice({
             }).addCase(addMyFavorite.pending, (state) => {
             })
             .addCase(addMyFavorite.fulfilled, (state, action) => {
-
-                state.favorited = action.payload
+                state.favorited=action.payload
             })
             .addCase(addMyFavorite.rejected, (state, action) => {
 
@@ -136,6 +134,7 @@ const productSlice = createSlice({
             .addCase(addProduct.fulfilled, (state, action) => {
                 state.loading = false
                 state.error = false
+                state.products.push(action.payload)
 
             })
             .addCase(addProduct.rejected, (state, action) => {
@@ -150,7 +149,8 @@ const productSlice = createSlice({
             .addCase(deleteProduct.fulfilled, (state, action) => {
                 state.loading = false
                 state.error = false
-
+                state.products = state.products?.filter(p => p._id !== action.payload._id);
+            
             })
             .addCase(deleteProduct.rejected, (state, action) => {
                 state.success = false;
@@ -162,9 +162,14 @@ const productSlice = createSlice({
             })
             .addCase(updateProduct.fulfilled, (state, action) => {
                 state.loading = false;
-                // Ürün listesini güncelle
-                // const index = state.products?.products?.findIndex((product) => product._id === action.payload._id);
-
+            
+                // Find the index of the product to be updated
+                const index = state.products?.findIndex((product) => product._id === action.payload._id);
+            
+                // Update the product if it exists
+                if (index !== -1 && index !== undefined) {
+                    state.products[index] = action.payload;
+                }
             })
             .addCase(updateProduct.rejected, (state, action) => {
                 state.loading = false;

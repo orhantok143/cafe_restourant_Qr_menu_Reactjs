@@ -17,7 +17,6 @@ export const addComment = createAsyncThunk(
     'comment/addComment',
     async (comment) => {
         const response = await axiosInstance.post(`user/comment/post/${comment.postId}`, comment)
-        console.log(response.data);
         return response.data.comment
     }
 )

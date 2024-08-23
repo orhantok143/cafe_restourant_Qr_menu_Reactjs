@@ -31,7 +31,6 @@ const ProductEdit = () => {
     Object.keys(values).forEach((key) => {
       formData.append(key, values[key]);
     });
-
     dispatch(updateProduct({ id: editP._id, values }));
     resetForm();
   };

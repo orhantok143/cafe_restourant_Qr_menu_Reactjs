@@ -15,7 +15,6 @@ export const addBusiness = createAsyncThunk(
     'businesses/addBusiness',
     async(data)=>{
         const response = await axiosInstance.post("admin/create",data)
-        console.log(response.data)
         return response.data
     }
 )
